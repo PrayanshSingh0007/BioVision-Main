@@ -1,0 +1,34 @@
+.boot { justify-content: center; align-items: center; overflow: hidden; }
+.boot__grid { position: absolute; inset: 0; z-index: 0; opacity: 0.5; background-image: linear-gradient(rgba(120, 190, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 190, 255, 0.05) 1px, transparent 1px); background-size: 96px 96px; mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
+.boot__scan { position: absolute; left: 0; right: 0; top: -20%; height: 160px; z-index: 0; background: linear-gradient(180deg, transparent, rgba(94, 224, 255, 0.07), transparent); animation: bootScan 4s ease-in-out infinite; will-change: transform; }
+@keyframes bootScan { from { transform: translateY(0); } to { transform: translateY(calc(var(--vh, 1vh) * 130)); } }
+.boot__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 440px 580px; gap: 60px; align-items: center; }
+.boot__visual { position: relative; display: grid; place-items: center; height: 460px; }
+.boot__pulse { position: absolute; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(94, 224, 255, 0.22), transparent 65%); animation: bootPulse 2.6s ease-in-out infinite; }
+.boot__ring { position: absolute; border-radius: 50%; border: 1px solid rgba(154, 216, 255, 0.25); }
+.boot__ring--a { width: 380px; height: 380px; border-style: dashed; animation: spin 50s linear infinite; }
+.boot__ring--b { width: 300px; height: 300px; box-shadow: inset 0 0 60px rgba(94, 224, 255, 0.12); animation: spin 36s linear infinite reverse; }
+.boot__tick { position: absolute; font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.22em; color: var(--text-3); font-weight: 700; }
+.boot__tick--l { left: 0; top: 40px; } .boot__tick--r { right: 0; bottom: 40px; color: var(--cyan); }
+@keyframes bootPulse { 0%, 100% { transform: scale(0.9); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 1; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.boot__panel { padding: 30px 32px; }
+.boot__brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+.boot__ver { margin-left: auto; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); font-weight: 700; }
+.boot__stages { display: grid; gap: 8px; margin-top: 26px; }
+.boot__stage { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; color: var(--text-3); transition: all 0.3s; }
+.boot__stage--active { background: rgba(94, 224, 255, 0.07); color: var(--text-0); }
+.boot__stage--done { color: var(--text-1); }
+.boot__icon { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(170, 200, 240, 0.1); }
+.boot__stage--done .boot__icon { background: rgba(61, 220, 151, 0.22); color: #7ef0c0; }
+.boot__spin { width: 10px; height: 10px; border-radius: 50%; border: 2px solid rgba(170, 200, 240, 0.25); border-top-color: var(--cyan); }
+.boot__stage--active .boot__spin { animation: spin 0.8s linear infinite; }
+.boot__label { font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+.boot__detail { font-family: var(--mono); font-size: 11px; color: var(--text-2); letter-spacing: 0.04em; }
+.boot__progress { display: flex; align-items: center; gap: 14px; margin-top: 22px; font-size: 13px; color: var(--text-1); }
+.boot__track { flex: 1; height: 6px; border-radius: 99px; background: rgba(170, 200, 240, 0.1); overflow: hidden; }
+.boot__fill { height: 100%; background: linear-gradient(90deg, #2ec4b6, #5ee0ff); box-shadow: 0 0 16px rgba(94, 224, 255, 0.6); transition: width 0.45s var(--ease); }
+.boot__skip { display: inline-flex; align-items: center; gap: 4px; margin-top: 18px; background: none; border: none; color: var(--text-2); font-family: var(--font-display); font-size: 14px; font-weight: 700; padding: 6px 0; }
+@media (hover: hover) { .boot__skip:hover { color: var(--text-0); } }
+@media (max-width: 1100px) and (min-width: 720px) { .boot__inner { grid-template-columns: 1fr; width: min(580px, 100% - 40px); } .boot__visual { display: none; } }
+@media (max-width: 719px) { .boot__inner { grid-template-columns: 1fr; width: min(460px, 100% - 32px); gap: 24px; } .boot__visual { display: grid; height: 220px; transform: scale(0.62); margin: -70px 0; } .boot__panel { padding: 22px 20px; } .boot__stage { padding: 8px 4px; } }

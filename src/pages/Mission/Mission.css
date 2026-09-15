@@ -1,0 +1,40 @@
+.mission { justify-content: center; }
+.mission__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.mission__plate { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; object-position: 50% 48%; filter: saturate(1.04) contrast(1.05) brightness(0.7); animation: plateDrift 40s ease-in-out infinite alternate; will-change: transform; }
+@keyframes plateDrift { from { transform: translateX(0) scale(1); } to { transform: translateX(-1.5%) scale(1.03); } }
+.mission__fog { position: absolute; left: -20%; width: 140%; top: 45%; height: 35%; background: linear-gradient(180deg, transparent, rgba(200, 215, 235, 0.16) 50%, transparent); mix-blend-mode: screen; animation: fogDrift 44s ease-in-out infinite alternate; will-change: transform; }
+@keyframes fogDrift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
+
+.mission__bgfade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3, 14, 9, 0.8) 0%, rgba(3, 14, 9, 0.5) 45%, rgba(3, 14, 9, 0.15) 100%), linear-gradient(180deg, rgba(3, 14, 9, 0.5), transparent 30%, transparent 65%, rgba(3, 14, 9, 0.85)), linear-gradient(180deg, rgba(6, 40, 34, 0.3), rgba(6, 40, 34, 0.3)); }
+.mission__inner { position: relative; z-index: 1; width: min(1500px, 100% - 80px); margin: 0 auto; padding: 40px 0; }
+.mission__card { width: min(880px, 100%); padding: 40px 46px 38px; }
+.mission__head { display: flex; justify-content: space-between; align-items: center; }
+.mission__id { font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); }
+.mission__title { font-size: clamp(44px, 5vw, 72px); margin-top: 12px; }
+.mission__lead { margin-top: 16px; font-size: 18.5px; line-height: 1.55; color: var(--text-1); max-width: 720px; }
+
+/* four-stage process diagram joined by a light line */
+.mission__steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; }
+.mission__line { position: absolute; left: 10%; right: 10%; top: 24px; height: 1px; background: linear-gradient(90deg, transparent, rgba(94, 224, 255, 0.5), rgba(94, 224, 255, 0.5), transparent); z-index: 0; }
+.mission__step { position: relative; z-index: 1; display: grid; gap: 4px; }
+.mission__node { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #1d4a7a, #0b1f44); border: 1px solid rgba(94, 224, 255, 0.45); color: #9beeff; box-shadow: 0 0 22px rgba(94, 224, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1); margin-bottom: 8px; }
+.mission__num { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.2em; color: var(--cyan); font-weight: 700; }
+.mission__step h3 { font-size: 16px; font-weight: 800; }
+.mission__step p { font-size: 13.5px; color: var(--text-2); line-height: 1.45; }
+
+.mission__notes { display: grid; gap: 8px; margin-top: 26px; }
+.mission__note { display: flex; gap: 12px; align-items: flex-start; padding: 13px 16px; border-radius: 14px; background: rgba(245, 182, 74, 0.08); border: 1px solid rgba(245, 182, 74, 0.25); color: #ffe0a3; font-size: 14.5px; }
+.mission__note em { font-style: normal; font-weight: 700; }
+.mission__note svg { flex-shrink: 0; margin-top: 2px; }
+.mission__note--muted { background: rgba(170, 200, 240, 0.05); border-color: var(--line); color: var(--text-2); font-size: 13.5px; }
+.mission__actions { display: flex; align-items: center; gap: 20px; margin-top: 28px; flex-wrap: wrap; }
+@media (max-width: 900px) { .mission__card { padding: 28px; } .mission__steps { grid-template-columns: 1fr 1fr; } .mission__line { display: none; } }
+
+@media (max-width: 560px) {
+  .mission__inner { padding: 20px 0; }
+  .mission__card { padding: 22px 20px; }
+  .mission__title { font-size: clamp(34px, 11vw, 46px); }
+  .mission__lead { font-size: 16px; }
+  .mission__steps { grid-template-columns: 1fr; gap: 18px; }
+  .mission__actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+}

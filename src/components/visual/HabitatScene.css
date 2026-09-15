@@ -1,0 +1,36 @@
+.scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: hidden; }
+.scene__svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.scene__plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.scene__grade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 10, 22, 0.35) 0%, rgba(5, 10, 22, 0) 30%, rgba(5, 10, 22, 0) 60%, rgba(5, 10, 22, 0.45) 100%), var(--tint, transparent); }
+.scene__light { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at var(--light-at, 70% 10%), var(--light, transparent), transparent 70%); mix-blend-mode: screen; }
+/* soft foreground rise where the animal stands */
+.scene__ground { position: absolute; left: -15%; right: -15%; bottom: -8%; height: 26%; border-radius: 45% 55% 0 0 / 100% 90% 0 0;
+  background: radial-gradient(ellipse at 50% 0%, var(--ground-top, rgba(255,255,255,0.15)) 0%, var(--ground, #0b1220) 38%, var(--ground, #0b1220) 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%); mask-image: linear-gradient(180deg, transparent 0%, #000 14%); opacity: 0.92; }
+.scene__vig { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(3, 7, 16, 0.5) 100%); }
+.scene__svg--fx { pointer-events: none; will-change: transform; }
+/* animated groups live only in the fx layer; everything else only in the static layer */
+.scene__svg--static > .scene__rain, .scene__svg--static > .scene__snow, .scene__svg--static > .scene__fireflies, .scene__svg--static > .scene__aurora, .scene__svg--static > .scene__shafts, .scene__svg--static > .scene__ripples { display: none; }
+.scene__svg--fx > *:not(.scene__rain):not(.scene__snow):not(.scene__fireflies):not(.scene__aurora):not(.scene__shafts):not(.scene__ripples) { display: none; }
+.scene__stars circle { animation: none; }
+.scene__stars circle { animation: twinkle 3.2s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.scene--animated .scene__fireflies circle { animation: firefly 5s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.scene--animated .scene__rain line { animation: rain 1.1s linear infinite; animation-delay: var(--d, 0s); }
+.scene--animated .scene__snow circle { animation: snow 9s linear infinite; animation-delay: var(--d, 0s); }
+.scene--animated .scene__aurora { animation: aurora 12s ease-in-out infinite alternate; }
+.scene--animated .scene__shafts { animation: shafts 9s ease-in-out infinite alternate; }
+.scene--animated .scene__ripples { animation: ripples 6s linear infinite; }
+.scene:not(.scene--animated) * { animation: none !important; }
+.scene__svg--static * { animation: none !important; }
+
+@keyframes twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+@keyframes firefly { 0%, 100% { opacity: 0; transform: translateY(0); } 40% { opacity: 0.9; } 60% { opacity: 0.6; transform: translateY(-14px); } }
+@keyframes rain { from { transform: translateY(-40px); opacity: 0; } 20% { opacity: 0.6; } to { transform: translateY(160px); opacity: 0; } }
+@keyframes snow { from { transform: translate(0, -60px); } to { transform: translate(var(--x, 0px), 300px); } }
+@keyframes aurora { from { transform: translateX(-30px) scaleY(1); opacity: 0.8; } to { transform: translateX(30px) scaleY(1.15); opacity: 1; } }
+@keyframes shafts { from { opacity: 0.3; transform: translateX(-10px); } to { opacity: 0.6; transform: translateX(10px); } }
+@keyframes ripples { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -52; } }
+
+/* on photographic plates, drop the vector-only effects */
+.scene--plate .scene__svg--fx > .scene__ripples, .scene--plate .scene__svg--fx > .scene__shafts { display: none; }
+.scene--plate .scene__svg--fx > .scene__aurora { opacity: 0.55; }

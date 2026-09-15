@@ -1,0 +1,6 @@
+.helix { overflow: visible; }
+.helix__rung { transform-box: fill-box; transform-origin: center; animation: helixTurn 3.6s linear infinite; animation-delay: var(--ph); }
+.helix__nodeA, .helix__nodeB { animation: helixNode 3.6s linear infinite; animation-delay: var(--ph); }
+.helix__nodeB { animation-delay: calc(var(--ph) - 1.8s); }
+@keyframes helixTurn { 0% { transform: scaleX(1); } 25% { transform: scaleX(0.05); } 50% { transform: scaleX(-1); } 75% { transform: scaleX(-0.05); } 100% { transform: scaleX(1); } }
+@keyframes helixNode { 0%, 100% { opacity: 1; r: 4.2; } 50% { opacity: 0.45; r: 2.6; } }

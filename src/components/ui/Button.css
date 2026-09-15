@@ -1,0 +1,25 @@
+.btn {
+  position: relative; display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; border: 1px solid transparent;
+  font-family: var(--font-display); font-weight: 700; letter-spacing: 0.005em; white-space: nowrap; user-select: none;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), box-shadow 0.35s var(--ease), border-color 0.25s var(--ease), opacity 0.2s, transform 0.3s var(--ease-bounce);
+}
+.btn--md { padding: 12px 22px; font-size: 15px; }
+.btn--lg { padding: 17px 34px; font-size: 17px; }
+
+/* Primary — a warm ivory control with quiet depth */
+.btn--primary {
+  background: linear-gradient(180deg, #fbf6ec 0%, #f0e7d6 100%); color: #14203a;
+  box-shadow: 0 10px 28px rgba(0, 6, 20, 0.35), 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+@media (hover: hover) { .btn--primary:hover:not(:disabled) { transform: translateY(-1px); background: linear-gradient(180deg, #ffffff 0%, #f4ecdc 100%); box-shadow: 0 14px 34px rgba(0, 6, 20, 0.4), 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 0 0 1px rgba(255, 255, 255, 0.5); } }
+.btn--primary:active:not(:disabled) { transform: translateY(0); }
+
+/* Secondary — dark glass with a fine light edge */
+.btn--secondary { background: linear-gradient(180deg, rgba(30, 52, 92, 0.85), rgba(14, 28, 56, 0.9)); border-color: rgba(170, 200, 240, 0.28); color: var(--text-0); box-shadow: 0 8px 22px rgba(0, 4, 16, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+@media (hover: hover) { .btn--secondary:hover:not(:disabled) { border-color: rgba(94, 224, 255, 0.55); box-shadow: 0 10px 26px rgba(0, 4, 16, 0.45), 0 0 24px rgba(94, 224, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12); } }
+
+.btn--ghost { background: transparent; color: var(--text-1); padding-inline: 14px; }
+@media (hover: hover) { .btn--ghost:hover:not(:disabled) { color: var(--text-0); background: rgba(170, 200, 240, 0.08); } }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; filter: saturate(0.5); }
+.btn__icon-right { transition: transform 0.3s var(--ease); }
+@media (hover: hover) { .btn:hover:not(:disabled) .btn__icon-right { transform: translateX(3px); } }

@@ -1,0 +1,114 @@
+/* ============================================================
+   BioVision — "Expedition Lab" design system
+   Cinematic midnight foundation · warm off-white type · restrained
+   cyan/teal science accents · amber highlights · habitat accent colours.
+   ============================================================ */
+@font-face { font-family: "Manrope"; src: url("./assets/fonts/Manrope.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("./assets/fonts/Inter.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+
+:root {
+  /* Foundation */
+  --bg-0: #050a16;
+  --bg-1: #08122a;
+  --bg-2: #0d1c3a;
+  --bg-3: #13284f;
+  --panel: rgba(9, 20, 42, 0.72);
+  --panel-solid: #0d1b38;
+  --line: rgba(170, 200, 240, 0.13);
+  --line-strong: rgba(170, 200, 240, 0.3);
+
+  /* Text — warm off-white on midnight */
+  --text-0: #f6f3ea;
+  --text-1: #d8dbe3;
+  --text-2: #9aa5b8;
+  --text-3: #66738a;
+
+  /* Science accents (restrained) */
+  --cyan: #5ee0ff;
+  --cyan-soft: rgba(94, 224, 255, 0.14);
+  --teal: #2ec4b6;
+  --emerald: #3ddc97;
+  --emerald-soft: rgba(61, 220, 151, 0.14);
+  --amber: #f5b64a;
+  --amber-deep: #e0902a;
+  --amber-soft: rgba(245, 182, 74, 0.16);
+  --rose: #ff8a7a;
+  --accent: var(--cyan);
+  --accent-soft: var(--cyan-soft);
+  /* aliases used by components */
+  --gold: var(--amber); --gold-deep: var(--amber-deep); --gold-soft: var(--amber-soft);
+  --leaf: var(--emerald); --leaf-deep: var(--teal); --leaf-soft: var(--emerald-soft);
+  --berry: var(--rose); --sky: var(--cyan);
+
+  /* Type */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* Radii / shadows */
+  --r-sm: 12px; --r-md: 18px; --r-lg: 26px; --r-xl: 34px;
+  --shadow-lg: 0 34px 90px rgba(0, 4, 16, 0.65), 0 10px 28px rgba(0, 4, 16, 0.45);
+  --shadow-md: 0 16px 44px rgba(0, 4, 16, 0.5);
+  --glow-cyan: 0 0 30px rgba(94, 224, 255, 0.3);
+  --glow-amber: 0 0 34px rgba(245, 182, 74, 0.35);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; font-family: var(--font); background: var(--bg-0); color: var(--text-0);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; font-size: 16px; line-height: 1.5;
+}
+img { display: block; max-width: 100%; -webkit-user-drag: none; user-select: none; -webkit-touch-callout: none; }
+/* Touch: no double-tap zoom on controls, no grey tap flash, no text-selection popups on cards */
+button, [role="button"], a, label { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+button, [role="button"] { -webkit-user-select: none; user-select: none; }
+/* Larger comfortable targets on coarse pointers */
+@media (pointer: coarse) { .btn--md { padding: 14px 24px; } .btn--lg { padding: 19px 36px; } }
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, p { margin: 0; }
+h1, h2, h3, .display { font-family: var(--font-display); }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+::selection { background: rgba(94, 224, 255, 0.3); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(170, 200, 240, 0.18); border-radius: 99px; border: 2px solid transparent; background-clip: content-box; }
+@media (hover: hover) { ::-webkit-scrollbar-thumb:hover { background-color: rgba(170, 200, 240, 0.32); } }
+
+/* ---------- Typography helpers ---------- */
+.eyebrow { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cyan); font-weight: 700; }
+.eyebrow--amber { color: var(--amber); }
+.display { font-weight: 800; letter-spacing: -0.025em; line-height: 1.02; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--text-2); }
+.text-balance { text-wrap: balance; }
+
+/* Section label — small uppercase scientific label with a rule */
+.seclabel { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-2); font-weight: 700; }
+.seclabel::before { content: ""; width: 22px; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); }
+
+/* ---------- Glass panel — restrained ---------- */
+.panel {
+  position: relative;
+  background: radial-gradient(120% 90% at 0% 0%, rgba(94, 224, 255, 0.06), transparent 55%), linear-gradient(180deg, rgba(14, 30, 60, 0.94), rgba(8, 18, 40, 0.96));
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- Entrance reveal (CSS — never blocks content) ---------- */
+.rise { animation: rise 0.8s var(--ease) both; animation-delay: var(--d, 0s); }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------- Tone colours ---------- */
+.tone-good { color: #7ef0c0; } .tone-ok { color: #8fe3ff; } .tone-neutral { color: var(--text-1); } .tone-warn { color: #ffd166; } .tone-bad { color: #ffa599; }
+
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
+html[data-still] *, html[data-still] *::before, html[data-still] *::after { animation: none !important; transition: none !important; }
