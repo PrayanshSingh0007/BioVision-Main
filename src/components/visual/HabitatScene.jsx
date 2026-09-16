@@ -6,6 +6,14 @@ import plateDesert from "../../assets/environments/desert.webp";
 import plateArctic from "../../assets/environments/arctic.webp";
 import plateMountains from "../../assets/environments/mountains.webp";
 import plateWetlands from "../../assets/environments/wetlands.webp";
+import plateRainforest4k from "../../assets/environments/jungle-4k.webp";
+import plateForest4k from "../../assets/environments/forest-4k.webp";
+import plateGrasslands4k from "../../assets/environments/grasslands-4k.webp";
+import plateDesert4k from "../../assets/environments/desert-4k.webp";
+import plateArctic4k from "../../assets/environments/arctic-4k.webp";
+import plateMountains4k from "../../assets/environments/mountains-4k.webp";
+import plateWetlands4k from "../../assets/environments/wetlands-4k.webp";
+const PLATES_4K = { rainforest: plateRainforest4k, forest: plateForest4k, grasslands: plateGrasslands4k, desert: plateDesert4k, arctic: plateArctic4k, mountains: plateMountains4k, wetlands: plateWetlands4k };
 import { makeRng, ridgePath, softConifer, broadleaf, circlePath, frondCluster, bigLeaf, reeds, grassTufts, scatter } from "./sceneUtils";
 import "./HabitatScene.css";
 
@@ -38,7 +46,7 @@ export default function HabitatScene({ habitat, animated = true, className = "",
     <div className={`scene scene--${id} ${animated ? "scene--animated" : ""} ${usePlate ? "scene--plate" : ""} ${className}`} aria-hidden="true" style={usePlate ? { "--tint": plate.tint, "--light": plate.light, "--light-at": plate.lightAt, "--ground": plate.ground, "--ground-top": plate.groundTop } : undefined}>
       {usePlate ? (
         <>
-          <img src={plate.src} alt="" className="scene__plate" style={{ objectPosition: plate.pos, filter: plate.filter }} onError={() => setFailed(true)} draggable="false" />
+          <img src={plate.src} srcSet={`${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes="100vw" alt="" className="scene__plate" style={{ objectPosition: plate.pos, filter: plate.filter }} onError={() => setFailed(true)} decoding="async" draggable="false" />
           <div className="scene__grade" />
           <div className="scene__light" />
           <div className="scene__ground" />

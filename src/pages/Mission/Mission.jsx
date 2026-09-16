@@ -3,6 +3,7 @@ import { ArrowRight, Dna, FlaskConical, Globe2, Lightbulb, PawPrint } from "luci
 import Button from "../../components/ui/Button";
 import PageTransition from "../../components/ui/PageTransition";
 import plate from "../../assets/environments/jungle.webp";
+import plate4k from "../../assets/environments/jungle-4k.webp";
 import "./Mission.css";
 
 const STEPS = [
@@ -17,7 +18,7 @@ export default function Mission() {
   return (
     <PageTransition className="page mission">
       <div className="mission__bg" aria-hidden="true">
-        <img src={plate} alt="" className="mission__plate" draggable="false" />
+        <img src={plate} srcSet={`${plate} 2560w, ${plate4k} 3000w`} sizes="100vw" alt="" className="mission__plate" decoding="async" draggable="false" />
         <div className="mission__bgfade" />
         <div className="mission__fog" />
       </div>

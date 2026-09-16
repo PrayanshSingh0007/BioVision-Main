@@ -7,6 +7,7 @@ import Logo from "../../components/layout/Logo";
 import { useFullscreen } from "../../components/layout/TopBar";
 import { canFullscreen } from "../../utils/useIsTouch";
 import jungle from "../../assets/environments/jungle.webp";
+import jungle4k from "../../assets/environments/jungle-4k.webp";
 import clouds from "../../assets/environments/clouds.webp";
 import "./Landing.css";
 
@@ -55,8 +56,8 @@ export default function Landing() {
         {/* far plane: the ridge — slow camera drift. The photographed mist rides on the same camera,
             as a masked copy displaced by evolving noise so it boils and drifts. */}
         <div className="j__cam j__cam--far">
-          <img src={jungle} alt="" className="j__plate" draggable="false" />
-          <div className="j__half j__mistflow"><img src={jungle} alt="" className="j__plate j__plate--mist" draggable="false" /></div>
+          <img src={jungle} srcSet={`${jungle} 2560w, ${jungle4k} 3000w`} sizes="100vw" alt="" className="j__plate" fetchPriority="high" decoding="async" draggable="false" />
+          <div className="j__half j__mistflow"><img src={jungle} srcSet={`${jungle} 2560w, ${jungle4k} 3000w`} sizes="100vw" alt="" className="j__plate j__plate--mist" decoding="async" draggable="false" /></div>
         </div>
 
         {/* clouds drifting across the sky and the valley mist */}
@@ -68,7 +69,7 @@ export default function Landing() {
         <div className="j__mist j__mist--far" />
 
         {/* near plane: foreground canopy, moving in the wind */}
-        <div className="j__cam j__cam--near"><div className="j__half j__wind"><img src={jungle} alt="" className="j__plate j__plate--near" draggable="false" /></div></div>
+        <div className="j__cam j__cam--near"><div className="j__half j__wind"><img src={jungle} srcSet={`${jungle} 2560w, ${jungle4k} 3000w`} sizes="100vw" alt="" className="j__plate j__plate--near" decoding="async" draggable="false" /></div></div>
         <div className="j__mist j__mist--near" />
         <div className="j__light" />
         <div className="j__vignette" />

@@ -98,7 +98,7 @@ export default function SpeciesComposition({ animal, habitat, traitIds = [], rev
           )}
 
           {/* base animal */}
-          <img src={animal.image} alt={animal.name} className="comp__base" draggable="false" />
+          <img src={animal.image} alt={animal.name} className="comp__base" decoding="async" draggable="false" />
 
           {/* skin layers masked to the silhouette, blended with the photo */}
           {layers.flatMap((l) => (l.skinLayers || []).map((sl, k) => (
