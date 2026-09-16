@@ -35,6 +35,12 @@ const PLATES = {
   wetlands: { src: plateWetlands, pos: "50% 60%", filter: "saturate(0.85) contrast(1.05) brightness(0.78)", tint: "rgba(8, 35, 30, 0.32)", light: "rgba(200, 245, 230, 0.18)", lightAt: "40% 10%", ground: "#0c1a16", groundTop: "rgba(90, 140, 120, 0.25)" },
 };
 
+/** Colour cast of a habitat plate, used to grade the species figure so it sits in the scene. */
+export function sceneGrade(id) {
+  const p = PLATES[id] || PLATES.forest;
+  return { tint: p.tint, light: p.light, ground: p.ground };
+}
+
 export default function HabitatScene({ habitat, animated = true, className = "", detail = "full" }) {
   const id = habitat?.id || "forest";
   const uid = `sc-${id}`;

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import HabitatScene from "./HabitatScene";
+import HabitatScene, { sceneGrade } from "./HabitatScene";
 import { OVERLAY_RENDERERS, LABEL_ANCHOR } from "./traitOverlays";
 import { traitById } from "../../data/traits";
 import { animalById } from "../../data/animals";
@@ -42,6 +42,8 @@ export default function SpeciesComposition({ animal, habitat, traitIds = [], rev
   const scale = FIGURE_SCALE[animal.id] ?? 1;
   const delay = (i) => (reveal ? `${0.9 + i * 0.55}s` : "0s");
   const halo = layers.some((l) => l.halo);
+  const skinTraits = layers.filter((l) => l.skinLayers?.length).length;
+  const skinDamp = skinTraits > 2 ? 0.5 : skinTraits > 1 ? 0.7 : 1;
 
   // Measure the stage so the figure and callouts can be laid out in pixels (deterministic, no clipping).
   const stageRef = useRef(null);
@@ -66,6 +68,7 @@ export default function SpeciesComposition({ animal, habitat, traitIds = [], rev
   }, [stage, w, h, scale]);
 
   const callouts = useMemo(() => buildCallouts(layers, animal, fig, stage, labels), [layers, animal, fig, stage, labels]);
+  const grade = sceneGrade(habitat?.id);
 
   return (
     <div className={`comp ${reveal ? "comp--reveal" : ""} ${className}`} style={{ "--accent": habitat?.accent || "#22d3ee" }}>
@@ -100,12 +103,17 @@ export default function SpeciesComposition({ animal, habitat, traitIds = [], rev
           {/* base animal */}
           <img src={animal.image} alt={animal.name} className="comp__base" decoding="async" draggable="false" />
 
-          {/* skin layers masked to the silhouette, blended with the photo */}
+          {/* scene grade: the plate's colour cast, key light from above and ground bounce, masked to the silhouette */}
+          <div className="comp__skin comp__grade comp__grade--tint" style={{ "--mask": `url(${animal.image})`, background: grade.tint }} />
+          <div className="comp__skin comp__grade comp__grade--light" style={{ "--mask": `url(${animal.image})`, background: `linear-gradient(180deg, ${grade.light} 0%, rgba(255,255,255,0) 45%)` }} />
+          <div className="comp__skin comp__grade comp__grade--ground" style={{ "--mask": `url(${animal.image})`, background: `linear-gradient(0deg, ${grade.ground} 0%, rgba(0,0,0,0) 40%)` }} />
+
+          {/* skin layers masked to the silhouette, blended with the photo (damped when several coat traits stack) */}
           {layers.flatMap((l) => (l.skinLayers || []).map((sl, k) => (
             <div
               key={`skin-${l.trait.id}-${k}`}
               className="comp__skin comp__reveal"
-              style={{ "--d": delay(l.index), "--mask": `url(${animal.image})`, mixBlendMode: sl.blend, opacity: sl.opacity }}
+              style={{ "--d": delay(l.index), "--mask": `url(${animal.image})`, mixBlendMode: sl.blend, opacity: sl.opacity * skinDamp }}
             >
               {sl.content}
             </div>
@@ -150,6 +158,7 @@ export default function SpeciesComposition({ animal, habitat, traitIds = [], rev
         )}
       </div>
       <div className="comp__atmo" />
+      <div className="comp__grain" />
     </div>
   );
 }

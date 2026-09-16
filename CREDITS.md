@@ -28,10 +28,10 @@ For all the files concerned, please see the category Supported by Wikimedia CH.
 | giraffe | [Giraffa camelopardalis angolensis.jpg](https://commons.wikimedia.org/wiki/File:Giraffa_camelopardalis_angolensis.jpg) | Hans Hillewaert | CC BY-SA 4.0 |
 | fennec-fox | [Fennec Fox Vulpes zerda.jpg](https://commons.wikimedia.org/wiki/File:Fennec_Fox_Vulpes_zerda.jpg) | Drew Avery | CC BY 2.0 |
 | camel | [07. Camel Profile, near Silverton, NSW, 07.07.2007.jpg](https://commons.wikimedia.org/wiki/File:07._Camel_Profile,_near_Silverton,_NSW,_07.07.2007.jpg) | Jjron | CC BY-SA 3.0 |
-| tortoise | [Desert tortoise turtle close up front view gopherus morafkai.jpg](https://commons.wikimedia.org/wiki/File:Desert_tortoise_turtle_close_up_front_view_gopherus_morafkai.jpg) | U.S. Fish and Wildlife Service | Public domain |
+| tortoise | [Leopard Tortoise (Stigmochelys pardalis) juvenile crossing the road ... (52764073719).jpg](https://commons.wikimedia.org/wiki/File:Leopard_Tortoise_%28Stigmochelys_pardalis%29_juvenile_crossing_the_road_..._%2852764073719%29.jpg) | Bernard DUPONT from FRANCE | CC BY-SA 2.0 |
 | arctic-fox | [Arctic fox in snow (Unsplash).jpg](https://commons.wikimedia.org/wiki/File:Arctic_fox_in_snow_(Unsplash).jpg) | Jonatan Pie r3dmax | CC0 |
 | penguin | [Aptenodytes forsteri -Antarctica -blzzard-8.jpg](https://commons.wikimedia.org/wiki/File:Aptenodytes_forsteri_-Antarctica_-blzzard-8.jpg) | Ian Duffy from UK | CC BY 2.0 |
-| reindeer | [20070818-0001-strolling reindeer.jpg](https://commons.wikimedia.org/wiki/File:20070818-0001-strolling_reindeer.jpg) | Alexandre Buisse (Nattfodd) | CC BY-SA 3.0 |
+| reindeer | [Caribú (Rangifer tarandus), Parque nacional y reserva Denali, Alaska, Estados Unidos, 2017-08-30, DD 39.jpg](https://commons.wikimedia.org/wiki/File:Carib%C3%BA_%28Rangifer_tarandus%29%2C_Parque_nacional_y_reserva_Denali%2C_Alaska%2C_Estados_Unidos%2C_2017-08-30%2C_DD_39.jpg) | Diego Delso | CC BY-SA 4.0 |
 | snow-leopard | [Panthera uncia - Zoo Karlsruhe 01.jpg](https://commons.wikimedia.org/wiki/File:Panthera_uncia_-_Zoo_Karlsruhe_01.jpg) | H. Zell | CC BY-SA 3.0 |
 | mountain-goat | [Mountain Goat Mount Massive.JPG](https://commons.wikimedia.org/wiki/File:Mountain_Goat_Mount_Massive.JPG) | Darklich14 | CC BY 3.0 |
 | yak | [Wild Yak Stuffed.jpg](https://commons.wikimedia.org/wiki/File:Wild_Yak_Stuffed.jpg) | Jim, the Photographer | CC BY 2.0 |
@@ -60,3 +60,25 @@ Derivative work:  Iifar | CC BY-SA 4.0 |
 Derivative work:  W.carter | CC BY-SA 4.0 |
 | leaf-b | [Fruit Salad Plant (Monstera deliciosa).jpg](https://commons.wikimedia.org/wiki/File:Fruit_Salad_Plant_(Monstera_deliciosa).jpg) | Mokkie | CC BY-SA 3.0 |
 | jungle | [Sinharaja - 55329699801.jpg](https://commons.wikimedia.org/wiki/File:Sinharaja_-_55329699801.jpg) | xiquinhosilva | CC BY 4.0 |
+| chameleon | [Chamaeleo calyptratus Esapolis 01.jpg](https://commons.wikimedia.org/wiki/File:Chamaeleo_calyptratus_Esapolis_01.jpg) | Syrio | CC BY-SA 4.0 |
+| frog | [Green Tree Frog (Litoria caerulea).jpg](https://commons.wikimedia.org/wiki/File:Green_Tree_Frog_%28Litoria_caerulea%29.jpg) | Stephen Michael Barnett | CC BY 2.0 |
+| koala | [Koala in Zoo Duisburg.jpg](https://commons.wikimedia.org/wiki/File:Koala_in_Zoo_Duisburg.jpg) | Till Niermann | CC BY 3.0 |
+| cat | [Cat on street (44591666451).jpg](https://commons.wikimedia.org/wiki/File:Cat_on_street_%2844591666451%29.jpg) | Mateusz Kamiński from Gdańsk, Poland | CC BY 2.0 |
+| deer | [Red deer stag in winter.jpg](https://commons.wikimedia.org/wiki/File:Red_deer_stag_in_winter.jpg) | NoNameIsLeft | CC BY-SA 4.0 |
+| polar-bear | [Polar Bear with its tongue sticking out.jpg](https://commons.wikimedia.org/wiki/File:Polar_Bear_with_its_tongue_sticking_out.jpg) | Christopher Michel | CC BY 2.0 |
+| kangaroo | [Black Hill Conservation Park on 27 June 2025 16.jpg](https://commons.wikimedia.org/wiki/File:Black_Hill_Conservation_Park_on_27_June_2025_16.jpg) | Yu Chu Chin | CC BY-SA 4.0 |
+| eagle | [Haliaeetus leucocephalus (Bald Eagle) 117.jpg](https://commons.wikimedia.org/wiki/File:Haliaeetus_leucocephalus_%28Bald_Eagle%29_117.jpg) | gary_leavens | CC BY-SA 2.0 |
+
+## Trait parts and skin textures
+
+Photographic body parts and skin textures are cut from the source animals' own photographs listed above (squirrel tail, toucan beak, fox and fennec ears, lion mane, elephant trunk, camel hump, ibex horns, flamingo and heron bills, jaguar spots, chameleon and polar-bear skin, arctic-fox fur) plus these additional files:
+
+| Part | Source file | Author | License |
+|---|---|---|---|
+| Eagle wings (Flight) | [Haliaeetus leucocephalus (Bald Eagle) 117.jpg](https://commons.wikimedia.org/wiki/File:Haliaeetus_leucocephalus_%28Bald_Eagle%29_117.jpg) | gary_leavens | CC BY-SA 2.0 |
+| Barn-owl wings (Silent flight) | [Eastern Barn Owl in flight.jpg](https://commons.wikimedia.org/wiki/File:Eastern_Barn_Owl_in_flight.jpg) | Paul Balfe | CC BY 2.0 |
+| Red-deer antlers (Antlers) | [RedDeerStag.jpg](https://commons.wikimedia.org/wiki/File:RedDeerStag.jpg) | derivative work: Massimo Catarinella | CC BY-SA 3.0 |
+| Hippo tusk (Tusks) | [Hippo Tilting Its Head While Yawning.jpg](https://commons.wikimedia.org/wiki/File:Hippo_Tilting_Its_Head_While_Yawning.jpg) | Eric Kilby | CC BY-SA 2.0 |
+| Snow-leopard tail (Scarf tail) | [Snow Leopard Showing Tail (13883254224).jpg](https://commons.wikimedia.org/wiki/File:Snow_Leopard_Showing_Tail_%2813883254224%29.jpg) | Eric Kilby from Somerville, MA, USA | CC BY-SA 2.0 |
+| Tortoise shell (Protective shell) | [Leopard Tortoise (Stigmochelys pardalis) juvenile crossing the road ... (52764073719).jpg](https://commons.wikimedia.org/wiki/File:Leopard_Tortoise_%28Stigmochelys_pardalis%29_juvenile_crossing_the_road_..._%2852764073719%29.jpg) | Bernard DUPONT from FRANCE | CC BY-SA 2.0 |
+| Crocodile skin texture (Armoured scales) | [Crocodile3.JPG](https://commons.wikimedia.org/wiki/File:Crocodile3.JPG) | Wegmann | CC BY-SA 3.0 |
