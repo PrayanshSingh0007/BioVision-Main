@@ -19,7 +19,8 @@ export default function Species() {
   const navigate = useNavigate();
   const { habitat, animal, setAnimal } = useMission();
   const [hover, setHover] = useState(null);
-  const [filter, setFilter] = useState("all");
+  // Default to the chosen habitat's native species; other habitats stay one tap away.
+  const [filter, setFilter] = useState(() => habitat?.id ?? "all");
   const touch = useIsTouch();
   if (!habitat) return <Navigate to="/habitat" replace />;
 
@@ -80,10 +81,13 @@ export default function Species() {
           {/* ---- species rail ---- */}
           <div className="species__browser rise" style={{ "--d": "0.2s" }}>
             <div className="species__filters">
+              <button type="button" className={`species__filter ${filter === habitat.id ? "species__filter--on" : ""}`} style={{ "--accent": habitat.accent }} onClick={() => setFilter(habitat.id)}>
+                <i />{habitat.name} · your habitat
+              </button>
               <button type="button" className={`species__filter ${filter === "all" ? "species__filter--on" : ""}`} onClick={() => setFilter("all")}>All habitats · {animals.length}</button>
-              {order.map((h) => (
+              {order.filter((h) => h.id !== habitat.id).map((h) => (
                 <button key={h.id} type="button" className={`species__filter ${filter === h.id ? "species__filter--on" : ""}`} style={{ "--accent": h.accent }} onClick={() => setFilter(h.id)}>
-                  <i />{h.name}{h.id === habitat.id ? " · your habitat" : ""}
+                  <i />{h.name}
                 </button>
               ))}
             </div>
