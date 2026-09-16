@@ -32,14 +32,28 @@ Landing → Boot → Mission Brief → Habitat → Species Archive → Genetic L
 
 ## Presenting tomorrow (cheat sheet)
 
-1. Double-click `Start BioVision.command` (or run `npm run dev`) — the browser opens automatically.
+**If the Wi-Fi at the venue is slow, filtered, or just not there** — this app needs **zero
+network at runtime** (no APIs, no fonts/images from the internet, nothing). The only thing
+that ever needed Wi-Fi was the one-time `npm install`. Two launchers now handle this:
+
+- **`Open BioVision (Offline).command`** — the safe, always-works option. Double-click it and
+  it opens the already-built app straight from disk in your default browser. No terminal
+  output, no npm, no server, no Wi-Fi check — it cannot fail because of the network.
+- **`Start BioVision.command`** — the normal launcher for live editing (`npm run dev`). It now
+  checks for a network connection before trying `npm install`, and if there isn't one (or the
+  install fails), it **automatically falls back** to opening the offline build instead of
+  hanging or erroring out.
+
+Both open the exact same app. Use the offline one whenever you just need it to work.
+
+1. Double-click a launcher above (or run `npm run dev`) — the browser opens automatically.
 2. Click **Fullscreen** (top-right on the landing page or the ⤢ button in the top bar).
 3. Suggested demo: Rainforest → Bengal Tiger → Flight + Camouflage + Night Vision → Generate Species.
    Then **Change Habitat** to Arctic and generate again to show how the same traits score differently.
 4. If anything ever looks stuck, press ⌘R — every selection is saved and restored automatically.
 5. **4K / large smartboards:** the interface scales itself up automatically on displays wider than ~2200 px (a 4K board shows the 1920 px design at 2×), so text stays readable from the back of the room. Keep the browser at 100 % zoom.
 6. **Touch screens:** fully supported — tap a habitat or species once to open and select it; tap a trait to add or remove it. Hover effects are automatically disabled on touch devices.
-7. **No-terminal backup:** the folder `dist/` is a finished static build — double-click `dist/index.html` and it runs in any browser, even offline.
+7. **Rebuilding the offline copy:** after any code change, run `npm run build` once (needs network the first time only, to have `node_modules` installed) to refresh `dist/` before the next offline run.
 
 * 7 habitats, 37 base animals (grouped by their native habitat) and 39 inheritable adaptations — all local data in `src/data/`. Image sources and licenses are listed in `CREDITS.md`.
 * Exactly three traits must be selected; traits that come from the base animal itself are
