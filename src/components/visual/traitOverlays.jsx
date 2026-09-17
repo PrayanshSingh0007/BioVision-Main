@@ -308,11 +308,12 @@ function camouflage(ctx, opts = {}) {
       { blend: "screen", opacity: 0.3, content: tex("winter", 50) },
     ] };
   }
-  // chameleon camouflage: real chameleon skin, colour-shifted toward the habitat palette
+  // chameleon camouflage: a subtle colour-adaptive cast, not a full repaint — the base animal's
+  // own coat and pattern should still read clearly underneath it.
   const pal = CAMO_PALETTES[habitat?.id] || CAMO_PALETTES.forest;
   return { skinLayers: [
-    { blend: "multiply", opacity: 0.7, content: tex("camo", 38) },
-    { blend: "color", opacity: 0.45, content: <div className="comp__tint" style={{ background: `linear-gradient(160deg, ${pal[1]}, ${pal[0]})` }} /> },
+    { blend: "multiply", opacity: 0.32, content: tex("camo", 38) },
+    { blend: "color", opacity: 0.2, content: <div className="comp__tint" style={{ background: `linear-gradient(160deg, ${pal[1]}, ${pal[0]})` }} /> },
   ] };
 }
 
