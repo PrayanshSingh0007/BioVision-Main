@@ -37,15 +37,19 @@ const WING_SETS = {
 };
 
 export function wings(ctx, opts = {}) {
-  const { P, W, headW, facing, uid, anchors } = ctx;
+  const { P, W, headW, facing, anchors } = ctx;
   const set = WING_SETS[opts.palette] || WING_SETS.eagle;
   const root = P(anchors.back);
   const L = Math.max(W * 0.55, headW * 1.8);
   const m = mir(facing);
   const fwd = facing === "right" ? 1 : -1;
   return {
+    // No feDropShadow here: wings are the one continuously-animating overlay (wingFlex CSS animation),
+    // and an SVG blur filter over an ancestor of animated, full-resolution photo content gets
+    // recomputed every single frame — the wing was the main source of the "laggy" feel. The base
+    // animal's own drop-shadow plus the ground shadow already ground the composition visually.
     behind: (
-      <g className="ov ov--wings" filter={`url(#${uid}-shadow)`}>
+      <g className="ov ov--wings">
         {photoPart(set.front, { at: { x: root.x + fwd * headW * 0.18, y: root.y + headW * 0.06 }, angle: ang(facing, -128), length: L * 0.9, mirror: m, opacity: 0.92, className: "ov__wing ov__wing--far" })}
         {photoPart(set.back, { at: root, angle: ang(facing, -52), length: L, mirror: m, className: "ov__wing ov__wing--near" })}
       </g>

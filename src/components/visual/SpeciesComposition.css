@@ -11,7 +11,7 @@
   box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.45); }
 
 .comp__stage { position: absolute; inset: 0; z-index: 2; }
-.comp__figure { position: absolute; }
+.comp__figure { position: absolute; isolation: isolate; will-change: transform; transform: translateZ(0); }
 .comp__shadow { position: absolute; left: 10%; right: 10%; bottom: -4%; height: 12%; border-radius: 50%;
   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 70%); filter: blur(6px); z-index: 0; }
 .comp__layer { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
@@ -24,13 +24,14 @@
   -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
 .comp__tint { position: absolute; inset: 0; }
 .comp__tex { position: absolute; inset: 0; background-repeat: repeat; background-position: center; }
-/* scene grade layers (always on): colour cast, key light, ground bounce */
-.comp__grade--tint { mix-blend-mode: multiply; opacity: 0.9; }
-.comp__grade--light { mix-blend-mode: soft-light; opacity: 1; }
-.comp__grade--ground { mix-blend-mode: multiply; opacity: 0.55; }
-/* film grain over the whole frame — unifies photo plate, cut-out and parts */
+/* scene grade (always on): colour cast + key light + ground bounce, one blend pass */
+.comp__grade { mix-blend-mode: multiply; opacity: 0.75; }
+/* Film grain over the whole frame. Plain alpha overlay (no mix-blend-mode): a blend mode here would
+   sit above the continuously-animated scene (rain/snow/aurora/wing flex) and force the browser to
+   recomposite this layer every single animation frame — normal alpha compositing is GPU-cheap and
+   backdrop-independent, so the grain stays essentially free even while the scene keeps moving. */
 .comp__grain { position: absolute; inset: 0; z-index: 4; pointer-events: none; background: url("../../assets/textures/grain.png") repeat; background-size: 256px 256px;
-  mix-blend-mode: overlay; opacity: 0.16; }
+  opacity: 0.05; }
 .comp__skinsvg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .comp__layer--behind { z-index: 1; }
 .comp__layer--front { z-index: 4; will-change: transform; }

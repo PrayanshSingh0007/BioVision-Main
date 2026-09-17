@@ -103,10 +103,15 @@ export default function SpeciesComposition({ animal, habitat, traitIds = [], rev
           {/* base animal */}
           <img src={animal.image} alt={animal.name} className="comp__base" decoding="async" draggable="false" />
 
-          {/* scene grade: the plate's colour cast, key light from above and ground bounce, masked to the silhouette */}
-          <div className="comp__skin comp__grade comp__grade--tint" style={{ "--mask": `url(${animal.image})`, background: grade.tint }} />
-          <div className="comp__skin comp__grade comp__grade--light" style={{ "--mask": `url(${animal.image})`, background: `linear-gradient(180deg, ${grade.light} 0%, rgba(255,255,255,0) 45%)` }} />
-          <div className="comp__skin comp__grade comp__grade--ground" style={{ "--mask": `url(${animal.image})`, background: `linear-gradient(0deg, ${grade.ground} 0%, rgba(0,0,0,0) 40%)` }} />
+          {/* scene grade: the plate's colour cast, key light from above and ground bounce — one masked
+              layer (not three) so it composites once rather than three separate blend passes */}
+          <div
+            className="comp__skin comp__grade"
+            style={{
+              "--mask": `url(${animal.image})`,
+              background: `linear-gradient(180deg, ${grade.light} 0%, rgba(255,255,255,0) 45%), linear-gradient(0deg, ${grade.ground} 0%, rgba(0,0,0,0) 40%), ${grade.tint}`,
+            }}
+          />
 
           {/* skin layers masked to the silhouette, blended with the photo (damped when several coat traits stack) */}
           {layers.flatMap((l) => (l.skinLayers || []).map((sl, k) => (
