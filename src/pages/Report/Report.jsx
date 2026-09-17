@@ -42,7 +42,6 @@ export default function Report() {
             <Badge tone="good" icon={BadgeCheck}>Species documented</Badge>
             <div className="report__headactions">
               <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/lab")}>Return to Lab</Button>
-              <Button variant="secondary" icon={Globe2} onClick={() => navigate("/habitat")}>Change Habitat</Button>
               <Button variant="secondary" icon={RotateCcw} onClick={runAnother}>Run Another Experiment</Button>
             </div>
           </div>
@@ -130,7 +129,6 @@ export default function Report() {
           <p className="report__disclaimer"><Info size={14} /> BioVision is an educational simulation. Its trait combinations and survival scores are illustrative, not real genetic predictions.</p>
           <div className="report__footactions">
             <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/lab")}>Return to Lab</Button>
-            <Button variant="secondary" icon={Globe2} onClick={() => navigate("/habitat")}>Change Habitat</Button>
             <Button icon={RotateCcw} onClick={runAnother}>Run Another Experiment</Button>
           </div>
         </footer>
