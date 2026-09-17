@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, ChevronRight } from "lucide-react";
 import PageTransition from "../../components/ui/PageTransition";
-import DNAHelix from "../../components/visual/DNAHelix";
+import FieldReel from "../../components/visual/FieldReel";
 import Logo from "../../components/layout/Logo";
 import habitats from "../../data/habitats";
 import animals from "../../data/animals";
@@ -38,7 +38,7 @@ export default function Boot() {
         <div className="boot__visual">
           <div className="boot__pulse" />
           <div className="boot__ring boot__ring--a" /><div className="boot__ring boot__ring--b" />
-          <DNAHelix size={380} />
+          <FieldReel index={stage} size={380} />
         </div>
         <div className="boot__panel panel">
           <div className="boot__brand"><Logo size={34} /><span>BioVision</span><span className="boot__ver">Biosystem initialization</span></div>

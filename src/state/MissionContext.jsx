@@ -1,5 +1,5 @@
 import { createContext, startTransition, useContext, useEffect, useMemo, useReducer } from "react";
-import { loadMission, saveMission, clearMission } from "../utils/storage";
+import { loadMission, clearMission } from "../utils/storage";
 import { habitatById } from "../data/habitats";
 import { animalById } from "../data/animals";
 import { traitById } from "../data/traits";
@@ -51,7 +51,9 @@ const MissionContext = createContext(null);
 export function MissionProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, null, () => sanitize(loadMission()));
 
-  useEffect(() => { saveMission(state); }, [state]);
+  // Mission progress is session-only (see utils/storage.js) — purge anything an older version of
+  // the app left in localStorage so a returning visitor never resumes a stale mission.
+  useEffect(() => { clearMission(); }, []);
 
   const value = useMemo(() => {
     const habitat = state.habitatId ? habitatById[state.habitatId] : null;

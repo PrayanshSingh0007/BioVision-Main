@@ -1,5 +1,10 @@
-/** Safe localStorage helpers — never throw during a presentation. */
-const KEY = "biovision.mission.v1";
+/**
+ * Mission progress is intentionally session-only: it lives in memory for as long as the tab is
+ * open, and a refresh starts a fresh mission — like walking back into the lab for the first time.
+ * The one thing that does persist across a reload is the `?seed=` URL preset below, which is a
+ * deliberate demo feature, not saved state.
+ */
+const OLD_KEY = "biovision.mission.v1";
 
 /**
  * Optional preset via URL, e.g. `#/report?seed=tiger,rainforest,flight,camouflage,night-vision`.
@@ -18,31 +23,20 @@ export function readSeed() {
   }
 }
 
+/** Nothing is read back from storage on load — only a `?seed=` preset, if one is present. */
 export function loadMission() {
-  const seeded = readSeed();
-  if (seeded) return seeded;
-  try {
-    const raw = window.localStorage.getItem(KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? parsed : null;
-  } catch {
-    return null;
-  }
+  return readSeed();
 }
 
-export function saveMission(state) {
-  try {
-    window.localStorage.setItem(KEY, JSON.stringify(state));
-  } catch {
-    /* storage unavailable — keep going with in-memory state */
-  }
-}
+/** No-op: progress is deliberately not written to storage, so a refresh always starts clean. */
+export function saveMission() {}
 
+/** Purges any mission state saved by an older version of the app, so a returning visitor never
+ * wakes up mid-mission from a previous visit. */
 export function clearMission() {
   try {
-    window.localStorage.removeItem(KEY);
+    window.localStorage.removeItem(OLD_KEY);
   } catch {
-    /* ignore */
+    /* storage unavailable — nothing to clear */
   }
 }

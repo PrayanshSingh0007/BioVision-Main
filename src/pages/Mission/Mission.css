@@ -1,6 +1,9 @@
 .mission { justify-content: center; }
 .mission__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-.mission__plate { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; object-position: 50% 48%; filter: saturate(1.04) contrast(1.05) brightness(0.7); animation: plateDrift 40s ease-in-out infinite alternate; will-change: transform; }
+/* max-width: none overrides the global `img { max-width: 100% }` rule (index.css), which was
+   silently clamping this 104%-wide plate back down to 100% — shifted left by the -2% offset, that
+   left a bare strip of the page background exposed along the right edge. */
+.mission__plate { position: absolute; top: -2%; left: -2%; width: 104%; height: 104%; max-width: none; object-fit: cover; object-position: 50% 48%; filter: saturate(1.04) contrast(1.05) brightness(0.7); animation: plateDrift 40s ease-in-out infinite alternate; will-change: transform; }
 @keyframes plateDrift { from { transform: translateX(0) scale(1); } to { transform: translateX(-1.5%) scale(1.03); } }
 .mission__fog { position: absolute; left: -20%; width: 140%; top: 45%; height: 35%; background: linear-gradient(180deg, transparent, rgba(200, 215, 235, 0.16) 50%, transparent); mix-blend-mode: screen; animation: fogDrift 44s ease-in-out infinite alternate; will-change: transform; }
 @keyframes fogDrift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
