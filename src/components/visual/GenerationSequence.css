@@ -1,15 +1,15 @@
 .gen { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; overflow: hidden; background: radial-gradient(60% 60% at 50% 50%, rgba(10, 24, 50, 0.92), rgba(4, 8, 18, 0.97)); animation: genIn 0.35s var(--ease) both, genOut 0.4s var(--ease) 2.05s both forwards; }
 .gen__bloom { position: absolute; width: calc(var(--vh, 1vh) * 60); height: calc(var(--vh, 1vh) * 60); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 45%, transparent), transparent 62%); will-change: transform, opacity; animation: genBloom 2.2s var(--ease) both; }
 .gen__rings { position: absolute; width: calc(var(--vh, 1vh) * 70); height: calc(var(--vh, 1vh) * 70); }
-.gen__rings span { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(94, 224, 255, 0.45); animation: genRing 1.6s var(--ease) both; }
+.gen__rings span { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(75, 212, 138, 0.45); animation: genRing 1.6s var(--ease) both; }
 .gen__rings span:nth-child(2) { animation-delay: 0.35s; border-style: dashed; } .gen__rings span:nth-child(3) { animation-delay: 0.7s; border-color: rgba(245, 182, 74, 0.5); }
 .gen__particles { position: absolute; width: 0; height: 0; }
-.gen__particles i { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #9beeff; box-shadow: 0 0 10px #5ee0ff; transform: rotate(calc(var(--i) * 20deg)) translateX(0); animation: genParticle 1.4s var(--ease) 0.9s both; }
+.gen__particles i { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #bdf0d3; box-shadow: 0 0 10px #4bd48a; transform: rotate(calc(var(--i) * 20deg)) translateX(0); animation: genParticle 1.4s var(--ease) 0.9s both; }
 .gen__particles i:nth-child(odd) { background: #ffd27a; box-shadow: 0 0 10px #f5b64a; }
 .gen__subject { position: relative; height: calc(var(--vh, 1vh) * 44); display: grid; place-items: center; animation: genSubject 2.2s var(--ease) both; }
 .gen__subject img { height: calc(var(--vh, 1vh) * 44); width: auto; max-width: 70vw; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); }
-.gen__scan { position: absolute; left: -8%; right: -8%; height: 14%; top: -10%; background: linear-gradient(180deg, transparent, rgba(94, 224, 255, 0.55), transparent); mix-blend-mode: screen; animation: genScan 1.2s var(--ease-io) 0.7s both; }
-.gen__chip { position: absolute; left: var(--x); top: var(--y); display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; border-radius: 999px; background: rgba(9, 20, 42, 0.9); border: 1px solid rgba(94, 224, 255, 0.45); box-shadow: 0 0 24px rgba(94, 224, 255, 0.25); font-family: var(--font-display); font-weight: 700; font-size: 14px; animation: genChip 1.5s var(--ease-io) var(--d) both; }
+.gen__scan { position: absolute; left: -8%; right: -8%; height: 14%; top: -10%; background: linear-gradient(180deg, transparent, rgba(75, 212, 138, 0.55), transparent); mix-blend-mode: screen; animation: genScan 1.2s var(--ease-io) 0.7s both; }
+.gen__chip { position: absolute; left: var(--x); top: var(--y); display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; border-radius: 999px; background: rgba(14, 30, 20, 0.9); border: 1px solid rgba(75, 212, 138, 0.45); box-shadow: 0 0 24px rgba(75, 212, 138, 0.25); font-family: var(--font-display); font-weight: 700; font-size: 14px; animation: genChip 1.5s var(--ease-io) var(--d) both; }
 .gen__chip img { width: 30px; height: 30px; object-fit: contain; }
 .gen__label { position: absolute; bottom: calc(var(--vh, 1vh) * 9); text-align: center; animation: rise 0.6s var(--ease) 0.2s both; }
 .gen__steps { display: flex; gap: 26px; justify-content: center; margin-top: 10px; font-size: 13px; color: var(--text-2); }

@@ -34,15 +34,11 @@ export default function Boot() {
   const progress = Math.round((stage / STAGES.length) * 100);
   return (
     <PageTransition className="page boot">
-      <div className="boot__grid" aria-hidden="true" />
-      <div className="boot__scan" aria-hidden="true" />
       <div className="boot__inner">
         <div className="boot__visual">
           <div className="boot__pulse" />
           <div className="boot__ring boot__ring--a" /><div className="boot__ring boot__ring--b" />
           <DNAHelix size={380} />
-          <div className="boot__tick boot__tick--l">DNA / ASSEMBLY</div>
-          <div className="boot__tick boot__tick--r">SEQ 0{Math.min(stage + 1, STAGES.length)}</div>
         </div>
         <div className="boot__panel panel">
           <div className="boot__brand"><Logo size={34} /><span>BioVision</span><span className="boot__ver">Biosystem initialization</span></div>
@@ -60,7 +56,7 @@ export default function Boot() {
           </ul>
           <div className="boot__progress">
             <div className="boot__track"><div className="boot__fill" style={{ width: `${progress}%` }} /></div>
-            <span className="mono">{progress}%</span>
+            <span>{progress}%</span>
           </div>
           <button type="button" className="boot__skip" onClick={finish}>Continue <ChevronRight size={15} /></button>
         </div>

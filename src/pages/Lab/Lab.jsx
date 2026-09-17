@@ -104,11 +104,7 @@ export default function Lab() {
           <section className="lab__col lab__center rise" style={{ "--d": "0.15s" }}>
             <div className="lab__stage" style={{ "--accent": habitat.accent }}>
               <SpeciesComposition animal={animal} habitat={habitat} traitIds={traitIds} labels="compact" animated />
-              <div className="lab__holo" aria-hidden="true"><span /><span /></div>
-              <div className="lab__scanline" aria-hidden="true" />
-              <div className="lab__ticks lab__ticks--l" aria-hidden="true" /><div className="lab__ticks lab__ticks--r" aria-hidden="true" />
               <div className="lab__stagetag"><span className="lab__live" />Live specimen · {animal.name} · {habitat.name}</div>
-              <div className="lab__stageid mono">SPEC-{animal.id.toUpperCase().slice(0, 3)} / {habitat.id.toUpperCase().slice(0, 3)}</div>
             </div>
             <div className="lab__stats panel">
               <div className="lab__colhead lab__colhead--row">

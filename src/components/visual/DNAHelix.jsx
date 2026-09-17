@@ -14,7 +14,7 @@ export default function DNAHelix({ size = 420, className = "", opacity = 1 }) {
   return (
     <svg className={`helix ${className}`} viewBox={`0 0 ${W} ${H}`} style={{ height: size, width: (size * W) / H, opacity }} aria-hidden="true">
       <defs>
-        <linearGradient id="helixA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#9beeff" /><stop offset="1" stopColor="#2ec4b6" /></linearGradient>
+        <linearGradient id="helixA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#bdf0d3" /><stop offset="1" stopColor="#2ec4b6" /></linearGradient>
         <linearGradient id="helixB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ffd27a" /><stop offset="1" stopColor="#e0902a" /></linearGradient>
         <filter id="helixGlow"><feGaussianBlur stdDeviation="1.6" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
       </defs>

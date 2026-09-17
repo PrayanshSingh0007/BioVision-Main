@@ -26,7 +26,7 @@ export default function Mission() {
         <div className="mission__card panel rise" style={{ "--d": "0.05s" }}>
           <div className="mission__head">
             <p className="eyebrow">Expedition briefing · Mission 01</p>
-            <span className="mission__id mono">BV-01 / GRADE 8</span>
+            <span className="mission__id">Grade 8 · Biology</span>
           </div>
           <h1 className="display mission__title rise" style={{ "--d": "0.15s" }}>Your Mission</h1>
           <p className="mission__lead text-balance rise" style={{ "--d": "0.22s" }}>

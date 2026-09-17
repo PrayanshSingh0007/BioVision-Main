@@ -51,7 +51,6 @@ export default function Species() {
             <div className="species__scenefade" />
             <div className="species__stage">
               <div className="species__spot" />
-              <div className="species__scan"><span /><span /></div>
               <div className="species__pedestal" />
               <img key={preview.id} src={preview.image} alt={preview.name} className="species__img" draggable="false" />
             </div>
