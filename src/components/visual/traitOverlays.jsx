@@ -16,16 +16,15 @@ const EYE_PALETTES = { night: ["#c8ff7a", "#7cf59a", "#38d39f", "#f6ffd6", "#b9f
 function eyes(ctx, opts = {}) {
   const { P, headW, uid, anchors } = ctx;
   const c = EYE_PALETTES[opts.palette] || EYE_PALETTES.night;
-  const r = Math.max(8, headW * 0.075);
+  // Real eyeshine (tapetum lucidum): a soft, eye-sized glow — no cartoon pupil or highlight dot.
+  const r = Math.max(6, headW * 0.055);
   const g = `${uid}-eye-${opts.palette || "n"}`;
   const eye = (a, i) => {
     const p = P(a);
     return (
       <g key={i} className="ov__eye">
-        <circle cx={p.x} cy={p.y} r={r * 4.2} fill={`url(#${g}-glow)`} className="ov__pulse" />
-        <circle cx={p.x} cy={p.y} r={r * 1.5} fill={`url(#${g}-core)`} />
-        <ellipse cx={p.x} cy={p.y} rx={r * 0.32} ry={r * 0.9} fill="#0a2a10" opacity="0.85" />
-        <circle cx={p.x - r * 0.4} cy={p.y - r * 0.45} r={r * 0.3} fill="#fff" opacity="0.9" />
+        <ellipse cx={p.x} cy={p.y} rx={r * 3} ry={r * 2.4} fill={`url(#${g}-glow)`} className="ov__pulse" />
+        <ellipse cx={p.x} cy={p.y} rx={r * 1.15} ry={r * 0.95} fill={`url(#${g}-core)`} />
       </g>
     );
   };
@@ -33,8 +32,8 @@ function eyes(ctx, opts = {}) {
     front: (
       <g className="ov ov--eyes" style={{ mixBlendMode: "screen" }}>
         <defs>
-          <radialGradient id={`${g}-glow`}><stop offset="0" stopColor={c[0]} stopOpacity="0.75" /><stop offset="0.4" stopColor={c[1]} stopOpacity="0.28" /><stop offset="1" stopColor={c[2]} stopOpacity="0" /></radialGradient>
-          <radialGradient id={`${g}-core`}><stop offset="0" stopColor={c[3]} /><stop offset="0.5" stopColor={c[4]} /><stop offset="1" stopColor={c[5]} stopOpacity="0.5" /></radialGradient>
+          <radialGradient id={`${g}-glow`}><stop offset="0" stopColor={c[0]} stopOpacity="0.6" /><stop offset="0.45" stopColor={c[1]} stopOpacity="0.2" /><stop offset="1" stopColor={c[2]} stopOpacity="0" /></radialGradient>
+          <radialGradient id={`${g}-core`}><stop offset="0" stopColor={c[3]} /><stop offset="0.55" stopColor={c[4]} stopOpacity="0.9" /><stop offset="1" stopColor={c[5]} stopOpacity="0" /></radialGradient>
         </defs>
         {eye(anchors.eyeL, 0)}{eye(anchors.eyeR, 1)}
       </g>
