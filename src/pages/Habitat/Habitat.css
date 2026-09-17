@@ -6,10 +6,15 @@
 
 /* ---- expedition carousel ---- */
 .habitat__carousel { display: flex; gap: 12px; min-height: 0; }
+/* box-shadow here is deliberately a small, cheap blur rather than the shared --shadow-md/--shadow-lg
+   tokens (34-90px blur radii) — box-shadow has to be re-rasterised every time an element's own box
+   resizes, and these panels resize every frame for the whole 0.45s of the expand/collapse
+   transition; seven of them doing that with a 90px blur was a real source of the page feeling
+   laggy. A tighter shadow looks nearly identical here and is far cheaper to keep repainting. */
 .hpanel { position: relative; flex: 1; min-width: 0; border-radius: var(--r-xl); overflow: hidden; cursor: pointer; background: #0d1f16;
-  border: 1px solid var(--line); box-shadow: var(--shadow-md); transition: flex 0.6s var(--ease), box-shadow 0.4s, border-color 0.3s; outline-offset: 4px; contain: layout paint; }
-.hpanel--active { flex: 3.6; box-shadow: var(--shadow-lg), 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
-.hpanel--selected:not(.hpanel--active) { border-color: color-mix(in srgb, var(--accent) 70%, transparent); box-shadow: var(--shadow-md), 0 0 24px color-mix(in srgb, var(--accent) 25%, transparent); }
+  border: 1px solid var(--line); box-shadow: 0 8px 20px rgba(1, 6, 3, 0.4); transition: flex 0.45s var(--ease), box-shadow 0.3s, border-color 0.3s; outline-offset: 4px; contain: layout paint; will-change: flex-basis; }
+.hpanel--active { flex: 3.6; box-shadow: 0 14px 32px rgba(1, 6, 3, 0.45), 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.hpanel--selected:not(.hpanel--active) { border-color: color-mix(in srgb, var(--accent) 70%, transparent); box-shadow: 0 8px 20px rgba(1, 6, 3, 0.4), 0 0 16px color-mix(in srgb, var(--accent) 25%, transparent); }
 .hpanel__scene { position: absolute; inset: 0; transform: scale(1.04); transition: transform 1.2s var(--ease); }
 .hpanel--active .hpanel__scene { transform: scale(1); }
 .hpanel__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 15, 10, 0.15) 0%, rgba(7, 15, 10, 0) 35%, rgba(7, 15, 10, 0.55) 65%, rgba(7, 15, 10, 0.94) 100%); transition: opacity 0.5s; }

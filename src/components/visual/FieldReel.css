@@ -1,5 +1,5 @@
 .reel {
-  position: relative; border-radius: 50%; overflow: hidden;
+  position: relative; border-radius: 50%; overflow: hidden; isolation: isolate;
   background: #0d1f16; box-shadow: 0 0 0 1px rgba(200, 220, 190, 0.22), 0 0 0 8px rgba(75, 212, 138, 0.06), var(--shadow-lg);
 }
 .reel__frame {

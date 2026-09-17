@@ -11,7 +11,10 @@
 .species__scene { position: absolute; inset: 0; filter: saturate(0.85) brightness(0.8); }
 .species__scenefade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 15, 10, 0.35) 0%, rgba(7, 15, 10, 0.15) 30%, rgba(7, 15, 10, 0.7) 58%, rgba(7, 18, 12, 0.96) 100%); }
 .species__stage { position: relative; min-height: 0; }
-.species__spot { position: absolute; left: 50%; top: 0; width: 70%; height: 100%; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 20%, rgba(255, 240, 210, 0.22), transparent 60%); mix-blend-mode: screen; }
+/* Plain alpha overlay, not mix-blend-mode: screen — this sits above the continuously-animated
+   habitat scene (rain/mist/fireflies) behind it, and a blend mode there means recompositing this
+   layer every single animation frame. */
+.species__spot { position: absolute; left: 50%; top: 0; width: 70%; height: 100%; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 20%, rgba(255, 240, 210, 0.14), transparent 60%); }
 .species__pedestal { position: absolute; left: 50%; bottom: 6%; width: 50%; height: 10%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(ellipse, rgba(75, 212, 138, 0.25), transparent 70%); filter: blur(6px); }
 .species__img { position: absolute; left: 50%; bottom: 9%; transform: translateX(-50%); height: 78%; max-width: 78%; object-fit: contain; z-index: 1; filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.55)); animation: speciesIn 0.5s var(--ease) both; }
 @keyframes speciesIn { from { opacity: 0; transform: translateX(-50%) translateY(16px) scale(0.97); } to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }

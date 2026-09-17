@@ -2,7 +2,12 @@
 .scene__svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .scene__plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .scene__grade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 15, 10, 0.35) 0%, rgba(7, 15, 10, 0) 30%, rgba(7, 15, 10, 0) 60%, rgba(7, 15, 10, 0.45) 100%), var(--tint, transparent); }
-.scene__light { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at var(--light-at, 70% 10%), var(--light, transparent), transparent 70%); mix-blend-mode: screen; }
+/* Plain alpha overlay, not mix-blend-mode: screen — this sits on every HabitatScene instance
+   (up to 7 at once on the Habitat page, resizing during the panel-expand transition), and a blend
+   mode there forces a full recomposite of the layer every frame something beneath it changes size.
+   Against the dark, moody plates this is graded onto, screen and plain alpha look effectively
+   identical, so this is a free performance win. */
+.scene__light { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at var(--light-at, 70% 10%), var(--light, transparent), transparent 70%); }
 /* soft foreground rise where the animal stands */
 .scene__ground { position: absolute; left: -15%; right: -15%; bottom: -8%; height: 26%; border-radius: 45% 55% 0 0 / 100% 90% 0 0;
   background: radial-gradient(ellipse at 50% 0%, var(--ground-top, rgba(255,255,255,0.15)) 0%, var(--ground, #0b1220) 38%, var(--ground, #0b1220) 100%);
