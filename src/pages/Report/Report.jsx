@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { ArrowLeft, BadgeCheck, Dna, FlaskConical, Globe2, Info, RotateCcw, Scale, Sparkles, Zap } from "lucide-react";
+import { BadgeCheck, Dna, FlaskConical, Globe2, Info, RotateCcw, Scale, Sparkles, Zap } from "lucide-react";
 import Button from "../../components/ui/Button";
 import Badge from "../../components/ui/Badge";
 import StatBar from "../../components/ui/StatBar";
@@ -41,7 +41,6 @@ export default function Report() {
           <div className="report__headright">
             <Badge tone="good" icon={BadgeCheck}>Species documented</Badge>
             <div className="report__headactions">
-              <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/lab")}>Return to Lab</Button>
               <Button variant="secondary" icon={RotateCcw} onClick={runAnother}>Run Another Experiment</Button>
             </div>
           </div>
@@ -128,7 +127,6 @@ export default function Report() {
         <footer className="report__foot rise" {...rise(0.5)}>
           <p className="report__disclaimer"><Info size={14} /> BioVision is an educational simulation. Its trait combinations and survival scores are illustrative, not real genetic predictions.</p>
           <div className="report__footactions">
-            <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/lab")}>Return to Lab</Button>
             <Button icon={RotateCcw} onClick={runAnother}>Run Another Experiment</Button>
           </div>
         </footer>
