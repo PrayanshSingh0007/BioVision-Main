@@ -71,12 +71,13 @@ html:not([data-scale="1.00"]) .j__half { width: 25%; height: 25%; transform: sca
 .landing__full { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(4, 16, 10, 0.35); color: var(--text-1); font-family: var(--font-display); font-size: 12.5px; font-weight: 600; transition: all 0.2s; }
 @media (hover: hover) { .landing__full:hover { color: var(--text-0); border-color: rgba(255, 255, 255, 0.35); background: rgba(4, 16, 10, 0.55); } }
 .landing__copy { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; max-width: 560px; padding-bottom: 9vh; }
-.landing__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 4.6vw, 66px); line-height: 1.05; letter-spacing: -0.025em; color: #f7f2e6; margin-top: 16px; }
+.landing__title { font-family: var(--font-serif); font-weight: 400; font-variation-settings: "opsz" 144; font-size: clamp(46px, 5.4vw, 80px); line-height: 0.98; letter-spacing: -0.02em; color: #f7f2e6; margin-top: 14px; }
+.landing__title em { font-style: italic; font-weight: 300; color: #d9ead9; }
 .landing__desc { margin-top: 18px; font-size: clamp(15px, 1.1vw, 17.5px); line-height: 1.6; color: rgba(228, 234, 228, 0.86); max-width: 480px; }
 .landing__actions { display: flex; align-items: center; gap: 22px; margin-top: 30px; flex-wrap: wrap; }
 .landing__link { display: inline-flex; align-items: center; gap: 9px; background: none; border: none; padding: 8px 4px; color: rgba(232, 238, 232, 0.9); font-family: var(--font-display); font-weight: 600; font-size: 15px; border-bottom: 1px solid transparent; transition: border-color 0.2s, color 0.2s; }
 @media (hover: hover) { .landing__link:hover { color: #fff; border-bottom-color: rgba(255, 255, 255, 0.5); } }
-.landing__meta { font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(200, 215, 205, 0.5); }
+.landing__meta { font-family: var(--font-serif); font-style: italic; font-size: 14px; letter-spacing: 0; color: rgba(200, 215, 205, 0.55); }
 
 /* science sheet */
 .landing__modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: rgba(2, 10, 6, 0.74); animation: fadeIn 0.3s var(--ease) both; }

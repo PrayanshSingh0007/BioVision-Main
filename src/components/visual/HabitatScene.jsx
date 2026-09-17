@@ -13,6 +13,15 @@ import plateDesert4k from "../../assets/environments/desert-4k.webp";
 import plateArctic4k from "../../assets/environments/arctic-4k.webp";
 import plateMountains4k from "../../assets/environments/mountains-4k.webp";
 import plateWetlands4k from "../../assets/environments/wetlands-4k.webp";
+import softRainforest from "../../assets/environments/jungle-soft.webp";
+import softForest from "../../assets/environments/forest-soft.webp";
+import softGrasslands from "../../assets/environments/grasslands-soft.webp";
+import softDesert from "../../assets/environments/desert-soft.webp";
+import softArctic from "../../assets/environments/arctic-soft.webp";
+import softMountains from "../../assets/environments/mountains-soft.webp";
+import softWetlands from "../../assets/environments/wetlands-soft.webp";
+/* Pre-blurred plates (see `depth`) — blurred offline so the shallow-focus look costs nothing at runtime. */
+const PLATES_SOFT = { rainforest: softRainforest, forest: softForest, grasslands: softGrasslands, desert: softDesert, arctic: softArctic, mountains: softMountains, wetlands: softWetlands };
 const PLATES_4K = { rainforest: plateRainforest4k, forest: plateForest4k, grasslands: plateGrasslands4k, desert: plateDesert4k, arctic: plateArctic4k, mountains: plateMountains4k, wetlands: plateWetlands4k };
 import { makeRng, ridgePath, softConifer, broadleaf, circlePath, frondCluster, bigLeaf, reeds, grassTufts, scatter } from "./sceneUtils";
 import "./HabitatScene.css";
@@ -41,7 +50,13 @@ export function sceneGrade(id) {
   return { tint: p.tint, light: p.light, ground: p.ground };
 }
 
-export default function HabitatScene({ habitat, animated = true, className = "", detail = "full" }) {
+/**
+ * `depth` — when true, the plate is swapped for a pre-blurred copy so the background falls slightly
+ * out of focus behind the sharp animal, like a long lens at a wide aperture: the single most
+ * convincing cue that the subject was photographed *in* the scene. Pre-rendered rather than a CSS
+ * blur filter, which would re-rasterise a 2K image on every resize.
+ */
+export default function HabitatScene({ habitat, animated = true, className = "", detail = "full", depth = false }) {
   const id = habitat?.id || "forest";
   const uid = `sc-${id}`;
   const [failed, setFailed] = useState(false);
@@ -52,7 +67,7 @@ export default function HabitatScene({ habitat, animated = true, className = "",
     <div className={`scene scene--${id} ${animated ? "scene--animated" : ""} ${usePlate ? "scene--plate" : ""} ${className}`} aria-hidden="true" style={usePlate ? { "--tint": plate.tint, "--light": plate.light, "--light-at": plate.lightAt, "--ground": plate.ground, "--ground-top": plate.groundTop } : undefined}>
       {usePlate ? (
         <>
-          <img src={plate.src} srcSet={`${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes="100vw" alt="" className="scene__plate" style={{ objectPosition: plate.pos, filter: plate.filter }} onError={() => setFailed(true)} decoding="async" draggable="false" />
+          <img src={depth ? PLATES_SOFT[id] : plate.src} srcSet={depth ? undefined : `${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes="100vw" alt="" className="scene__plate" style={{ objectPosition: plate.pos, filter: plate.filter }} onError={() => setFailed(true)} decoding="async" draggable="false" />
           <div className="scene__grade" />
           <div className="scene__light" />
           <div className="scene__ground" />

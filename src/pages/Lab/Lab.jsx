@@ -53,14 +53,14 @@ export default function Lab() {
       <div className="lab__inner">
         <header className="lab__head rise">
           <div>
-            <p className="eyebrow">Stage 03 · Genetic engineering lab</p>
-            <h1 className="display lab__title">Combine three adaptations</h1>
+            <p className="eyebrow">Three · The lab</p>
+            <h1 className="display lab__title">Borrow three adaptations</h1>
           </div>
           <div className="lab__progress">
             <div className={`lab__pips ${nudge ? "lab__pips--nudge" : ""}`}>
               {Array.from({ length: MAX_TRAITS }, (_, i) => <span key={i} className={`lab__pip ${selected[i] ? "lab__pip--on" : ""}`} />)}
             </div>
-            <span className="lab__count">{traitIds.length}/{MAX_TRAITS} <em>adaptations selected</em></span>
+            <span className="lab__count">{traitIds.length}/{MAX_TRAITS} <em>chosen</em></span>
           </div>
         </header>
 
@@ -68,8 +68,8 @@ export default function Lab() {
           {/* ---- adaptation library ---- */}
           <section className="lab__col lab__library panel rise" style={{ "--d": "0.1s" }}>
             <div className="lab__colhead">
-              <p className="seclabel">Adaptation library</p>
-              <span className="muted">Donor traits from {donorTraits.length} sources</span>
+              <p className="seclabel">Adaptations to borrow</p>
+              <span className="muted">{donorTraits.length} abilities from other animals</span>
             </div>
             <label className="lab__search"><Search size={14} /><input type="search" placeholder="Search adaptations…" value={query} onChange={(e) => setQuery(e.target.value)} /></label>
             <div className="lab__filters">
@@ -104,12 +104,12 @@ export default function Lab() {
           <section className="lab__col lab__center rise" style={{ "--d": "0.15s" }}>
             <div className="lab__stage" style={{ "--accent": habitat.accent }}>
               <SpeciesComposition animal={animal} habitat={habitat} traitIds={traitIds} labels="compact" animated />
-              <div className="lab__stagetag"><span className="lab__live" />Live specimen · {animal.name} · {habitat.name}</div>
+              <div className="lab__stagetag"><span className="lab__live" />{animal.name} · {habitat.name}</div>
             </div>
             <div className="lab__stats panel">
               <div className="lab__colhead lab__colhead--row">
-                <p className="seclabel">Simulation estimate</p>
-                <Badge tone="accent" icon={Info}>Educational model</Badge>
+                <p className="seclabel">How it’s shaping up</p>
+                <Badge tone="accent" icon={Info}>Estimate</Badge>
               </div>
               <div className="lab__statgrid">
                 {STAT_META.map((m, i) => <StatBar key={m.key} label={m.label} value={liveScore.stats[m.key]} delta={liveScore.stats[m.key] - baseScore.stats[m.key]} hint={m.hint} delay={i * 0.04} compact />)}
@@ -120,28 +120,28 @@ export default function Lab() {
           {/* ---- experiment slots ---- */}
           <section className="lab__col lab__summary panel rise" style={{ "--d": "0.2s" }}>
             <div className="lab__colhead">
-              <p className="seclabel">Experiment slots</p>
+              <p className="seclabel">Your three</p>
               <span className="muted">Base: {animal.name} · Habitat: {habitat.name}</span>
             </div>
             <div className="lab__slots">
               {Array.from({ length: MAX_TRAITS }, (_, i) => {
                 const t = selected[i];
                 if (!t) return (
-                  <div key={i} className="slot slot--empty"><span className="slot__n">Adaptation slot 0{i + 1}</span><p>Select an adaptation from the library</p></div>
+                  <div key={i} className="slot slot--empty"><span className="slot__n">{["First","Second","Third"][i]} ability</span><p>Pick one from the list on the left</p></div>
                 );
                 const fit = fitLabel(t.habitatFit[habitat.id] ?? 0);
                 return (
                   <div key={t.id} className="slot slot--filled">
-                    <span className="slot__n">Adaptation slot 0{i + 1}</span>
+                    <span className="slot__n">{["First","Second","Third"][i]} ability</span>
                     <div className="slot__row">
                       <img src={animalById[t.source].image} alt="" draggable="false" />
                       <div>
                         <strong>{t.name}</strong>
-                        <span>Source: {animalById[t.source].name} · {t.category}</span>
+                        <span>from the {animalById[t.source].name} · {t.category}</span>
                       </div>
                       <button type="button" className="slot__remove" onClick={() => toggleTrait(t.id)} aria-label={`Remove ${t.name}`}><X size={14} /></button>
                     </div>
-                    <p className="slot__benefit"><b>Benefit:</b> {t.why}</p>
+                    <p className="slot__benefit">{t.why}</p>
                     <em className={`slot__fit tone-${fit.tone}`}>{fit.label} in the {habitat.name}</em>
                   </div>
                 );
@@ -149,22 +149,22 @@ export default function Lab() {
             </div>
 
             <div className="lab__compat">
-              <div className="lab__compatrow"><span>Habitat relevance</span><strong className={`tone-${liveScore.breakdown.traitFitTotal >= 3 ? "good" : liveScore.breakdown.traitFitTotal >= 1 ? "ok" : liveScore.breakdown.traitFitTotal >= 0 ? "neutral" : "warn"}`}>{liveScore.breakdown.traitFitTotal > 0 ? "+" : ""}{liveScore.breakdown.traitFitTotal} fit points</strong></div>
-              <div className="lab__compatrow"><span>Base species fit</span><strong className={`tone-${liveScore.breakdown.baseFitLabel.tone}`}>{liveScore.breakdown.baseFitLabel.label}</strong></div>
+              <div className="lab__compatrow"><span>Fit with this habitat</span><strong className={`tone-${liveScore.breakdown.traitFitTotal >= 3 ? "good" : liveScore.breakdown.traitFitTotal >= 1 ? "ok" : liveScore.breakdown.traitFitTotal >= 0 ? "neutral" : "warn"}`}>{liveScore.breakdown.traitFitTotal > 0 ? "+" : ""}{liveScore.breakdown.traitFitTotal} fit points</strong></div>
+              <div className="lab__compatrow"><span>Animal’s own fit</span><strong className={`tone-${liveScore.breakdown.baseFitLabel.tone}`}>{liveScore.breakdown.baseFitLabel.label}</strong></div>
               <div className="lab__compatrow"><span>Energy cost</span><strong className={`tone-${liveScore.energyCost >= 6 ? "warn" : liveScore.energyCost >= 4 ? "neutral" : "good"}`}><Zap size={13} /> {liveScore.energyCost === 0 ? "—" : liveScore.energyCost >= 6 ? "High" : liveScore.energyCost >= 4 ? "Moderate" : "Low"}</strong></div>
-              <div className="lab__survival"><span>Survival estimate</span><div><strong>{liveScore.survival}%</strong><em className={`tone-${liveScore.survivalBand.tone}`}>{liveScore.survivalBand.label}</em></div></div>
+              <div className="lab__survival"><span>Chance of surviving</span><div><strong>{liveScore.survival}%</strong><em className={`tone-${liveScore.survivalBand.tone}`}>{liveScore.survivalBand.label}</em></div></div>
             </div>
-            <div className="lab__note"><Hand size={15} /><p>Traits that suit the habitat raise the estimate. Traits that fight the environment lower it, even though they are useful elsewhere.</p></div>
+            <div className="lab__note"><Hand size={15} /><p>Abilities that suit the habitat push the number up. Ones that fight it pull it down — even if they’d be brilliant somewhere else.</p></div>
             <div className="lab__actions">
               <Button variant="ghost" onClick={clearTraits} disabled={traitIds.length === 0}>Clear</Button>
-              <Button icon={Dna} disabled={!full} onClick={() => setSynth(true)}>Generate Species</Button>
+              <Button icon={Dna} disabled={!full} onClick={() => setSynth(true)}>Create the species</Button>
             </div>
           </section>
         </div>
 
         <footer className="lab__foot">
-          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/species")}>Back to Species Archive</Button>
-          <span className="page__hint">{full ? "All three slots filled — generate your species." : `Fill ${MAX_TRAITS - traitIds.length} more slot${MAX_TRAITS - traitIds.length === 1 ? "" : "s"} to continue.`}</span>
+          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/species")}>Back</Button>
+          <span className="page__hint">{full ? "Three chosen. See what you’ve made." : `Fill ${MAX_TRAITS - traitIds.length} more slot${MAX_TRAITS - traitIds.length === 1 ? "" : "s"} to continue.`}</span>
         </footer>
       </div>
     </PageTransition>

@@ -25,12 +25,12 @@ export default function Mission() {
       <div className="mission__inner">
         <div className="mission__card panel rise" style={{ "--d": "0.05s" }}>
           <div className="mission__head">
-            <p className="eyebrow">Expedition briefing · Mission 01</p>
+            <p className="eyebrow">Before you set out</p>
             <span className="mission__id">Grade 8 · Biology</span>
           </div>
-          <h1 className="display mission__title rise" style={{ "--d": "0.15s" }}>Your Mission</h1>
+          <h1 className="display mission__title rise" style={{ "--d": "0.15s" }}>Your task</h1>
           <p className="mission__lead text-balance rise" style={{ "--d": "0.22s" }}>
-            Engineer a hypothetical species that can survive in a selected habitat by combining adaptations from different animals.
+            Pick a habitat. Pick a real animal. Give it three abilities borrowed from other animals — then find out whether it would survive.
           </p>
 
           <ol className="mission__steps">
@@ -52,7 +52,7 @@ export default function Mission() {
 
           <div className="mission__actions rise" style={{ "--d": "0.85s" }}>
             <Button size="lg" iconRight={ArrowRight} onClick={() => navigate("/habitat")}>Start Mission</Button>
-            <span className="page__hint">Step 1 of 4 · Choose a habitat</span>
+            <span className="page__hint">First, choose a habitat</span>
           </div>
         </div>
       </div>

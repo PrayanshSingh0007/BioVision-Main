@@ -82,18 +82,18 @@ export default function Landing() {
         </header>
 
         <div className="landing__copy">
-          <p className="eyebrow rise" style={{ "--d": "0.2s" }}>Biodiversity simulation / 01</p>
-          <h1 className="landing__title rise" style={{ "--d": "0.3s" }}>Engineering<br />Tomorrow's<br />Species</h1>
+          <p className="eyebrow rise" style={{ "--d": "0.2s" }}>A field guide to animals that don’t exist yet</p>
+          <h1 className="landing__title rise" style={{ "--d": "0.3s" }}>Design an animal<br />that could<br /><em>actually</em> survive</h1>
           <p className="landing__desc rise" style={{ "--d": "0.45s" }}>
-            Choose a habitat, select a base animal and inherit adaptations from other species — then see how well your engineered organism would survive.
+            Choose a habitat and a real animal, then lend it three adaptations from other species. A short field report tells you whether it would make it.
           </p>
           <div className="landing__actions rise" style={{ "--d": "0.6s" }}>
             <Button size="lg" iconRight={ArrowRight} onClick={() => navigate("/boot")}>Begin Expedition</Button>
-            <button type="button" className="landing__link" onClick={() => setScience(true)}><BookOpen size={16} />Explore the Science</button>
+            <button type="button" className="landing__link" onClick={() => setScience(true)}><BookOpen size={16} />How the science works</button>
           </div>
         </div>
 
-        <footer className="landing__meta rise" style={{ "--d": "0.8s" }}>Offline simulation · Local biology engine</footer>
+        <footer className="landing__meta rise" style={{ "--d": "0.8s" }}>Runs entirely on this device — no internet needed</footer>
       </div>
 
       {science && (

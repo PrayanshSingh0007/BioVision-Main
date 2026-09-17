@@ -25,10 +25,10 @@ export default function Habitat() {
       <div className="habitat__inner">
         <header className="habitat__head rise">
           <div>
-            <p className="eyebrow">Stage 01 · Environment selection</p>
-            <h1 className="display habitat__title">Choose your expedition habitat</h1>
+            <p className="eyebrow">One · Habitat</p>
+            <h1 className="display habitat__title">Where will your animal live?</h1>
           </div>
-          <p className="habitat__sub text-balance">Every environment applies different survival pressures. Your species will be judged on how well its adaptations fit here.</p>
+          <p className="habitat__sub text-balance">Each place pushes back in its own way — cold, drought, competition, thin air. Your animal will be judged on how well it copes here.</p>
         </header>
 
         <div className="habitat__carousel" onMouseLeave={touch ? undefined : () => setHover(null)}>
@@ -73,8 +73,8 @@ export default function Habitat() {
                   </div>
                   <div className="hpanel__chips">{h.conditions.map((c) => <span key={c}>{c}</span>)}</div>
                   <div className="hpanel__cta">
-                    <Button iconRight={ArrowRight} onClick={(e) => { e.stopPropagation(); setHabitat(h.id); navigate("/species"); }}>Enter Habitat</Button>
-                    {selected ? <span className="hpanel__selectedtag">Selected</span> : <span className="hpanel__selectedtag hpanel__selectedtag--muted">{touch ? "Tap to select" : "Click to select"}</span>}
+                    <Button iconRight={ArrowRight} onClick={(e) => { e.stopPropagation(); setHabitat(h.id); navigate("/species"); }}>Go here</Button>
+                    {selected ? <span className="hpanel__selectedtag">Selected</span> : <span className="hpanel__selectedtag hpanel__selectedtag--muted">{touch ? "Tap to select" : "Click anywhere to select"}</span>}
                   </div>
                 </div>
               </article>
@@ -83,9 +83,9 @@ export default function Habitat() {
         </div>
 
         <footer className="page__footer">
-          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/mission")}>Back to briefing</Button>
-          <span className="page__hint">{habitat ? <>Selected habitat: <strong style={{ color: habitat.accent }}>{habitat.name}</strong></> : touch ? "Tap a habitat to open it, then Enter Habitat" : "Hover to explore, click to select"}</span>
-          <Button iconRight={ArrowRight} disabled={!habitat} onClick={() => navigate("/species")}>Continue to Species Archive</Button>
+          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/mission")}>Back</Button>
+          <span className="page__hint">{habitat ? <>Selected habitat: <strong style={{ color: habitat.accent }}>{habitat.name}</strong></> : touch ? "Tap a habitat to open it, then Enter Habitat" : "Hover a habitat to look around, click to choose it"}</span>
+          <Button iconRight={ArrowRight} disabled={!habitat} onClick={() => navigate("/species")}>Choose an animal</Button>
         </footer>
       </div>
     </PageTransition>

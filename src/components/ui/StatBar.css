@@ -3,14 +3,11 @@
 .stat__head { display: flex; justify-content: space-between; align-items: baseline; font-size: 13.5px; }
 .stat--compact .stat__head { font-size: 12.5px; }
 .stat__label { color: var(--text-1); font-weight: 500; }
-.stat__value { color: var(--text-0); font-weight: 700; font-family: var(--font-display); display: inline-flex; gap: 6px; align-items: baseline; font-variant-numeric: tabular-nums; }
+.stat__value { color: var(--text-0); font-weight: 600; font-family: var(--font); display: inline-flex; gap: 6px; align-items: baseline; font-variant-numeric: tabular-nums; }
 .stat__delta { font-size: 11px; font-weight: 700; }
 .stat__delta--up { color: #7ef0c0; } .stat__delta--down { color: #ffa599; }
-.stat__track { position: relative; height: 7px; border-radius: 99px; background: rgba(200, 220, 190, 0.1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35); overflow: visible; }
-.stat--compact .stat__track { height: 6px; }
-.stat__fill { position: relative; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #2ec4b6, #4bd48a 70%, #d9fbe6); box-shadow: 0 0 12px rgba(75, 212, 138, 0.35); }
-.stat__fill::after { content: ""; position: absolute; right: -2px; top: 50%; width: 10px; height: 10px; border-radius: 50%; transform: translateY(-50%); background: radial-gradient(circle at 35% 35%, #ffffff, #4bd48a 60%); box-shadow: 0 0 10px rgba(75, 212, 138, 0.8); }
-.stat--compact .stat__fill::after { width: 8px; height: 8px; }
-.stat__fill--up { background: linear-gradient(90deg, #2ec4b6, #3ddc97); }
-.stat__fill--down { background: linear-gradient(90deg, #2ec4b6, #f5b64a); }
-.stat__fill--down::after { background: radial-gradient(circle at 35% 35%, #fff, #f5b64a 60%); box-shadow: 0 0 10px rgba(245, 182, 74, 0.8); }
+.stat__track { position: relative; height: 4px; border-radius: 99px; background: rgba(200, 220, 190, 0.12); overflow: hidden; }
+.stat--compact .stat__track { height: 3px; }
+.stat__fill { position: relative; height: 100%; border-radius: 99px; background: var(--cyan); }
+.stat__fill--up { background: var(--emerald); }
+.stat__fill--down { background: var(--amber); }

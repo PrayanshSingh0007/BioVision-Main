@@ -38,10 +38,10 @@ export default function Species() {
       <div className="species__inner">
         <header className="species__head rise">
           <div>
-            <p className="eyebrow">Stage 02 · Species archive</p>
-            <h1 className="display species__title">Select a base species</h1>
+            <p className="eyebrow">Two · Base animal</p>
+            <h1 className="display species__title">Start with a real animal</h1>
           </div>
-          <p className="species__sub text-balance">The base animal stays recognisable in your final species. In the Lab you'll add adaptations borrowed from <em>other</em> animals.</p>
+          <p className="species__sub text-balance">It keeps its body and its instincts. In the lab, you’ll lend it three abilities borrowed from <em>other</em> animals.</p>
         </header>
 
         <div className="species__body">
@@ -63,14 +63,14 @@ export default function Species() {
                 <h2 className="display species__name">{preview.name}</h2>
                 <p className="species__sci">{preview.scientificName}</p>
                 <p className="species__desc">{preview.description}</p>
-                <p className="seclabel species__lbl">Natural adaptations</p>
+                <p className="seclabel species__lbl">What it already has</p>
                 <div className="species__traits">{preview.traits.map((t) => <span key={t}>{t}</span>)}</div>
                 <div className="species__select">
-                  <Button variant={isSelected ? "secondary" : "primary"} icon={isSelected ? Check : undefined} onClick={() => setAnimal(preview.id)}>{isSelected ? "Selected" : "Select Species"}</Button>
+                  <Button variant={isSelected ? "secondary" : "primary"} icon={isSelected ? Check : undefined} onClick={() => setAnimal(preview.id)}>{isSelected ? "Chosen" : "Choose this animal"}</Button>
                 </div>
               </div>
               <div className="species__stats">
-                <p className="seclabel">Base statistics</p>
+                <p className="seclabel">Starting stats</p>
                 {STAT_META.slice(0, 5).map((m, i) => <StatBar key={m.key} label={m.label} value={preview.stats[m.key]} hint={m.hint} delay={i * 0.05} compact />)}
                 <p className="species__statnote">Educational model · estimates</p>
               </div>
@@ -81,7 +81,7 @@ export default function Species() {
           <div className="species__browser rise" style={{ "--d": "0.2s" }}>
             <div className="species__filters">
               <button type="button" className={`species__filter ${filter === habitat.id ? "species__filter--on" : ""}`} style={{ "--accent": habitat.accent }} onClick={() => setFilter(habitat.id)}>
-                <i />{habitat.name} · your habitat
+                <i />{habitat.name} · your pick
               </button>
               <button type="button" className={`species__filter ${filter === "all" ? "species__filter--on" : ""}`} onClick={() => setFilter("all")}>All habitats · {animals.length}</button>
               {order.filter((h) => h.id !== habitat.id).map((h) => (
@@ -97,7 +97,7 @@ export default function Species() {
                     <span className="species__groupdot" />
                     <h2>{g.habitat.name}</h2>
                     <span className="species__groupcount">{g.animals.length} species</span>
-                    {g.habitat.id === habitat.id && <Badge tone="accent">Native to your habitat</Badge>}
+                    {g.habitat.id === habitat.id && <Badge tone="accent">Lives here naturally</Badge>}
                   </header>
                   <ul className="species__grid">
                     {g.animals.map((a) => {
@@ -126,9 +126,9 @@ export default function Species() {
         </div>
 
         <footer className="page__footer">
-          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/habitat")}>Back to Habitat</Button>
-          <span className="page__hint">{animal ? <>Base species: <strong>{animal.name}</strong></> : touch ? "Tap a species to preview and select it" : "Hover to preview · select to continue"}</span>
-          <Button iconRight={ArrowRight} disabled={!animal} onClick={() => navigate("/lab")}>Enter the Genetic Lab</Button>
+          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/habitat")}>Back</Button>
+          <span className="page__hint">{animal ? <>Base species: <strong>{animal.name}</strong></> : touch ? "Tap a species to preview and select it" : "Hover to preview, click to choose"}</span>
+          <Button iconRight={ArrowRight} disabled={!animal} onClick={() => navigate("/lab")}>Into the lab</Button>
         </footer>
       </div>
     </PageTransition>

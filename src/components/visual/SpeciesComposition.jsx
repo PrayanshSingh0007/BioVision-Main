@@ -72,7 +72,7 @@ export default function SpeciesComposition({ animal, habitat, traitIds = [], rev
 
   return (
     <div className={`comp ${reveal ? "comp--reveal" : ""} ${className}`} style={{ "--accent": habitat?.accent || "#22d3ee" }}>
-      <HabitatScene habitat={habitat} animated={animated} className="comp__scene" />
+      <HabitatScene habitat={habitat} animated={animated} className="comp__scene" depth />
       <div className="comp__light" />
 
       <div className="comp__stage" ref={stageRef}>

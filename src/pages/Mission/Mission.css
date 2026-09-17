@@ -12,8 +12,8 @@
 .mission__inner { position: relative; z-index: 1; width: min(1500px, 100% - 80px); margin: 0 auto; padding: 40px 0; }
 .mission__card { width: min(880px, 100%); padding: 40px 46px 38px; }
 .mission__head { display: flex; justify-content: space-between; align-items: center; }
-.mission__id { font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); }
-.mission__title { font-size: clamp(44px, 5vw, 72px); margin-top: 12px; }
+.mission__id { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--text-3); }
+.mission__title { font-size: clamp(48px, 5.4vw, 78px); margin-top: 10px; font-weight: 400; }
 .mission__lead { margin-top: 16px; font-size: 18.5px; line-height: 1.55; color: var(--text-1); max-width: 720px; }
 
 /* four-stage process diagram joined by a light line */
@@ -21,8 +21,8 @@
 .mission__line { position: absolute; left: 10%; right: 10%; top: 24px; height: 1px; background: linear-gradient(90deg, transparent, rgba(75, 212, 138, 0.5), rgba(75, 212, 138, 0.5), transparent); z-index: 0; }
 .mission__step { position: relative; z-index: 1; display: grid; gap: 4px; }
 .mission__node { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #245a3a, #0b2418); border: 1px solid rgba(75, 212, 138, 0.45); color: #bdf0d3; box-shadow: 0 0 22px rgba(75, 212, 138, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1); margin-bottom: 8px; }
-.mission__num { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.2em; color: var(--cyan); font-weight: 700; }
-.mission__step h3 { font-size: 16px; font-weight: 800; }
+.mission__num { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--cyan); }
+.mission__step h3 { font-family: var(--font-serif); font-size: 19px; font-weight: 500; }
 .mission__step p { font-size: 13.5px; color: var(--text-2); line-height: 1.45; }
 
 .mission__notes { display: grid; gap: 8px; margin-top: 26px; }
