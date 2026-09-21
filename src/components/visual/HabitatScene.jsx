@@ -33,7 +33,9 @@ import "./HabitatScene.css";
  *
  * `animated` toggles CSS-driven atmosphere (rain, snow, mist, fireflies…).
  */
-/** Photographic environment plates with per-habitat colour grading and a ground rise for the animal. */
+/** Photographic environment plates (colour grade + projector lift are baked into the image files —
+ * no runtime CSS filter, which Chrome would sometimes paint black on a large composited image) and a
+ * ground rise for the animal. `filter` values below are kept only as a record of the bake. */
 const PLATES = {
   rainforest: { src: plateRainforest, pos: "50% 55%", filter: "saturate(1.04) contrast(1.05) brightness(0.8)", tint: "rgba(8, 44, 40, 0.28)", light: "rgba(255, 226, 170, 0.2)", lightAt: "70% 10%", ground: "#0a1712", groundTop: "rgba(70, 110, 70, 0.28)" },
   forest: { src: plateForest, pos: "50% 60%", filter: "saturate(0.9) contrast(1.04) brightness(0.78)", tint: "rgba(20, 30, 12, 0.3)", light: "rgba(255, 220, 150, 0.2)", lightAt: "30% 15%", ground: "#12160c", groundTop: "rgba(120, 110, 60, 0.22)" },
@@ -67,7 +69,7 @@ export default function HabitatScene({ habitat, animated = true, className = "",
     <div className={`scene scene--${id} ${animated ? "scene--animated" : ""} ${usePlate ? "scene--plate" : ""} ${className}`} aria-hidden="true" style={usePlate ? { "--tint": plate.tint, "--light": plate.light, "--light-at": plate.lightAt, "--ground": plate.ground, "--ground-top": plate.groundTop } : undefined}>
       {usePlate ? (
         <>
-          <img src={depth ? PLATES_SOFT[id] : plate.src} srcSet={depth ? undefined : `${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes="100vw" alt="" className="scene__plate" style={{ objectPosition: plate.pos, filter: plate.filter }} onError={() => setFailed(true)} decoding="async" draggable="false" />
+          <img src={depth ? PLATES_SOFT[id] : plate.src} srcSet={depth ? undefined : `${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes="100vw" alt="" className="scene__plate" style={{ objectPosition: plate.pos }} onError={() => setFailed(true)} decoding={depth ? "sync" : "async"} draggable="false" />
           <div className="scene__grade" />
           <div className="scene__light" />
           <div className="scene__ground" />

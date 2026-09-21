@@ -8,7 +8,7 @@
 
 /* ---- spotlight preview ---- */
 .species__preview { position: relative; border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-lg); min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; background: #0d1f16; }
-.species__scene { position: absolute; inset: 0; filter: saturate(0.85) brightness(0.8); }
+.species__scene { position: absolute; inset: 0; filter: saturate(0.9) brightness(0.85); }
 .species__scenefade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 15, 10, 0.35) 0%, rgba(7, 15, 10, 0.15) 30%, rgba(7, 15, 10, 0.7) 58%, rgba(7, 18, 12, 0.96) 100%); }
 .species__stage { position: relative; min-height: 0; }
 /* Plain alpha overlay, not mix-blend-mode: screen — this sits above the continuously-animated

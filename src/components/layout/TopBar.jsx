@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Check, ChevronRight, Maximize2, Minimize2, RotateCcw } from "lucide-react";
+import { Check, ChevronRight, Maximize2, Minimize2, RotateCcw, Sun } from "lucide-react";
 import { useMission } from "../../state/MissionContext";
 import Logo from "./Logo";
 import { canFullscreen } from "../../utils/useIsTouch";
@@ -30,9 +30,21 @@ export function useFullscreen() {
   return [full, toggle];
 }
 
+/** Projector brightness toggle — flips `html[data-bright]`, which lifts plates, panels and text. */
+export function useBright() {
+  const [bright, setBright] = useState(() => document.documentElement.dataset.bright === "1");
+  const toggle = () => {
+    const next = !bright;
+    document.documentElement.dataset.bright = next ? "1" : "0";
+    setBright(next);
+  };
+  return [bright, toggle];
+}
+
 export default function TopBar() {
   const { pathname } = useLocation();
   const [full, toggleFull] = useFullscreen();
+  const [bright, toggleBright] = useBright();
   const navigate = useNavigate();
   const { habitat, animal, traitIds, reset } = useMission();
   const current = STEPS.findIndex((s) => pathname.startsWith(s.path));
@@ -71,6 +83,9 @@ export default function TopBar() {
       <div className="topbar__context">
         {habitat && <span className="topbar__chip" style={{ "--chip": habitat.accent }}><i />{habitat.name}</span>}
         {animal && <span className="topbar__chip"><img src={animal.image} alt="" />{animal.shortName}</span>}
+        <button type="button" className={`topbar__reset ${bright ? "topbar__reset--on" : ""}`} onClick={toggleBright} title={bright ? "Projector brightness: on" : "Projector brightness: off"} aria-pressed={bright}>
+          <Sun size={15} />
+        </button>
         {canFullscreen() && (
           <button type="button" className="topbar__reset" onClick={toggleFull} title={full ? "Exit fullscreen" : "Fullscreen (for the projector)"}>
             {full ? <Minimize2 size={15} /> : <Maximize2 size={15} />}

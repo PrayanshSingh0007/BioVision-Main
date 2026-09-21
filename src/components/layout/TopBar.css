@@ -21,6 +21,7 @@
 .topbar__chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--chip, var(--cyan)); }
 .topbar__chip img { width: 22px; height: 22px; object-fit: contain; }
 .topbar__reset { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(14, 30, 20, 0.7); border: 1px solid var(--line); color: var(--text-2); transition: all 0.2s; }
+.topbar__reset--on { color: var(--amber); border-color: rgba(245, 182, 74, 0.45); }
 @media (hover: hover) { .topbar__reset:hover { color: var(--text-0); border-color: var(--line-strong); background: rgba(200, 220, 190, 0.1); } }
 @media (max-width: 1180px) { .topbar__step { padding: 6px 10px 6px 6px; font-size: 12px; } .topbar__chev { display: none; } }
 @media (max-width: 1000px) { .topbar { grid-template-columns: auto 1fr auto; padding: 0 16px; } .topbar__steplabel { display: none; } .topbar__chip span, .topbar__name { display: none; } }

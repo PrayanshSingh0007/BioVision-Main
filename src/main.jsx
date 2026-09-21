@@ -10,6 +10,9 @@ try {
   const q = (window.location.hash.split("?")[1] || "") + "&" + window.location.search.slice(1);
   if (new URLSearchParams(q).get("still") === "1") document.documentElement.dataset.still = "1";
 } catch { /* ignore */ }
+// Projector mode is on by default: classroom smartboards and projectors wash out dark UIs, so the
+// whole app runs a touch brighter unless the sun toggle in the top bar turns it off.
+document.documentElement.dataset.bright = "1";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

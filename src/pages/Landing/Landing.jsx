@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, BookOpen, Maximize2, Minimize2, X } from "lucide-react";
+import { ArrowRight, BookOpen, Maximize2, Minimize2, Sun, X } from "lucide-react";
 import Button from "../../components/ui/Button";
 import PageTransition from "../../components/ui/PageTransition";
 import Logo from "../../components/layout/Logo";
-import { useFullscreen } from "../../components/layout/TopBar";
+import { useFullscreen, useBright } from "../../components/layout/TopBar";
 import { canFullscreen } from "../../utils/useIsTouch";
 import jungle from "../../assets/environments/jungle.webp";
 import jungle4k from "../../assets/environments/jungle-4k.webp";
@@ -19,6 +19,7 @@ import "./Landing.css";
 export default function Landing() {
   const navigate = useNavigate();
   const [full, toggleFull] = useFullscreen();
+  const [bright, toggleBright] = useBright();
   const [science, setScience] = useState(false);
   const sceneRef = useRef(null);
 
@@ -78,7 +79,10 @@ export default function Landing() {
       <div className="landing__ui">
         <header className="landing__top rise" style={{ "--d": "0.05s" }}>
           <div className="landing__brand"><Logo size={38} /><span>BioVision</span></div>
-          {canFullscreen() && <button type="button" className="landing__full" onClick={toggleFull} aria-label={full ? "Exit fullscreen" : "Fullscreen"}>{full ? <Minimize2 size={14} /> : <Maximize2 size={14} />}<span>{full ? "Exit" : "Fullscreen"}</span></button>}
+          <div className="landing__controls">
+            <button type="button" className={`landing__full ${bright ? "landing__full--on" : ""}`} onClick={toggleBright} aria-pressed={bright} title="Projector brightness"><Sun size={14} /><span>{bright ? "Bright" : "Normal"}</span></button>
+            {canFullscreen() && <button type="button" className="landing__full" onClick={toggleFull} aria-label={full ? "Exit fullscreen" : "Fullscreen"}>{full ? <Minimize2 size={14} /> : <Maximize2 size={14} />}<span>{full ? "Exit" : "Fullscreen"}</span></button>}
+          </div>
         </header>
 
         <div className="landing__copy">
