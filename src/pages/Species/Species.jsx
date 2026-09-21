@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ArrowRight, Check, MapPin } from "lucide-react";
 import Button from "../../components/ui/Button";
 import Badge from "../../components/ui/Badge";
 import StatBar from "../../components/ui/StatBar";
 import PageTransition from "../../components/ui/PageTransition";
-import HabitatScene from "../../components/visual/HabitatScene";
+import HabitatScene, { softPlateSources } from "../../components/visual/HabitatScene";
 import animals from "../../data/animals";
 import habitats, { habitatById } from "../../data/habitats";
 import { STAT_META } from "../../data/traits";
@@ -22,6 +22,15 @@ export default function Species() {
   // Default to the chosen habitat's native species; other habitats stay one tap away.
   const [filter, setFilter] = useState(() => habitat?.id ?? "all");
   const touch = useIsTouch();
+
+  // The Lab draws this habitat's shallow-focus plate behind the animal. Fetch and decode it now,
+  // while the student is still browsing, so the Lab paints on the first frame instead of stalling
+  // on a 2K decode. (Same srcset/sizes the Lab uses, so the browser reuses the cached candidate.)
+  useEffect(() => {
+    const soft = softPlateSources(habitat?.id);
+    if (!soft) return;
+    const img = new Image(); img.sizes = "(max-width: 1000px) 100vw, calc(100vw - 720px)"; img.srcset = soft.srcSet; img.src = soft.src; img.decode?.().catch(() => {});
+  }, [habitat?.id]);
   if (!habitat) return <Navigate to="/habitat" replace />;
 
   const preview = hover ? animals.find((a) => a.id === hover) : animal || animals.find((a) => a.naturalHabitat === habitat.id) || animals[0];
@@ -107,7 +116,7 @@ export default function Species() {
                         <li key={a.id}>
                           <button type="button" className={`acard ${selected ? "acard--selected" : ""} ${hover === a.id ? "acard--hover" : ""}`}
                             onMouseEnter={touch ? undefined : () => setHover(a.id)} onFocus={() => setHover(a.id)} onClick={() => { setHover(a.id); setAnimal(a.id); }} aria-pressed={selected}>
-                            <div className="acard__img"><img src={a.image} alt="" loading="lazy" draggable="false" /></div>
+                            <div className="acard__img"><img src={a.thumb} alt="" loading="lazy" draggable="false" /></div>
                             <div className="acard__body">
                               <strong>{a.name}</strong>
                               <em>{a.scientificName}</em>

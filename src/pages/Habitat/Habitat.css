@@ -5,7 +5,7 @@
 .habitat__sub { color: var(--text-2); max-width: 460px; font-size: 14.5px; text-align: right; }
 
 /* ---- expedition carousel ---- */
-.habitat__carousel { display: flex; gap: 12px; min-height: 0; }
+.habitat__carousel { display: flex; gap: 12px; min-height: 0; --panel-w: calc((min(1720px, 100vw - 48px) - 72px) * 0.375); }
 /* box-shadow here is deliberately a small, cheap blur rather than the shared --shadow-md/--shadow-lg
    tokens (34-90px blur radii) — box-shadow has to be re-rasterised every time an element's own box
    resizes, and these panels resize every frame for the whole 0.45s of the expand/collapse
@@ -15,8 +15,14 @@
   border: 1px solid var(--line); box-shadow: 0 8px 20px rgba(1, 6, 3, 0.4); transition: flex 0.45s var(--ease), box-shadow 0.3s, border-color 0.3s; outline-offset: 4px; contain: layout paint; will-change: flex-basis; }
 .hpanel--active { flex: 3.6; box-shadow: 0 14px 32px rgba(1, 6, 3, 0.45), 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
 .hpanel--selected:not(.hpanel--active) { border-color: color-mix(in srgb, var(--accent) 70%, transparent); box-shadow: 0 8px 20px rgba(1, 6, 3, 0.4), 0 0 16px color-mix(in srgb, var(--accent) 25%, transparent); }
-.hpanel__scene { position: absolute; inset: 0; transform: scale(1.04); transition: transform 1.2s var(--ease); }
-.hpanel--active .hpanel__scene { transform: scale(1); }
+/* The scene is NOT sized to the panel. It is a fixed box as wide as the expanded panel, centred and
+   clipped by the panel's overflow — so while the panels resize every frame of the expand/collapse
+   transition, the plate underneath keeps the same size and its compositor layer is only moved, never
+   re-rasterised (seven 4K plates re-rasterising per frame was what made this page feel laggy).
+   Collapsed panels show the middle strip of the same crop, so expanding reads as revealing more of
+   the photograph rather than the photograph rescaling. */
+.hpanel__scene { position: absolute; top: 0; bottom: 0; left: 50%; width: var(--panel-w); transform: translateX(-50%) scale(1.04); transition: transform 1.2s var(--ease); will-change: transform; }
+.hpanel--active .hpanel__scene { transform: translateX(-50%) scale(1); }
 .hpanel__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 15, 10, 0.15) 0%, rgba(7, 15, 10, 0) 35%, rgba(7, 15, 10, 0.55) 65%, rgba(7, 15, 10, 0.94) 100%); transition: opacity 0.5s; }
 .hpanel__edge { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06); }
 .hpanel--active .hpanel__edge { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 -80px 120px -60px color-mix(in srgb, var(--accent) 30%, transparent); }
@@ -53,6 +59,9 @@
   .habitat { height: auto; overflow: visible; }
   .habitat__carousel { flex-direction: column; }
   .hpanel { min-height: 90px; } .hpanel--active { min-height: 460px; }
+  /* stacked layout: panels are full width and vary in height, so pin the scene to the tallest state instead */
+  .hpanel__scene { left: 0; width: 100%; top: 50%; bottom: auto; height: 460px; transform: translateY(-50%) scale(1.04); }
+  .hpanel--active .hpanel__scene { transform: translateY(-50%) scale(1); }
   .hpanel__mininame { writing-mode: horizontal-tb; transform: none; }
   .habitat__head { flex-direction: column; align-items: flex-start; } .habitat__sub { text-align: left; }
 }

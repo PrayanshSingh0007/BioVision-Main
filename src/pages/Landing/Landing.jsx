@@ -36,29 +36,12 @@ export default function Landing() {
   return (
     <PageTransition className="page landing">
       <div className="j" ref={sceneRef} aria-hidden="true">
-        {/* SVG filters: wind through the canopy, mist boiling in the valley */}
-        <svg className="j__defs" width="0" height="0">
-          <defs>
-            <filter id="bv-wind" x="-5%" y="-5%" width="110%" height="110%" colorInterpolationFilters="sRGB">
-              <feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="2" seed="3" result="n">
-                <animate attributeName="baseFrequency" values="0.006 0.012;0.0078 0.0102;0.006 0.012" dur="12s" repeatCount="indefinite" />
-              </feTurbulence>
-              <feDisplacementMap in="SourceGraphic" in2="n" scale="12" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-            <filter id="bv-mistflow" x="-8%" y="-8%" width="116%" height="116%" colorInterpolationFilters="sRGB">
-              <feTurbulence type="fractalNoise" baseFrequency="0.004 0.009" numOctaves="2" seed="11" result="n">
-                <animate attributeName="baseFrequency" values="0.004 0.009;0.0056 0.0072;0.004 0.009" dur="18s" repeatCount="indefinite" />
-              </feTurbulence>
-              <feDisplacementMap in="SourceGraphic" in2="n" scale="40" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-          </defs>
-        </svg>
-
-        {/* far plane: the ridge — slow camera drift. The photographed mist rides on the same camera,
-            as a masked copy displaced by evolving noise so it boils and drifts. */}
+        {/* far plane: the ridge — slow camera drift. Every moving layer here is a transform/opacity
+            animation on its own compositor layer; nothing is re-rasterised per frame (the earlier
+            SVG turbulence/displacement "wind" and "boiling mist" filters redrew two full-screen
+            images on the CPU every frame and held the whole page at ~15 fps). */}
         <div className="j__cam j__cam--far">
           <img src={jungle} srcSet={`${jungle} 2560w, ${jungle4k} 3000w`} sizes="100vw" alt="" className="j__plate" fetchPriority="high" decoding="async" draggable="false" />
-          <div className="j__half j__mistflow"><img src={jungle} srcSet={`${jungle} 2560w, ${jungle4k} 3000w`} sizes="100vw" alt="" className="j__plate j__plate--mist" decoding="async" draggable="false" /></div>
         </div>
 
         {/* clouds drifting across the sky and the valley mist */}
@@ -69,8 +52,8 @@ export default function Landing() {
         <div className="j__wisp j__wisp--a" /><div className="j__wisp j__wisp--b" /><div className="j__wisp j__wisp--c" />
         <div className="j__mist j__mist--far" />
 
-        {/* near plane: foreground canopy, moving in the wind */}
-        <div className="j__cam j__cam--near"><div className="j__half j__wind"><img src={jungle} srcSet={`${jungle} 2560w, ${jungle4k} 3000w`} sizes="100vw" alt="" className="j__plate j__plate--near" decoding="async" draggable="false" /></div></div>
+        {/* near plane: foreground canopy, drifting on a slower, larger parallax */}
+        <div className="j__cam j__cam--near"><img src={jungle} srcSet={`${jungle} 2560w, ${jungle4k} 3000w`} sizes="100vw" alt="" className="j__plate j__plate--near" decoding="async" draggable="false" /><div className="j__nearshade" /></div>
         <div className="j__mist j__mist--near" />
         <div className="j__light" />
         <div className="j__vignette" />

@@ -82,7 +82,7 @@ export default function TopBar() {
 
       <div className="topbar__context">
         {habitat && <span className="topbar__chip" style={{ "--chip": habitat.accent }}><i />{habitat.name}</span>}
-        {animal && <span className="topbar__chip"><img src={animal.image} alt="" />{animal.shortName}</span>}
+        {animal && <span className="topbar__chip"><img src={animal.thumb} alt="" />{animal.shortName}</span>}
         <button type="button" className={`topbar__reset ${bright ? "topbar__reset--on" : ""}`} onClick={toggleBright} title={bright ? "Projector brightness: on" : "Projector brightness: off"} aria-pressed={bright}>
           <Sun size={15} />
         </button>

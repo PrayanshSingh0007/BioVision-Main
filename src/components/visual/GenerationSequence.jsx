@@ -22,7 +22,7 @@ export default function GenerationSequence({ animal, habitat, traits, onDone }) 
       </div>
       {traits.map((t, i) => (
         <div key={t.id} className="gen__chip" style={{ "--x": positions[i].x, "--y": positions[i].y, "--d": `${i * 0.12}s` }}>
-          <img src={animalById[t.source].image} alt="" draggable="false" />
+          <img src={animalById[t.source].thumb} alt="" draggable="false" />
           <span>{t.name}</span>
         </div>
       ))}

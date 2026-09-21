@@ -1,26 +1,23 @@
-import forest from "../../assets/environments/jungle.webp";
-import forest4k from "../../assets/environments/jungle-4k.webp";
-import desert from "../../assets/environments/desert.webp";
-import desert4k from "../../assets/environments/desert-4k.webp";
-import arctic from "../../assets/environments/arctic.webp";
-import arctic4k from "../../assets/environments/arctic-4k.webp";
-import mountains from "../../assets/environments/mountains.webp";
-import mountains4k from "../../assets/environments/mountains-4k.webp";
-import wetlands from "../../assets/environments/wetlands.webp";
-import wetlands4k from "../../assets/environments/wetlands-4k.webp";
+import { useEffect, useRef } from "react";
+import forest from "../../assets/environments/jungle-reel.webp";
+import desert from "../../assets/environments/desert-reel.webp";
+import arctic from "../../assets/environments/arctic-reel.webp";
+import mountains from "../../assets/environments/mountains-reel.webp";
+import wetlands from "../../assets/environments/wetlands-reel.webp";
 import "./FieldReel.css";
 
 /**
- * Real field-photography plates (see CREDITS.md), cycled while the app boots. The plates already
- * carry their habitat colour grade (baked into the files), and each gets a slightly different
- * drift direction so the camera move never repeats.
+ * Real field-photography plates (see CREDITS.md), cycled while the app boots. These are 1200px
+ * square crops of the graded habitat plates — the porthole is only ~400px, and decoding the full
+ * 2K/4K plates for it stalled the main thread for ~250ms on every frame change.
+ * Each frame gets a slightly different drift direction so the camera move never repeats.
  */
 const FRAMES = [
-  { src: forest, src4k: forest4k, name: "Rainforest", dx: "-0.8%", dy: "0.5%" },
-  { src: desert, src4k: desert4k, name: "Desert", dx: "0.7%", dy: "-0.4%" },
-  { src: arctic, src4k: arctic4k, name: "Arctic tundra", dx: "-0.5%", dy: "-0.6%" },
-  { src: mountains, src4k: mountains4k, name: "Mountains", dx: "0.6%", dy: "0.5%" },
-  { src: wetlands, src4k: wetlands4k, name: "Wetlands", dx: "-0.6%", dy: "0.4%" },
+  { src: forest, name: "Rainforest", dx: "-0.8%", dy: "0.5%" },
+  { src: desert, name: "Desert", dx: "0.7%", dy: "-0.4%" },
+  { src: arctic, name: "Arctic tundra", dx: "-0.5%", dy: "-0.6%" },
+  { src: mountains, name: "Mountains", dx: "0.6%", dy: "0.5%" },
+  { src: wetlands, name: "Wetlands", dx: "-0.6%", dy: "0.4%" },
 ];
 
 /**
@@ -30,15 +27,21 @@ const FRAMES = [
  */
 export default function FieldReel({ index = 0, size = 380 }) {
   const active = Math.min(Math.max(index, 0), FRAMES.length - 1);
+  const root = useRef(null);
+  // Decode every frame up front, off the main thread, so each crossfade starts with a ready bitmap
+  // (an undecoded frame under an in-progress opacity transition is what showed as a black flash).
+  useEffect(() => {
+    root.current?.querySelectorAll("img").forEach((img) => { img.decode?.().catch(() => {}); });
+  }, []);
   return (
-    <div className="reel" style={{ width: size, height: size }}>
+    <div className="reel" ref={root} style={{ width: size, height: size }}>
       {FRAMES.map((f, i) => (
         <div
           key={f.src}
           className={`reel__frame ${i === active ? "reel__frame--active" : i < active ? "reel__frame--past" : ""}`}
           style={{ "--dx": f.dx, "--dy": f.dy }}
         >
-          <img src={f.src} srcSet={`${f.src} 2048w, ${f.src4k} 3840w`} sizes={`${size}px`} alt="" draggable="false" decoding="sync" loading="eager" fetchPriority="high" />
+          <img src={f.src} alt="" draggable="false" decoding="async" loading="eager" fetchPriority="high" />
         </div>
       ))}
       <div className="reel__grain" />

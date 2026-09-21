@@ -19,7 +19,7 @@ const FIGURE_SCALE = { chameleon: 0.9, frog: 0.88, squirrel: 0.9, cat: 0.92, eag
  *  - labels: "full" | "compact" | "none"
  *  - animated: animate atmosphere/particles
  */
-export default function SpeciesComposition({ animal, habitat, traitIds = [], reveal = false, labels = "full", animated = true, className = "" }) {
+export default function SpeciesComposition({ animal, habitat, traitIds = [], reveal = false, labels = "full", animated = true, className = "", sizes = "100vw" }) {
   const { w, h } = animal.imageSize;
   const W = 1000, H = Math.round((1000 * h) / w);
   const uid = `cmp-${animal.id}`;
@@ -72,7 +72,7 @@ export default function SpeciesComposition({ animal, habitat, traitIds = [], rev
 
   return (
     <div className={`comp ${reveal ? "comp--reveal" : ""} ${className}`} style={{ "--accent": habitat?.accent || "#22d3ee" }}>
-      <HabitatScene habitat={habitat} animated={animated} className="comp__scene" depth />
+      <HabitatScene habitat={habitat} animated={animated} className="comp__scene" depth sizes={sizes} />
       <div className="comp__light" />
 
       <div className="comp__stage" ref={stageRef}>

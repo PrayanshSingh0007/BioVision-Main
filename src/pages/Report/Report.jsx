@@ -46,7 +46,7 @@ export default function Report() {
         {/* ---- cinematic reveal ---- */}
         <section className="report__hero">
           <div className="report__visual rise" {...rise(0)}>
-            <SpeciesComposition animal={animal} habitat={habitat} traitIds={species.traitIds} reveal labels="full" animated />
+            <SpeciesComposition animal={animal} habitat={habitat} traitIds={species.traitIds} reveal labels="full" animated sizes="(max-width: 1200px) 100vw, calc(100vw - 460px)" />
             <div className="report__visualtag"><Sparkles size={14} /> {habitat.name}</div>
             <div className="report__legend"><span><i className="report__legend-base" /> Base animal: {animal.name}</span><span><i className="report__legend-trait" /> Inherited trait</span></div>
           </div>
@@ -83,7 +83,7 @@ export default function Report() {
               return (
                 <article key={t.id} className="tr panel rise" {...rise(0.25 + i * 0.1)}>
                   <div className="tr__top">
-                    <div className="tr__src"><img src={src.image} alt="" draggable="false" /></div>
+                    <div className="tr__src"><img src={src.thumb} alt="" draggable="false" /></div>
                     <div><span className="tr__slot">{t.category}</span><h3>{t.name}</h3><p className="tr__meta">Source: {src.name}</p></div>
                     <span className={`tr__fit tone-${fit?.tone}`}>{fit?.label}</span>
                   </div>

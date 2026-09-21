@@ -2,26 +2,20 @@
 
 /* ================= the jungle ================= */
 .j { position: absolute; inset: 0; z-index: 0; overflow: hidden; --px: 0; --py: 0; background: #06120c; contain: strict; }
-.j__cam, .j__sky, .j__wisp, .j__mist, .j__light, .j__half { backface-visibility: hidden; }
-.j__defs { position: absolute; width: 0; height: 0; }
-
-/* half-resolution render targets for the displacement filters (scaled ×2 on the compositor) */
-.j__half { position: absolute; left: 0; top: 0; width: 50%; height: 50%; transform: scale(2); transform-origin: 0 0; }
-/* on scaled-up 4K boards render the displaced layers at quarter size */
-html:not([data-scale="1.00"]) .j__half { width: 25%; height: 25%; transform: scale(4); }
+.j__cam, .j__sky, .j__wisp, .j__mist, .j__light { backface-visibility: hidden; }
 
 /* far plane — the ridge, slow camera drift */
 .j__cam { position: absolute; inset: -4%; will-change: transform; }
 .j__cam--far { animation: camFar 28s ease-in-out infinite alternate; }
-.j__plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; filter: saturate(1.14) contrast(1.06) brightness(0.92); }
+.j__plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; }
 @keyframes camFar { from { transform: translate(0, 0) scale(1); } to { transform: translate(-2.6%, -1.2%) scale(1.11); } }
 
 /* clouds: seamless noise tiles drifting across the sky and the mist band */
-.j__sky { position: absolute; top: -6%; left: 0; width: 200%; height: 62%; z-index: 1; mix-blend-mode: screen; pointer-events: none; will-change: transform;
+.j__sky { position: absolute; top: -6%; left: 0; width: 200%; height: 62%; z-index: 1; pointer-events: none; will-change: transform;
   background-image: var(--tile); background-repeat: repeat-x; background-size: 50% 100%;
   -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.45) 60%, transparent 100%); mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.45) 60%, transparent 100%); }
-.j__sky--slow { opacity: 0.5; animation: cloudDrift 70s linear infinite; }
-.j__sky--fast { top: 8%; height: 58%; opacity: 0.3; background-size: 33.333% 100%; animation: cloudDrift3 46s linear infinite reverse; }
+.j__sky--slow { opacity: 0.42; animation: cloudDrift 70s linear infinite; }
+.j__sky--fast { top: 8%; height: 58%; opacity: 0.26; background-size: 33.333% 100%; animation: cloudDrift3 46s linear infinite reverse; }
 @keyframes cloudDrift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes cloudDrift3 { from { transform: translateX(0); } to { transform: translateX(-66.666%); } }
 
@@ -32,21 +26,16 @@ html:not([data-scale="1.00"]) .j__half { width: 25%; height: 25%; transform: sca
     linear-gradient(180deg, rgba(3, 12, 9, 0.38) 0%, rgba(3, 12, 9, 0) 26%, rgba(3, 12, 9, 0) 68%, rgba(3, 12, 9, 0.55) 100%),
     linear-gradient(180deg, rgba(8, 44, 40, 0.22), rgba(8, 44, 40, 0.22)); }
 
-/* the photographed mist, displaced by evolving noise — masked to the valley mist */
-.j__mistflow { z-index: 1; pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 62% 46% at 60% 52%, #000 0%, rgba(0,0,0,0.85) 40%, transparent 72%); mask-image: radial-gradient(ellipse 62% 46% at 60% 52%, #000 0%, rgba(0,0,0,0.85) 40%, transparent 72%); }
-.j__plate--mist { filter: url(#bv-mistflow) saturate(1.14) contrast(1.06) brightness(0.92); }
-
 /* fog wisps travelling across the valley */
-.j__wisp { position: absolute; z-index: 2; border-radius: 50%; mix-blend-mode: screen; pointer-events: none; will-change: transform, opacity;
-  background: radial-gradient(ellipse at center, rgba(222, 236, 230, 0.42) 0%, rgba(222, 236, 230, 0.18) 38%, rgba(222, 236, 230, 0) 70%); }
+.j__wisp { position: absolute; z-index: 2; border-radius: 50%; pointer-events: none; will-change: transform, opacity;
+  background: radial-gradient(ellipse at center, rgba(222, 236, 230, 0.3) 0%, rgba(222, 236, 230, 0.13) 38%, rgba(222, 236, 230, 0) 70%); }
 .j__wisp--a { width: 62%; height: 34%; top: 30%; left: -20%; animation: wisp 34s linear infinite; }
 .j__wisp--b { width: 48%; height: 26%; top: 44%; left: -30%; animation: wisp 46s linear infinite; animation-delay: -18s; }
 .j__wisp--c { width: 70%; height: 30%; top: 36%; left: -10%; animation: wisp 58s linear infinite; animation-delay: -34s; opacity: 0.8; }
 @keyframes wisp { 0% { transform: translate(0, 0) scale(1); opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { transform: translate(140%, -8%) scale(1.25); opacity: 0; } }
 
 /* broad mist banks, breathing */
-.j__mist { position: absolute; left: -20%; width: 140%; mix-blend-mode: screen; will-change: transform, opacity; pointer-events: none; z-index: 2; }
+.j__mist { position: absolute; left: -20%; width: 140%; will-change: transform, opacity; pointer-events: none; z-index: 2; }
 .j__mist--far { top: 28%; height: 40%; background: linear-gradient(180deg, transparent, rgba(215, 232, 225, 0.14) 50%, transparent); animation: mistFar 20s ease-in-out infinite alternate; }
 .j__mist--near { top: 54%; height: 34%; z-index: 4; background: linear-gradient(180deg, transparent, rgba(205, 226, 218, 0.12) 50%, transparent); animation: mistNear 16s ease-in-out infinite alternate; }
 @keyframes mistFar { from { transform: translate(-5%, 0) scaleY(1); opacity: 0.55; } to { transform: translate(5%, -3%) scaleY(1.2); opacity: 1; } }
@@ -55,12 +44,11 @@ html:not([data-scale="1.00"]) .j__half { width: 25%; height: 25%; transform: sca
 /* near plane — the foreground canopy in the wind */
 .j__cam--near { z-index: 3; animation: camNear 28s ease-in-out infinite alternate;
   -webkit-mask-image: linear-gradient(180deg, transparent 52%, rgba(0, 0, 0, 0.55) 68%, #000 80%); mask-image: linear-gradient(180deg, transparent 52%, rgba(0, 0, 0, 0.55) 68%, #000 80%); }
-.j__wind { overflow: visible; }
-.j__plate--near { filter: url(#bv-wind) saturate(1.1) contrast(1.08) brightness(0.72) blur(0.6px); }
+.j__nearshade { position: absolute; inset: 0; background: rgba(3, 10, 7, 0.34); }
 @keyframes camNear { from { transform: translate(0, 0) scale(1.04); } to { transform: translate(-5%, 1%) scale(1.2); } }
 
 /* light through the mist */
-.j__light { position: absolute; right: -10%; top: -30%; width: 74%; height: 96%; z-index: 4; background: radial-gradient(ellipse at 60% 45%, rgba(255, 222, 160, 0.4), rgba(255, 205, 130, 0.14) 42%, transparent 66%); mix-blend-mode: screen; animation: lightShift 12s ease-in-out infinite alternate; will-change: transform, opacity; pointer-events: none; }
+.j__light { position: absolute; right: -10%; top: -30%; width: 74%; height: 96%; z-index: 4; background: radial-gradient(ellipse at 60% 45%, rgba(255, 222, 160, 0.3), rgba(255, 205, 130, 0.1) 42%, transparent 66%); animation: lightShift 12s ease-in-out infinite alternate; will-change: transform, opacity; pointer-events: none; }
 @keyframes lightShift { from { opacity: 0.6; transform: translate(0, 0) scale(1); } to { opacity: 1; transform: translate(-6%, 4%) scale(1.12); } }
 .j__vignette { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: radial-gradient(ellipse at 55% 45%, transparent 55%, rgba(2, 10, 6, 0.52) 100%); }
 

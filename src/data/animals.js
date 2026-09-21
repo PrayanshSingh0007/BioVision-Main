@@ -1,6 +1,8 @@
 /**
  * Animal library — 37 animals across seven habitats.
  *
+ * `thumb` is a 240px copy of `image` for chips and lists — decoding the 2200px cut-outs for 40px
+ * thumbnails was most of the Lab and Species pages' jank.
  * `anchors` are anatomical reference points (% of the image box) used by the trait
  * composition system; `facing` is "left" (side view) or "front". `habitatFit` (−2…+2) is an
  * educational estimate of how well the animal's own biology suits each habitat.
@@ -43,11 +45,48 @@ import img_flamingo from "../assets/animals/flamingo.webp";
 import img_hippo from "../assets/animals/hippo.webp";
 import img_heron from "../assets/animals/heron.webp";
 import img_capybara from "../assets/animals/capybara.webp";
+import th_tiger from "../assets/animals/thumbs/tiger.webp";
+import th_cat from "../assets/animals/thumbs/cat.webp";
+import th_chameleon from "../assets/animals/thumbs/chameleon.webp";
+import th_deer from "../assets/animals/thumbs/deer.webp";
+import th_eagle from "../assets/animals/thumbs/eagle.webp";
+import th_frog from "../assets/animals/thumbs/frog.webp";
+import th_kangaroo from "../assets/animals/thumbs/kangaroo.webp";
+import th_koala from "../assets/animals/thumbs/koala.webp";
+import th_panda from "../assets/animals/thumbs/panda.webp";
+import th_polar_bear from "../assets/animals/thumbs/polar-bear.webp";
+import th_squirrel from "../assets/animals/thumbs/squirrel.webp";
+import th_wolf from "../assets/animals/thumbs/wolf.webp";
+import th_jaguar from "../assets/animals/thumbs/jaguar.webp";
+import th_sloth from "../assets/animals/thumbs/sloth.webp";
+import th_toucan from "../assets/animals/thumbs/toucan.webp";
+import th_red_fox from "../assets/animals/thumbs/red-fox.webp";
+import th_brown_bear from "../assets/animals/thumbs/brown-bear.webp";
+import th_owl from "../assets/animals/thumbs/owl.webp";
+import th_lion from "../assets/animals/thumbs/lion.webp";
+import th_cheetah from "../assets/animals/thumbs/cheetah.webp";
+import th_elephant from "../assets/animals/thumbs/elephant.webp";
+import th_giraffe from "../assets/animals/thumbs/giraffe.webp";
+import th_fennec_fox from "../assets/animals/thumbs/fennec-fox.webp";
+import th_camel from "../assets/animals/thumbs/camel.webp";
+import th_tortoise from "../assets/animals/thumbs/tortoise.webp";
+import th_arctic_fox from "../assets/animals/thumbs/arctic-fox.webp";
+import th_penguin from "../assets/animals/thumbs/penguin.webp";
+import th_reindeer from "../assets/animals/thumbs/reindeer.webp";
+import th_snow_leopard from "../assets/animals/thumbs/snow-leopard.webp";
+import th_mountain_goat from "../assets/animals/thumbs/mountain-goat.webp";
+import th_yak from "../assets/animals/thumbs/yak.webp";
+import th_ibex from "../assets/animals/thumbs/ibex.webp";
+import th_crocodile from "../assets/animals/thumbs/crocodile.webp";
+import th_flamingo from "../assets/animals/thumbs/flamingo.webp";
+import th_hippo from "../assets/animals/thumbs/hippo.webp";
+import th_heron from "../assets/animals/thumbs/heron.webp";
+import th_capybara from "../assets/animals/thumbs/capybara.webp";
 
 const animals = [
   {
     id: "tiger", name: "Bengal Tiger", shortName: "Tiger", scientificName: "Panthera tigris", genus: "Panthera", species: "tigris",
-    image: img_tiger, imageSize: { w: 2200, h: 1092 }, naturalHabitat: "rainforest",
+    image: img_tiger, thumb: th_tiger, imageSize: { w: 2200, h: 1092 }, naturalHabitat: "rainforest",
     description: "A solitary apex predator whose striped coat breaks up its outline in tall grass and dappled forest light.",
     traits: ["Striped camouflage", "Powerful jaws", "Retractable claws", "Night hunting"],
     stats: { strength: 95, speed: 80, intelligence: 70, stamina: 72, camouflage: 82 },
@@ -61,7 +100,7 @@ const animals = [
   },
   {
     id: "cat", name: "Domestic Cat", shortName: "Cat", scientificName: "Felis catus", genus: "Felis", species: "catus",
-    image: img_cat, imageSize: { w: 2200, h: 1310 }, naturalHabitat: "forest",
+    image: img_cat, thumb: th_cat, imageSize: { w: 2200, h: 1310 }, naturalHabitat: "forest",
     description: "A small, agile hunter with sensitive whiskers, sharp reflexes and excellent low-light vision.",
     traits: ["Whiskers", "Fast reflexes", "Flexible spine", "Low-light vision"],
     stats: { strength: 35, speed: 70, intelligence: 68, stamina: 55, camouflage: 55 },
@@ -75,7 +114,7 @@ const animals = [
   },
   {
     id: "chameleon", name: "Chameleon", shortName: "Chameleon", scientificName: "Chamaeleo calyptratus", genus: "Chamaeleo", species: "calyptratus",
-    image: img_chameleon, imageSize: { w: 2200, h: 1001 }, naturalHabitat: "rainforest",
+    image: img_chameleon, thumb: th_chameleon, imageSize: { w: 2200, h: 1001 }, naturalHabitat: "rainforest",
     description: "A slow, patient reptile that changes colour to communicate and blend in, and catches insects with a lightning-fast tongue.",
     traits: ["Colour-changing skin", "Independent eyes", "Projectile tongue", "Gripping feet"],
     stats: { strength: 20, speed: 25, intelligence: 40, stamina: 35, camouflage: 98 },
@@ -89,7 +128,7 @@ const animals = [
   },
   {
     id: "deer", name: "Deer", shortName: "Deer", scientificName: "Cervus elaphus", genus: "Cervus", species: "elaphus",
-    image: img_deer, imageSize: { w: 2185, h: 1676 }, naturalHabitat: "forest",
+    image: img_deer, thumb: th_deer, imageSize: { w: 2185, h: 1676 }, naturalHabitat: "forest",
     description: "A fast, alert herbivore with large ears, long legs for bounding escape and antlers used in display and defence.",
     traits: ["Antlers", "Acute hearing", "Bounding gait", "Herbivore digestion"],
     stats: { strength: 55, speed: 85, intelligence: 50, stamina: 78, camouflage: 60 },
@@ -103,7 +142,7 @@ const animals = [
   },
   {
     id: "eagle", name: "Eagle", shortName: "Eagle", scientificName: "Haliaeetus leucocephalus", genus: "Haliaeetus", species: "leucocephalus",
-    image: img_eagle, imageSize: { w: 1892, h: 1688 }, naturalHabitat: "mountains",
+    image: img_eagle, thumb: th_eagle, imageSize: { w: 1892, h: 1688 }, naturalHabitat: "mountains",
     description: "A powerful bird of prey with broad wings for soaring, eyesight several times sharper than a human's, and crushing talons.",
     traits: ["Flight", "Keen eyesight", "Sharp talons", "Hooked beak"],
     stats: { strength: 60, speed: 92, intelligence: 62, stamina: 70, camouflage: 40 },
@@ -117,7 +156,7 @@ const animals = [
   },
   {
     id: "frog", name: "Frog", shortName: "Frog", scientificName: "Hyla cinerea", genus: "Hyla", species: "cinerea",
-    image: img_frog, imageSize: { w: 1777, h: 1568 }, naturalHabitat: "wetlands",
+    image: img_frog, thumb: th_frog, imageSize: { w: 1777, h: 1568 }, naturalHabitat: "wetlands",
     description: "An amphibian that breathes partly through its moist skin, leaps with powerful legs and snatches insects with a sticky tongue.",
     traits: ["Sticky tongue", "Webbed feet", "Skin breathing", "Explosive jump"],
     stats: { strength: 20, speed: 45, intelligence: 30, stamina: 40, camouflage: 75 },
@@ -131,7 +170,7 @@ const animals = [
   },
   {
     id: "kangaroo", name: "Kangaroo", shortName: "Kangaroo", scientificName: "Macropus rufus", genus: "Macropus", species: "rufus",
-    image: img_kangaroo, imageSize: { w: 2091, h: 2200 }, naturalHabitat: "grasslands",
+    image: img_kangaroo, thumb: th_kangaroo, imageSize: { w: 2091, h: 2200 }, naturalHabitat: "grasslands",
     description: "A marsupial built for efficient hopping across open country, with a heavy tail for balance and a pouch for raising young.",
     traits: ["Powerful hind legs", "Balancing tail", "Pouch", "Water-efficient body"],
     stats: { strength: 70, speed: 82, intelligence: 45, stamina: 88, camouflage: 50 },
@@ -145,7 +184,7 @@ const animals = [
   },
   {
     id: "koala", name: "Koala", shortName: "Koala", scientificName: "Phascolarctos cinereus", genus: "Phascolarctos", species: "cinereus",
-    image: img_koala, imageSize: { w: 1749, h: 1873 }, naturalHabitat: "forest",
+    image: img_koala, thumb: th_koala, imageSize: { w: 1749, h: 1873 }, naturalHabitat: "forest",
     description: "A tree-dwelling marsupial with strong gripping claws, dense fur and a slow metabolism suited to a diet of eucalyptus leaves.",
     traits: ["Climbing claws", "Dense fur", "Slow metabolism", "Leaf digestion"],
     stats: { strength: 40, speed: 20, intelligence: 35, stamina: 45, camouflage: 55 },
@@ -159,7 +198,7 @@ const animals = [
   },
   {
     id: "panda", name: "Giant Panda", shortName: "Panda", scientificName: "Ailuropoda melanoleuca", genus: "Ailuropoda", species: "melanoleuca",
-    image: img_panda, imageSize: { w: 2200, h: 1421 }, naturalHabitat: "mountains",
+    image: img_panda, thumb: th_panda, imageSize: { w: 2200, h: 1421 }, naturalHabitat: "mountains",
     description: "A mountain bear with powerful crushing jaws and an extra wrist bone that works like a thumb for gripping bamboo.",
     traits: ["Pseudo-thumb", "Crushing molars", "Thick coat", "Bamboo diet"],
     stats: { strength: 78, speed: 30, intelligence: 50, stamina: 50, camouflage: 45 },
@@ -173,7 +212,7 @@ const animals = [
   },
   {
     id: "polar-bear", name: "Polar Bear", shortName: "Polar Bear", scientificName: "Ursus maritimus", genus: "Ursus", species: "maritimus",
-    image: img_polar_bear, imageSize: { w: 1847, h: 1340 }, naturalHabitat: "arctic",
+    image: img_polar_bear, thumb: th_polar_bear, imageSize: { w: 1847, h: 1340 }, naturalHabitat: "arctic",
     description: "The largest land carnivore, insulated by thick fur and fat, with wide paws for walking on snow and swimming between ice floes.",
     traits: ["Thick fur", "Fat insulation", "Wide paws", "Strong swimmer"],
     stats: { strength: 98, speed: 55, intelligence: 60, stamina: 80, camouflage: 70 },
@@ -187,7 +226,7 @@ const animals = [
   },
   {
     id: "squirrel", name: "Squirrel", shortName: "Squirrel", scientificName: "Sciurus vulgaris", genus: "Sciurus", species: "vulgaris",
-    image: img_squirrel, imageSize: { w: 1209, h: 1100 }, naturalHabitat: "forest",
+    image: img_squirrel, thumb: th_squirrel, imageSize: { w: 1209, h: 1100 }, naturalHabitat: "forest",
     description: "A quick, agile rodent that climbs, leaps and balances with its bushy tail, and stores food to survive the winter.",
     traits: ["Bushy tail", "Climbing agility", "Food caching", "Gnawing teeth"],
     stats: { strength: 15, speed: 75, intelligence: 60, stamina: 50, camouflage: 60 },
@@ -201,7 +240,7 @@ const animals = [
   },
   {
     id: "wolf", name: "Gray Wolf", shortName: "Wolf", scientificName: "Canis lupus", genus: "Canis", species: "lupus",
-    image: img_wolf, imageSize: { w: 2005, h: 2200 }, naturalHabitat: "forest",
+    image: img_wolf, thumb: th_wolf, imageSize: { w: 2005, h: 2200 }, naturalHabitat: "forest",
     description: "A social pack hunter with tremendous stamina, keen night vision and a sense of smell thousands of times sharper than ours.",
     traits: ["Night vision", "Pack cooperation", "Endurance running", "Powerful bite"],
     stats: { strength: 72, speed: 78, intelligence: 82, stamina: 92, camouflage: 62 },
@@ -215,7 +254,7 @@ const animals = [
   },
   {
     id: "jaguar", name: "Jaguar", shortName: "Jaguar", scientificName: "Panthera onca", genus: "Panthera", species: "onca",
-    image: img_jaguar, imageSize: { w: 1456, h: 1982 }, naturalHabitat: "rainforest",
+    image: img_jaguar, thumb: th_jaguar, imageSize: { w: 1456, h: 1982 }, naturalHabitat: "rainforest",
     description: "The Americas' largest cat: a stocky, powerful swimmer and climber whose rosette-spotted coat vanishes in dappled forest light.",
     traits: ["Spotted coat", "Strong swimmer", "Skull-crushing bite", "Stealth"],
     stats: { strength: 92, speed: 75, intelligence: 70, stamina: 70, camouflage: 88 },
@@ -229,7 +268,7 @@ const animals = [
   },
   {
     id: "sloth", name: "Three-toed Sloth", shortName: "Sloth", scientificName: "Bradypus variegatus", genus: "Bradypus", species: "variegatus",
-    image: img_sloth, imageSize: { w: 750, h: 1052 }, naturalHabitat: "rainforest",
+    image: img_sloth, thumb: th_sloth, imageSize: { w: 750, h: 1052 }, naturalHabitat: "rainforest",
     description: "An upside-down canopy specialist that moves so slowly algae grows on its fur, saving energy on a low-nutrient leaf diet.",
     traits: ["Slow metabolism", "Hooked claws", "Algae camouflage", "Upside-down life"],
     stats: { strength: 30, speed: 8, intelligence: 30, stamina: 60, camouflage: 80 },
@@ -243,7 +282,7 @@ const animals = [
   },
   {
     id: "toucan", name: "Toco Toucan", shortName: "Toucan", scientificName: "Ramphastos toco", genus: "Ramphastos", species: "toco",
-    image: img_toucan, imageSize: { w: 2200, h: 1388 }, naturalHabitat: "rainforest",
+    image: img_toucan, thumb: th_toucan, imageSize: { w: 2200, h: 1388 }, naturalHabitat: "rainforest",
     description: "A canopy fruit-eater whose enormous, lightweight beak reaches distant fruit and sheds heat like a radiator.",
     traits: ["Oversized beak", "Heat regulation", "Fruit diet", "Strong feet"],
     stats: { strength: 25, speed: 60, intelligence: 55, stamina: 45, camouflage: 35 },
@@ -257,7 +296,7 @@ const animals = [
   },
   {
     id: "red-fox", name: "Red Fox", shortName: "Fox", scientificName: "Vulpes vulpes", genus: "Vulpes", species: "vulpes",
-    image: img_red_fox, imageSize: { w: 2200, h: 1273 }, naturalHabitat: "forest",
+    image: img_red_fox, thumb: th_red_fox, imageSize: { w: 2200, h: 1273 }, naturalHabitat: "forest",
     description: "A clever, adaptable hunter with acute hearing that can pinpoint a mouse under snow, and a bushy tail for balance and warmth.",
     traits: ["Acute hearing", "Adaptable diet", "Bushy tail", "Pouncing leap"],
     stats: { strength: 40, speed: 80, intelligence: 85, stamina: 70, camouflage: 60 },
@@ -271,7 +310,7 @@ const animals = [
   },
   {
     id: "brown-bear", name: "Brown Bear", shortName: "Bear", scientificName: "Ursus arctos", genus: "Ursus", species: "arctos",
-    image: img_brown_bear, imageSize: { w: 1386, h: 1405 }, naturalHabitat: "forest",
+    image: img_brown_bear, thumb: th_brown_bear, imageSize: { w: 1386, h: 1405 }, naturalHabitat: "forest",
     description: "A huge omnivore that builds fat reserves all summer and hibernates through winter, with strong forelimbs for digging and fishing.",
     traits: ["Hibernation", "Strong forelimbs", "Omnivore diet", "Keen smell"],
     stats: { strength: 97, speed: 60, intelligence: 65, stamina: 75, camouflage: 45 },
@@ -285,7 +324,7 @@ const animals = [
   },
   {
     id: "owl", name: "Great Horned Owl", shortName: "Owl", scientificName: "Bubo virginianus", genus: "Bubo", species: "virginianus",
-    image: img_owl, imageSize: { w: 1101, h: 2200 }, naturalHabitat: "forest",
+    image: img_owl, thumb: th_owl, imageSize: { w: 1101, h: 2200 }, naturalHabitat: "forest",
     description: "A silent night hunter with soft-edged feathers that make no sound in flight, huge light-gathering eyes and a swivelling head.",
     traits: ["Silent flight", "Night vision", "Rotating head", "Crushing talons"],
     stats: { strength: 45, speed: 80, intelligence: 70, stamina: 55, camouflage: 70 },
@@ -299,7 +338,7 @@ const animals = [
   },
   {
     id: "lion", name: "African Lion", shortName: "Lion", scientificName: "Panthera leo", genus: "Panthera", species: "leo",
-    image: img_lion, imageSize: { w: 2107, h: 2200 }, naturalHabitat: "grasslands",
+    image: img_lion, thumb: th_lion, imageSize: { w: 2107, h: 2200 }, naturalHabitat: "grasslands",
     description: "The only social big cat, hunting in prides on open plains; the male's mane signals strength and shields the neck in fights.",
     traits: ["Mane", "Pride cooperation", "Powerful roar", "Ambush strength"],
     stats: { strength: 96, speed: 72, intelligence: 72, stamina: 60, camouflage: 55 },
@@ -313,7 +352,7 @@ const animals = [
   },
   {
     id: "cheetah", name: "Cheetah", shortName: "Cheetah", scientificName: "Acinonyx jubatus", genus: "Acinonyx", species: "jubatus",
-    image: img_cheetah, imageSize: { w: 2054, h: 1752 }, naturalHabitat: "grasslands",
+    image: img_cheetah, thumb: th_cheetah, imageSize: { w: 2054, h: 1752 }, naturalHabitat: "grasslands",
     description: "The fastest land animal, built like a sprinter with a flexible spine, long legs and a tail that steers at 100 km/h.",
     traits: ["Explosive sprint", "Flexible spine", "Tear-mark eyes", "Semi-retractable claws"],
     stats: { strength: 55, speed: 100, intelligence: 60, stamina: 40, camouflage: 65 },
@@ -327,7 +366,7 @@ const animals = [
   },
   {
     id: "elephant", name: "African Elephant", shortName: "Elephant", scientificName: "Loxodonta africana", genus: "Loxodonta", species: "africana",
-    image: img_elephant, imageSize: { w: 1633, h: 2200 }, naturalHabitat: "grasslands",
+    image: img_elephant, thumb: th_elephant, imageSize: { w: 1633, h: 2200 }, naturalHabitat: "grasslands",
     description: "The largest land animal, with a prehensile trunk for feeding and drinking, huge ears that shed heat, and a remarkable memory.",
     traits: ["Prehensile trunk", "Heat-radiating ears", "Tusks", "Deep memory"],
     stats: { strength: 100, speed: 45, intelligence: 90, stamina: 70, camouflage: 20 },
@@ -341,7 +380,7 @@ const animals = [
   },
   {
     id: "giraffe", name: "Giraffe", shortName: "Giraffe", scientificName: "Giraffa camelopardalis", genus: "Giraffa", species: "camelopardalis",
-    image: img_giraffe, imageSize: { w: 1645, h: 2200 }, naturalHabitat: "grasslands",
+    image: img_giraffe, thumb: th_giraffe, imageSize: { w: 1645, h: 2200 }, naturalHabitat: "grasslands",
     description: "The tallest animal on Earth, browsing treetop leaves other herbivores cannot reach, with a long tongue and a view over the plains.",
     traits: ["Long neck", "Prehensile tongue", "Tall vantage", "Powerful kick"],
     stats: { strength: 80, speed: 70, intelligence: 55, stamina: 65, camouflage: 50 },
@@ -355,7 +394,7 @@ const animals = [
   },
   {
     id: "fennec-fox", name: "Fennec Fox", shortName: "Fennec", scientificName: "Vulpes zerda", genus: "Vulpes", species: "zerda",
-    image: img_fennec_fox, imageSize: { w: 2200, h: 1364 }, naturalHabitat: "desert",
+    image: img_fennec_fox, thumb: th_fennec_fox, imageSize: { w: 2200, h: 1364 }, naturalHabitat: "desert",
     description: "The smallest fox, with enormous ears that radiate heat and pick up prey moving underground, and furred feet for hot sand.",
     traits: ["Heat-radiating ears", "Furred feet", "Night activity", "Water from food"],
     stats: { strength: 20, speed: 72, intelligence: 70, stamina: 60, camouflage: 70 },
@@ -369,7 +408,7 @@ const animals = [
   },
   {
     id: "camel", name: "Dromedary Camel", shortName: "Camel", scientificName: "Camelus dromedarius", genus: "Camelus", species: "dromedarius",
-    image: img_camel, imageSize: { w: 1066, h: 1269 }, naturalHabitat: "desert",
+    image: img_camel, thumb: th_camel, imageSize: { w: 1066, h: 1269 }, naturalHabitat: "desert",
     description: "A desert specialist that stores fat in its hump, tolerates huge water loss, and closes its nostrils against blowing sand.",
     traits: ["Fat-storing hump", "Water tolerance", "Sand-proof nostrils", "Wide feet"],
     stats: { strength: 80, speed: 60, intelligence: 50, stamina: 98, camouflage: 45 },
@@ -383,7 +422,7 @@ const animals = [
   },
   {
     id: "tortoise", name: "Desert Tortoise", shortName: "Tortoise", scientificName: "Gopherus agassizii", genus: "Gopherus", species: "agassizii",
-    image: img_tortoise, imageSize: { w: 2200, h: 1443 }, naturalHabitat: "desert",
+    image: img_tortoise, thumb: th_tortoise, imageSize: { w: 2200, h: 1443 }, naturalHabitat: "desert",
     description: "A slow, armoured reptile that spends most of its life in burrows, storing water in its bladder to survive months without rain.",
     traits: ["Protective shell", "Burrowing", "Water storage", "Long lifespan"],
     stats: { strength: 35, speed: 8, intelligence: 30, stamina: 85, camouflage: 60 },
@@ -397,7 +436,7 @@ const animals = [
   },
   {
     id: "arctic-fox", name: "Arctic Fox", shortName: "Arctic Fox", scientificName: "Vulpes lagopus", genus: "Vulpes", species: "lagopus",
-    image: img_arctic_fox, imageSize: { w: 1373, h: 890 }, naturalHabitat: "arctic",
+    image: img_arctic_fox, thumb: th_arctic_fox, imageSize: { w: 1373, h: 890 }, naturalHabitat: "arctic",
     description: "A compact fox whose coat turns white in winter and brown in summer, with furred paws and the warmest fur of any mammal.",
     traits: ["Seasonal white coat", "Furred paws", "Compact body", "Cache hunting"],
     stats: { strength: 30, speed: 70, intelligence: 70, stamina: 65, camouflage: 90 },
@@ -411,7 +450,7 @@ const animals = [
   },
   {
     id: "penguin", name: "Emperor Penguin", shortName: "Penguin", scientificName: "Aptenodytes forsteri", genus: "Aptenodytes", species: "forsteri",
-    image: img_penguin, imageSize: { w: 784, h: 713 }, naturalHabitat: "arctic",
+    image: img_penguin, thumb: th_penguin, imageSize: { w: 784, h: 713 }, naturalHabitat: "arctic",
     description: "A flightless seabird that huddles through the polar winter, dives hundreds of metres, and 'flies' underwater with flipper wings.",
     traits: ["Blubber insulation", "Huddling", "Flipper wings", "Deep diving"],
     stats: { strength: 45, speed: 40, intelligence: 55, stamina: 85, camouflage: 50 },
@@ -425,7 +464,7 @@ const animals = [
   },
   {
     id: "reindeer", name: "Reindeer", shortName: "Reindeer", scientificName: "Rangifer tarandus", genus: "Rangifer", species: "tarandus",
-    image: img_reindeer, imageSize: { w: 1741, h: 2200 }, naturalHabitat: "arctic",
+    image: img_reindeer, thumb: th_reindeer, imageSize: { w: 1741, h: 2200 }, naturalHabitat: "arctic",
     description: "A migrating deer with hollow insulating hair, wide clicking hooves for snow, and eyes that shift colour with the polar seasons.",
     traits: ["Snow hooves", "Hollow hair", "Long migration", "Antlers"],
     stats: { strength: 65, speed: 80, intelligence: 50, stamina: 95, camouflage: 55 },
@@ -439,7 +478,7 @@ const animals = [
   },
   {
     id: "snow-leopard", name: "Snow Leopard", shortName: "Snow Leopard", scientificName: "Panthera uncia", genus: "Panthera", species: "uncia",
-    image: img_snow_leopard, imageSize: { w: 1933, h: 2200 }, naturalHabitat: "mountains",
+    image: img_snow_leopard, thumb: th_snow_leopard, imageSize: { w: 1933, h: 2200 }, naturalHabitat: "mountains",
     description: "A ghost of the high mountains with wide fur-covered paws, a thick tail used as a scarf, and a leap of nine metres.",
     traits: ["Wide snow paws", "Scarf tail", "Huge leap", "Smoky camouflage"],
     stats: { strength: 80, speed: 85, intelligence: 65, stamina: 70, camouflage: 92 },
@@ -453,7 +492,7 @@ const animals = [
   },
   {
     id: "mountain-goat", name: "Mountain Goat", shortName: "Mountain Goat", scientificName: "Oreamnos americanus", genus: "Oreamnos", species: "americanus",
-    image: img_mountain_goat, imageSize: { w: 1224, h: 1191 }, naturalHabitat: "mountains",
+    image: img_mountain_goat, thumb: th_mountain_goat, imageSize: { w: 1224, h: 1191 }, naturalHabitat: "mountains",
     description: "A cliff specialist whose rubbery, cloven hooves grip near-vertical rock, protected from blizzards by a thick white double coat.",
     traits: ["Grip hooves", "Double coat", "Cliff balance", "Sure footing"],
     stats: { strength: 60, speed: 55, intelligence: 45, stamina: 80, camouflage: 70 },
@@ -467,7 +506,7 @@ const animals = [
   },
   {
     id: "yak", name: "Wild Yak", shortName: "Yak", scientificName: "Bos mutus", genus: "Bos", species: "mutus",
-    image: img_yak, imageSize: { w: 2200, h: 1182 }, naturalHabitat: "mountains",
+    image: img_yak, thumb: th_yak, imageSize: { w: 2200, h: 1182 }, naturalHabitat: "mountains",
     description: "A high-plateau ox with dense wool, a huge lung capacity for thin air, and blood adapted to carry more oxygen.",
     traits: ["High-altitude lungs", "Dense wool", "Massive strength", "Cold tolerance"],
     stats: { strength: 95, speed: 45, intelligence: 40, stamina: 90, camouflage: 40 },
@@ -481,7 +520,7 @@ const animals = [
   },
   {
     id: "ibex", name: "Alpine Ibex", shortName: "Ibex", scientificName: "Capra ibex", genus: "Capra", species: "ibex",
-    image: img_ibex, imageSize: { w: 1335, h: 1224 }, naturalHabitat: "mountains",
+    image: img_ibex, thumb: th_ibex, imageSize: { w: 1335, h: 1224 }, naturalHabitat: "mountains",
     description: "A wild mountain goat famous for scaling near-vertical dam walls, with huge curved horns used in dramatic head-butting contests.",
     traits: ["Curved horns", "Cliff climbing", "Sure footing", "Seasonal coat"],
     stats: { strength: 65, speed: 60, intelligence: 45, stamina: 80, camouflage: 60 },
@@ -495,7 +534,7 @@ const animals = [
   },
   {
     id: "crocodile", name: "Nile Crocodile", shortName: "Crocodile", scientificName: "Crocodylus niloticus", genus: "Crocodylus", species: "niloticus",
-    image: img_crocodile, imageSize: { w: 2200, h: 792 }, naturalHabitat: "wetlands",
+    image: img_crocodile, thumb: th_crocodile, imageSize: { w: 2200, h: 792 }, naturalHabitat: "wetlands",
     description: "An armoured ambush predator that can wait motionless for hours, with the strongest bite ever measured and eyes on top of its head.",
     traits: ["Armoured scales", "Ambush patience", "Bone-crushing bite", "Aquatic stealth"],
     stats: { strength: 95, speed: 50, intelligence: 45, stamina: 80, camouflage: 85 },
@@ -509,7 +548,7 @@ const animals = [
   },
   {
     id: "flamingo", name: "American Flamingo", shortName: "Flamingo", scientificName: "Phoenicopterus ruber", genus: "Phoenicopterus", species: "ruber",
-    image: img_flamingo, imageSize: { w: 2200, h: 1737 }, naturalHabitat: "wetlands",
+    image: img_flamingo, thumb: th_flamingo, imageSize: { w: 2200, h: 1737 }, naturalHabitat: "wetlands",
     description: "A wading bird whose upside-down bill filters tiny shrimp from shallow water — the same shrimp that turn its feathers pink.",
     traits: ["Filter-feeding bill", "Long wading legs", "One-leg rest", "Flock living"],
     stats: { strength: 25, speed: 65, intelligence: 45, stamina: 60, camouflage: 30 },
@@ -523,7 +562,7 @@ const animals = [
   },
   {
     id: "hippo", name: "Hippopotamus", shortName: "Hippo", scientificName: "Hippopotamus amphibius", genus: "Hippopotamus", species: "amphibius",
-    image: img_hippo, imageSize: { w: 2200, h: 1302 }, naturalHabitat: "wetlands",
+    image: img_hippo, thumb: th_hippo, imageSize: { w: 2200, h: 1302 }, naturalHabitat: "wetlands",
     description: "A river giant that spends its days submerged, secretes its own sunscreen, and defends its territory with metre-long tusks.",
     traits: ["Tusks", "Thick hide", "Skin sunscreen", "Underwater walking"],
     stats: { strength: 98, speed: 40, intelligence: 45, stamina: 70, camouflage: 35 },
@@ -537,7 +576,7 @@ const animals = [
   },
   {
     id: "heron", name: "Grey Heron", shortName: "Heron", scientificName: "Ardea cinerea", genus: "Ardea", species: "cinerea",
-    image: img_heron, imageSize: { w: 1037, h: 1407 }, naturalHabitat: "wetlands",
+    image: img_heron, thumb: th_heron, imageSize: { w: 1037, h: 1407 }, naturalHabitat: "wetlands",
     description: "A patient wading hunter that stands motionless in shallows, then spears fish with a lightning strike of its dagger-like bill.",
     traits: ["Spear bill", "Patient ambush", "Long wading legs", "Broad wings"],
     stats: { strength: 30, speed: 60, intelligence: 55, stamina: 55, camouflage: 55 },
@@ -551,7 +590,7 @@ const animals = [
   },
   {
     id: "capybara", name: "Capybara", shortName: "Capybara", scientificName: "Hydrochoerus hydrochaeris", genus: "Hydrochoerus", species: "hydrochaeris",
-    image: img_capybara, imageSize: { w: 1776, h: 1269 }, naturalHabitat: "wetlands",
+    image: img_capybara, thumb: th_capybara, imageSize: { w: 1776, h: 1269 }, naturalHabitat: "wetlands",
     description: "The world's largest rodent, a semi-aquatic grazer with eyes and nostrils on top of its head so it can hide almost fully submerged.",
     traits: ["Semi-aquatic body", "Herd living", "Top-set eyes", "Ever-growing teeth"],
     stats: { strength: 45, speed: 50, intelligence: 45, stamina: 65, camouflage: 55 },

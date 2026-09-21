@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { BatteryCharging, Check, Dna, Eye, Feather, Flame, Hand, Info, Leaf, Plus, Search, Shield, Sparkles, Utensils, Wind, X, Zap } from "lucide-react";
 import Button from "../../components/ui/Button";
@@ -17,6 +17,24 @@ import "./Lab.css";
 const CATEGORY_ICON = { Locomotion: Wind, Defense: Shield, Sensory: Eye, Feeding: Utensils, "Defense & Display": Shield, Insulation: Flame, "Balance & Insulation": Feather, Environment: Leaf, Energy: BatteryCharging };
 const CATEGORIES = ["All", "Locomotion", "Sensory", "Feeding", "Defense", "Insulation", "Energy", "Environment"];
 
+/** One row of the adaptation library. Memoised so a click on one card doesn't re-render the other
+ * forty — with the live composition already re-rendering on every pick, that was a visible hitch. */
+const TraitCard = memo(function TraitCard({ t, on, locked, open, fitTone, fitText, thumb, sourceName, hoverable, onPick, onDetail }) {
+  const Icon = CATEGORY_ICON[t.category] || Sparkles;
+  return (
+    <button type="button" className={`tcard ${on ? "tcard--on" : ""} ${locked ? "tcard--locked" : ""}`} onClick={() => onPick(t)} aria-pressed={on} aria-disabled={locked}
+      onMouseEnter={hoverable ? () => onDetail(t.id) : undefined} onMouseLeave={hoverable ? () => onDetail(null) : undefined}>
+      <div className="tcard__src"><img src={thumb} alt="" draggable="false" /></div>
+      <div className="tcard__body">
+        <div className="tcard__row"><strong>{t.name}</strong><span className={`tcard__fit tcard__fit--${fitTone}`}>{fitText}</span></div>
+        <span className="tcard__meta"><Icon size={12} /> {t.category} · {sourceName}</span>
+        <p className={open ? "tcard__desc tcard__desc--open" : "tcard__desc"}>{t.description}</p>
+      </div>
+      <span className="tcard__check">{on ? <Check size={14} strokeWidth={3} /> : <Plus size={14} strokeWidth={2.5} />}</span>
+    </button>
+  );
+});
+
 /** The Genetic Lab — adaptation library · live species stage · three experiment slots. */
 export default function Lab() {
   const navigate = useNavigate();
@@ -33,6 +51,15 @@ export default function Lab() {
   const baseScore = useMemo(() => (animal && habitat ? scoreSpecies(animal, habitat, []) : null), [animal, habitat]);
   const liveScore = useMemo(() => (animal && habitat ? scoreSpecies(animal, habitat, selected) : null), [animal, habitat, selected]);
   const finish = useCallback(() => { generate(); navigate("/report"); }, [generate, navigate]);
+  // Stable identity for the memoised cards; the ref is pointed at the latest onPick after each commit.
+  const pickRef = useRef(null);
+  const stablePick = useCallback((t) => pickRef.current?.(t), []);
+  useEffect(() => {
+    pickRef.current = (t) => {
+      if (!traitIds.includes(t.id) && traitIds.length >= MAX_TRAITS) { setNudge(true); setTimeout(() => setNudge(false), 600); return; }
+      toggleTrait(t.id);
+    };
+  }, [traitIds, toggleTrait]);
 
   if (!habitat) return <Navigate to="/habitat" replace />;
   if (!animal) return <Navigate to="/species" replace />;
@@ -42,10 +69,6 @@ export default function Lab() {
   const visible = donorTraits.filter((t) => (filter === "All" || t.category.includes(filter)) && (!q || `${t.name} ${animalById[t.source].name} ${t.category}`.toLowerCase().includes(q)));
   const full = traitIds.length >= MAX_TRAITS;
 
-  const onPick = (t) => {
-    if (!traitIds.includes(t.id) && full) { setNudge(true); setTimeout(() => setNudge(false), 600); return; }
-    toggleTrait(t.id);
-  };
 
   return (
     <PageTransition className="page page--bar lab">
@@ -80,19 +103,9 @@ export default function Lab() {
                 const on = traitIds.includes(t.id);
                 const src = animalById[t.source];
                 const fit = fitLabel(t.habitatFit[habitat.id] ?? 0);
-                const Icon = CATEGORY_ICON[t.category] || Sparkles;
                 return (
                   <li key={t.id}>
-                    <button type="button" className={`tcard ${on ? "tcard--on" : ""} ${full && !on ? "tcard--locked" : ""}`} onClick={() => onPick(t)} aria-pressed={on} aria-disabled={full && !on}
-                      onMouseEnter={touch ? undefined : () => setDetail(t.id)} onMouseLeave={touch ? undefined : () => setDetail(null)}>
-                      <div className="tcard__src"><img src={src.image} alt="" draggable="false" /></div>
-                      <div className="tcard__body">
-                        <div className="tcard__row"><strong>{t.name}</strong><span className={`tcard__fit tcard__fit--${fit.tone}`}>{fit.label}</span></div>
-                        <span className="tcard__meta"><Icon size={12} /> {t.category} · {src.name}</span>
-                        <p className={detail === t.id || on ? "tcard__desc tcard__desc--open" : "tcard__desc"}>{t.description}</p>
-                      </div>
-                      <span className="tcard__check">{on ? <Check size={14} strokeWidth={3} /> : <Plus size={14} strokeWidth={2.5} />}</span>
-                    </button>
+                    <TraitCard t={t} on={on} locked={full && !on} open={detail === t.id || on} fitTone={fit.tone} fitText={fit.label} thumb={src.thumb} sourceName={src.name} hoverable={!touch} onPick={stablePick} onDetail={setDetail} />
                   </li>
                 );
               })}
@@ -103,7 +116,7 @@ export default function Lab() {
           {/* ---- species stage ---- */}
           <section className="lab__col lab__center rise" style={{ "--d": "0.15s" }}>
             <div className="lab__stage" style={{ "--accent": habitat.accent }}>
-              <SpeciesComposition animal={animal} habitat={habitat} traitIds={traitIds} labels="compact" animated />
+              <SpeciesComposition animal={animal} habitat={habitat} traitIds={traitIds} labels="compact" animated sizes="(max-width: 1000px) 100vw, calc(100vw - 720px)" />
               <div className="lab__stagetag"><span className="lab__live" />{animal.name} · {habitat.name}</div>
             </div>
             <div className="lab__stats panel">
@@ -134,7 +147,7 @@ export default function Lab() {
                   <div key={t.id} className="slot slot--filled">
                     <span className="slot__n">{["First","Second","Third"][i]} ability</span>
                     <div className="slot__row">
-                      <img src={animalById[t.source].image} alt="" draggable="false" />
+                      <img src={animalById[t.source].thumb} alt="" draggable="false" />
                       <div>
                         <strong>{t.name}</strong>
                         <span>from the {animalById[t.source].name} · {t.category}</span>

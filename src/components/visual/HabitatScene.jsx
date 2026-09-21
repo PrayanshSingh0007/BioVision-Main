@@ -54,6 +54,10 @@ const PLATES = {
   wetlands: { src: plateWetlands, pos: "50% 60%", filter: "saturate(0.85) contrast(1.05) brightness(0.78)", tint: "rgba(8, 35, 30, 0.32)", light: "rgba(200, 245, 230, 0.18)", lightAt: "40% 10%", ground: "#0c1a16", groundTop: "rgba(90, 140, 120, 0.25)" },
 };
 
+/** Every plate the Habitat page will draw, as { src, srcSet } — Boot decodes these while the reel
+ * plays so the seven panels appear already painted instead of popping in one by one. */
+export const HABITAT_PLATE_SOURCES = Object.keys(PLATES).map((id) => ({ src: PLATES[id].src, srcSet: `${PLATES[id].src} 2048w, ${PLATES_4K[id]} 3840w` }));
+
 /** Colour cast of a habitat plate, used to grade the species figure so it sits in the scene. */
 export function sceneGrade(id) {
   const p = PLATES[id] || PLATES.forest;
@@ -66,7 +70,12 @@ export function sceneGrade(id) {
  * convincing cue that the subject was photographed *in* the scene. Pre-rendered rather than a CSS
  * blur filter, which would re-rasterise a 2K image on every resize.
  */
-export default function HabitatScene({ habitat, animated = true, className = "", detail = "full", depth = false }) {
+/** Soft (depth) plate sources by habitat id — the Species page decodes the chosen one ahead of the Lab. */
+export function softPlateSources(id) {
+  return PLATES_SOFT[id] ? { src: PLATES_SOFT[id], srcSet: `${PLATES_SOFT[id]} 2048w, ${PLATES_SOFT_4K[id]} 3840w` } : null;
+}
+
+export default function HabitatScene({ habitat, animated = true, className = "", detail = "full", depth = false, sizes = "100vw" }) {
   const id = habitat?.id || "forest";
   const uid = `sc-${id}`;
   const [failed, setFailed] = useState(false);
@@ -77,7 +86,7 @@ export default function HabitatScene({ habitat, animated = true, className = "",
     <div className={`scene scene--${id} ${animated ? "scene--animated" : ""} ${usePlate ? "scene--plate" : ""} ${className}`} aria-hidden="true" style={usePlate ? { "--tint": plate.tint, "--light": plate.light, "--light-at": plate.lightAt, "--ground": plate.ground, "--ground-top": plate.groundTop } : undefined}>
       {usePlate ? (
         <>
-          <img src={depth ? PLATES_SOFT[id] : plate.src} srcSet={depth ? `${PLATES_SOFT[id]} 2048w, ${PLATES_SOFT_4K[id]} 3840w` : `${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes="100vw" alt="" className="scene__plate" style={{ objectPosition: plate.pos }} onError={() => setFailed(true)} decoding={depth ? "sync" : "async"} draggable="false" />
+          <img src={depth ? PLATES_SOFT[id] : plate.src} srcSet={depth ? `${PLATES_SOFT[id]} 2048w, ${PLATES_SOFT_4K[id]} 3840w` : `${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes={sizes} alt="" className="scene__plate" style={{ objectPosition: plate.pos }} onError={() => setFailed(true)} decoding="async" draggable="false" />
           <div className="scene__grade" />
           <div className="scene__light" />
           <div className="scene__ground" />
