@@ -51,7 +51,6 @@ function keenEyes(ctx) {
       <g key={i}>
         <circle cx={p.x} cy={p.y} r={r * 2.4} fill="url(#keenGlow)" className="ov__pulse" />
         <circle cx={p.x} cy={p.y} r={r * 1.25} fill="none" stroke="#ffd166" strokeWidth={r * 0.16} opacity="0.85" />
-        <circle cx={p.x} cy={p.y} r={r * 1.75} fill="none" stroke="#ffd166" strokeWidth={r * 0.06} opacity="0.45" strokeDasharray={`${r * 0.5} ${r * 0.4}`} className="ov__ring-spin" style={{ transformOrigin: `${p.x}px ${p.y}px` }} />
         <circle cx={p.x} cy={p.y} r={r * 0.6} fill="#ffd166" opacity="0.55" />
         <circle cx={p.x} cy={p.y} r={r * 0.25} fill="#fff7d6" />
       </g>
@@ -208,8 +207,8 @@ function webbedFeet(ctx) {
     return (
       <g key={i} transform={`translate(${p.x} ${p.y - s * 0.05})`}>
         <path d={`M ${-s * 0.15} ${-s * 0.1} L ${-s * 0.75} ${s * 0.45} Q 0 ${s * 0.2} ${s * 0.75} ${s * 0.45} L ${s * 0.15} ${-s * 0.1} Z`} fill={`url(#${g})`} opacity="0.85" />
-        {toes.map((k) => <path key={k} d={`M 0 ${-s * 0.1} L ${k * s * 0.72} ${s * 0.45 - Math.abs(k) * s * 0.05}`} stroke="#2f5d4a" strokeWidth={s * 0.11} strokeLinecap="round" />)}
-        {toes.map((k) => <circle key={`t${k}`} cx={k * s * 0.72} cy={s * 0.45 - Math.abs(k) * s * 0.05} r={s * 0.09} fill="#79c9a6" />)}
+        {toes.map((k) => <path key={k} d={`M 0 ${-s * 0.1} L ${k * s * 0.72} ${s * 0.45 - Math.abs(k) * s * 0.05}`} stroke="#4a2f1f" strokeWidth={s * 0.1} strokeLinecap="round" opacity="0.85" />)}
+        {toes.map((k) => <circle key={`t${k}`} cx={k * s * 0.72} cy={s * 0.45 - Math.abs(k) * s * 0.05} r={s * 0.08} fill="#3b2418" />)}
       </g>
     );
   };
@@ -228,7 +227,7 @@ function webbedFeet(ctx) {
     front: (
       <g className="ov ov--web" filter={`url(#${uid}-shadow)`}>
         <defs>
-          <linearGradient id={g} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#8fe3c4" /><stop offset="1" stopColor="#3b9d7c" /></linearGradient>
+          <linearGradient id={g} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#c99a72" /><stop offset="1" stopColor="#7a5236" /></linearGradient>
         </defs>
         {feet.map(foot)}
       </g>
@@ -249,8 +248,6 @@ function grip(ctx) {
           <radialGradient id={g}><stop offset="0" stopColor="#7dd3fc" stopOpacity="0.55" /><stop offset="1" stopColor="#7dd3fc" stopOpacity="0" /></radialGradient>
         </defs>
         <circle cx={p.x} cy={p.y} r={s * 1.6} fill={`url(#${g})`} className="ov__pulse" />
-        <circle cx={p.x} cy={p.y} r={s} fill="none" stroke="#a5f3fc" strokeWidth={s * 0.08} opacity="0.9" />
-        <circle cx={p.x} cy={p.y} r={s * 1.25} fill="none" stroke="#a5f3fc" strokeWidth={s * 0.05} opacity="0.5" strokeDasharray={`${s * 0.4} ${s * 0.3}`} className="ov__ring-spin" style={{ transformOrigin: `${p.x}px ${p.y}px` }} />
         {/* thumb-like bone highlight */}
         <path d={`M ${p.x - s * 0.55} ${p.y + s * 0.1} Q ${p.x - s * 0.75} ${p.y - s * 0.4} ${p.x - s * 0.3} ${p.y - s * 0.55}`} fill="none" stroke="#e0f2fe" strokeWidth={s * 0.16} strokeLinecap="round" />
         <path d={`M ${p.x - s * 0.15} ${p.y - s * 0.45} Q ${p.x + s * 0.4} ${p.y - s * 0.7} ${p.x + s * 0.55} ${p.y - s * 0.1}`} fill="none" stroke="#e0f2fe" strokeWidth={s * 0.12} strokeLinecap="round" opacity="0.7" />
@@ -352,22 +349,32 @@ function wideFeet(ctx, opts = {}) {
   const s = Math.max(14, headW * 0.26);
   const feet = [...anchors.frontFeet, ...anchors.hindFeet];
   const snow = opts.style === "snow";
+  const gPad = `${uid}-pad`, gHoof = `${uid}-hoof`;
   const foot = (a, i) => {
     const p = P(a);
     return snow ? (
-      <g key={i} transform={`translate(${p.x} ${p.y})`}>
-        <ellipse rx={s * 0.9} ry={s * 0.42} fill="#e8f2ff" stroke="#8fb2d6" strokeWidth={s * 0.08} opacity="0.95" />
-        <path d={`M ${-s * 0.6} 0 L ${s * 0.6} 0 M 0 ${-s * 0.3} L 0 ${s * 0.3}`} stroke="#8fb2d6" strokeWidth={s * 0.06} opacity="0.7" />
+      // A broad, fur-soft pad spreading under the foot — reads as fur and snow, not a drawn icon.
+      <g key={i} transform={`translate(${p.x} ${p.y + s * 0.08})`}>
+        <ellipse rx={s * 1.05} ry={s * 0.36} fill={`url(#${gPad})`} />
+        <ellipse cy={s * 0.16} rx={s * 0.9} ry={s * 0.14} fill="#0a1410" opacity="0.28" />
       </g>
     ) : (
+      // A single dark, rounded hoof cap sitting where the foot meets the ground.
       <g key={i} transform={`translate(${p.x} ${p.y})`}>
-        <path d={`M ${-s * 0.55} ${s * 0.3} L ${-s * 0.5} ${-s * 0.3} L ${-s * 0.08} ${-s * 0.35} L ${-s * 0.08} ${s * 0.3} Z`} fill="#2f2a26" stroke="#b9a58a" strokeWidth={s * 0.05} />
-        <path d={`M ${s * 0.55} ${s * 0.3} L ${s * 0.5} ${-s * 0.3} L ${s * 0.08} ${-s * 0.35} L ${s * 0.08} ${s * 0.3} Z`} fill="#2f2a26" stroke="#b9a58a" strokeWidth={s * 0.05} />
-        {[-0.4, -0.25, 0.25, 0.4].map((k) => <path key={k} d={`M ${k * s} ${-s * 0.15} L ${k * s} ${s * 0.15}`} stroke="#ffd166" strokeWidth={s * 0.05} opacity="0.8" />)}
+        <path d={`M ${-s * 0.42} ${-s * 0.28} L ${s * 0.42} ${-s * 0.28} L ${s * 0.48} ${s * 0.12} Q 0 ${s * 0.42} ${-s * 0.48} ${s * 0.12} Z`} fill={`url(#${gHoof})`} />
+        <path d={`M ${-s * 0.3} ${-s * 0.18} L ${-s * 0.34} ${s * 0.1}`} stroke="#d9c7ad" strokeWidth={s * 0.05} strokeLinecap="round" opacity="0.55" />
       </g>
     );
   };
-  return { front: <g className="ov ov--feet" filter={`url(#${uid}-shadow)`}>{feet.map(foot)}</g> };
+  return { front: (
+    <g className="ov ov--feet" filter={`url(#${uid}-shadow)`}>
+      <defs>
+        <radialGradient id={gPad}><stop offset="0" stopColor="#f6f3ea" stopOpacity="0.95" /><stop offset="0.65" stopColor="#e6e2d6" stopOpacity="0.8" /><stop offset="1" stopColor="#dcd8cc" stopOpacity="0" /></radialGradient>
+        <linearGradient id={gHoof} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#3a2e26" /><stop offset="1" stopColor="#15100d" /></linearGradient>
+      </defs>
+      {feet.map(foot)}
+    </g>
+  ) };
 }
 
 /* ------------ BREATH (high-altitude lungs) ------------ */
