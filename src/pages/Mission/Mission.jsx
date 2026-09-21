@@ -7,10 +7,10 @@ import plate4k from "../../assets/environments/jungle-4k.webp";
 import "./Mission.css";
 
 const STEPS = [
-  { n: "01", icon: Globe2, title: "Choose a habitat", text: "Every environment applies different survival pressures." },
-  { n: "02", icon: PawPrint, title: "Select a base species", text: "Its body plan and instincts form the foundation." },
-  { n: "03", icon: Dna, title: "Combine adaptations", text: "Inherit three traits from other animals." },
-  { n: "04", icon: FlaskConical, title: "Analyse the species", text: "Read its survival estimate, benefits and trade-offs." },
+  { n: "01", icon: Globe2, title: "Choose a habitat", text: "Every place pushes back in its own way." },
+  { n: "02", icon: PawPrint, title: "Choose an animal", text: "Its body and instincts are your starting point." },
+  { n: "03", icon: Dna, title: "Borrow three abilities", text: "Each one taken from a different animal." },
+  { n: "04", icon: FlaskConical, title: "Read the report", text: "Would it survive? See the score and the trade-offs." },
 ];
 
 export default function Mission() {
@@ -46,12 +46,12 @@ export default function Mission() {
           </ol>
 
           <div className="mission__notes rise" style={{ "--d": "0.75s" }}>
-            <div className="mission__note"><Lightbulb size={17} /><p>Adaptations help organisms survive in specific environments — but every trait has benefits <em>and</em> trade-offs.</p></div>
+            <div className="mission__note"><Lightbulb size={17} /><p>Every adaptation helps somewhere and costs something. The trick is choosing three that suit the place.</p></div>
             <div className="mission__note mission__note--muted"><p>BioVision is an educational simulation, not real genetic engineering. Its scores are illustrative estimates.</p></div>
           </div>
 
           <div className="mission__actions rise" style={{ "--d": "0.85s" }}>
-            <Button size="lg" iconRight={ArrowRight} onClick={() => navigate("/habitat")}>Start Mission</Button>
+            <Button size="lg" iconRight={ArrowRight} onClick={() => navigate("/habitat")}>Start</Button>
             <span className="page__hint">First, choose a habitat</span>
           </div>
         </div>

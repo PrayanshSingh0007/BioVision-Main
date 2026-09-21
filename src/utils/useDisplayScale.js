@@ -20,7 +20,12 @@ export function useDisplayScale() {
       root.style.setProperty("--vw", `${w / scale / 100}px`);
     };
     apply();
+    // Smartboards and projectors sometimes settle their real size a moment after load, and
+    // entering fullscreen changes it again — re-measure on all of those, not just resize.
+    const late = setTimeout(apply, 600);
     window.addEventListener("resize", apply);
-    return () => window.removeEventListener("resize", apply);
+    window.addEventListener("orientationchange", apply);
+    document.addEventListener("fullscreenchange", apply);
+    return () => { clearTimeout(late); window.removeEventListener("resize", apply); window.removeEventListener("orientationchange", apply); document.removeEventListener("fullscreenchange", apply); };
   }, []);
 }

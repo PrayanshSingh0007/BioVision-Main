@@ -20,9 +20,9 @@
 .mission__steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; }
 .mission__line { position: absolute; left: 10%; right: 10%; top: 24px; height: 1px; background: linear-gradient(90deg, transparent, rgba(75, 212, 138, 0.5), rgba(75, 212, 138, 0.5), transparent); z-index: 0; }
 .mission__step { position: relative; z-index: 1; display: grid; gap: 4px; }
-.mission__node { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #245a3a, #0b2418); border: 1px solid rgba(75, 212, 138, 0.45); color: #bdf0d3; box-shadow: 0 0 22px rgba(75, 212, 138, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1); margin-bottom: 8px; }
+.mission__node { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: rgba(36, 90, 58, 0.5); border: 1px solid rgba(75, 212, 138, 0.4); color: #bdf0d3; margin-bottom: 8px; }
 .mission__num { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--cyan); }
-.mission__step h3 { font-family: var(--font-serif); font-size: 19px; font-weight: 500; }
+.mission__step h3 { font-family: var(--font-serif); font-size: 19px; font-weight: 500; min-height: 2.3em; line-height: 1.15; }
 .mission__step p { font-size: 13.5px; color: var(--text-2); line-height: 1.45; }
 
 .mission__notes { display: grid; gap: 8px; margin-top: 26px; }

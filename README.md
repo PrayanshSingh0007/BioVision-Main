@@ -4,7 +4,7 @@ An interactive biology education app for a Grade 8 presentation. A student choos
 habitat, picks a base animal, inherits three adaptations from other animals, and
 receives a Final Species Report in which the **base animal stays recognisable and every
 selected trait is visibly composed onto it** (wings, antlers, camouflage skin, glowing
-night-vision eyes, webbed feet, …) inside a procedurally drawn habitat.
+night-vision eyes, webbed feet, …) inside a real, colour-graded photograph of its habitat.
 
 BioVision is an educational simulation. It does not perform real genetic engineering and
 its survival scores are illustrative, not predictions.
@@ -46,19 +46,20 @@ that ever needed Wi-Fi was the one-time `npm install`. Two launchers now handle 
 
 Both open the exact same app. Use the offline one whenever you just need it to work.
 
-1. Double-click a launcher above (or run `npm run dev`) — the browser opens automatically.
-2. Click **Fullscreen** (top-right on the landing page or the ⤢ button in the top bar).
-3. Suggested demo: Rainforest → Bengal Tiger → Flight + Camouflage + Night Vision → Generate Species.
-   Then **Change Habitat** to Arctic and generate again to show how the same traits score differently.
-4. If anything ever looks stuck, press ⌘R — every selection is saved and restored automatically.
-5. **4K / large smartboards:** the interface scales itself up automatically on displays wider than ~2200 px (a 4K board shows the 1920 px design at 2×), so text stays readable from the back of the room. Keep the browser at 100 % zoom.
-6. **Touch screens:** fully supported — tap a habitat or species once to open and select it; tap a trait to add or remove it. Hover effects are automatically disabled on touch devices.
-7. **Rebuilding the offline copy:** after any code change, run `npm run build` once (needs network the first time only, to have `node_modules` installed) to refresh `dist/` before the next offline run.
+1. **Easiest of all:** the app is also hosted at **https://prayanshsingh0007.github.io/BioVision-Main/** — open that on any machine with internet (a smartboard, a borrowed laptop) and it just works. No install.
+2. Otherwise double-click a launcher above (or run `npm run dev`) — the browser opens automatically.
+3. Click **Fullscreen** (top-right on the landing page or the ⤢ button in the top bar).
+4. Suggested demo: Rainforest → Jaguar → Camouflage + Night Vision + Powerful Jaws → Create the species.
+   Then **Make another** and try the same three on a Polar Bear in the Arctic to show how the same abilities score differently.
+5. A refresh (⌘R) always starts a fresh mission — nothing is saved between visits, so every run starts clean on stage.
+6. **4K / large smartboards:** the interface scales itself up automatically on displays wider than ~2200 px (a 4K board shows the 1920 px design at 2×), so text stays readable from the back of the room. Keep the browser at 100 % zoom.
+7. **Touch screens:** fully supported — tap a habitat or species once to open and select it; tap a trait to add or remove it. Hover effects are automatically disabled on touch devices.
+8. **Rebuilding the offline copy:** after any code change, run `npm run build` once (needs network the first time only, to have `node_modules` installed) to refresh `dist/` before the next offline run.
 
 * 7 habitats, 37 base animals (grouped by their native habitat) and 39 inheritable adaptations — all local data in `src/data/`. Image sources and licenses are listed in `CREDITS.md`.
 * Exactly three traits must be selected; traits that come from the base animal itself are
   hidden (they are already part of its biology).
-* Selections persist in `localStorage`, so a refresh never loses progress.
+* Nothing is persisted between page loads (by design — a refresh is a clean slate).
 * Species generation is deterministic: the same habitat + animal + traits always produce the
   same name, scientific-style name, stats and analysis.
 
@@ -67,9 +68,9 @@ Both open the exact same app. Use the offline one whenever you just need it to w
 You can deep-link straight into a prepared example (handy on stage):
 
 ```
-http://localhost:5173/#/report?seed=tiger,rainforest,flight,camouflage,night-vision
-http://localhost:5173/#/report?seed=polar-bear,arctic,antlers,bushy-tail,hind-legs
-http://localhost:5173/#/lab?seed=wolf,wetlands,aquatic,climbing
+https://prayanshsingh0007.github.io/BioVision-Main/#/report?seed=jaguar,rainforest,camouflage,night-vision,strong-bite
+https://prayanshsingh0007.github.io/BioVision-Main/#/report?seed=polar-bear,arctic,antlers,bushy-tail,hind-legs
+https://prayanshsingh0007.github.io/BioVision-Main/#/lab?seed=wolf,wetlands,aquatic,climbing
 ```
 
 Format: `seed=<animalId>,<habitatId>,<traitId>,<traitId>,<traitId>` (ids are in `src/data/`).
@@ -78,7 +79,7 @@ Format: `seed=<animalId>,<habitatId>,<traitId>,<traitId>,<traitId>` (ids are in 
 
 `src/components/visual/SpeciesComposition.jsx` layers, in order:
 
-1. Procedural SVG habitat scene (`HabitatScene.jsx`)
+1. Photographic habitat plate with atmosphere (`HabitatScene.jsx`), pre-blurred behind the animal for shallow depth of field
 2. "Behind" overlays — wings, antlers, bushy tail, water ripples
 3. Fur halo (the animal's own silhouette, softened and tinted)
 4. The base animal photo cut-out

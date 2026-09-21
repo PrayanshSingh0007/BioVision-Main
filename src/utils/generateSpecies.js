@@ -59,8 +59,8 @@ function paragraphs(animal, habitat, traits, score) {
   const strong = score.breakdown.traitFits.filter((t) => t.fit >= 1);
   const weak = score.breakdown.traitFits.filter((t) => t.fit <= -1);
 
-  const intro = `This hypothetical species keeps the body plan and instincts of the ${animal.name} (${animal.scientificName}) and inherits three adaptations from other animals. ` +
-    `The ${animal.shortName.toLowerCase()} on its own is ${describeFit(score.breakdown.baseFit)} for the ${hab}.`;
+  const intro = `Underneath, this is still a ${animal.name} (${animal.scientificName}) — same body, same instincts — with three abilities it never had. ` +
+    `On its own, a ${animal.shortName.toLowerCase()} is ${describeFit(score.breakdown.baseFit)} for the ${hab}.`;
 
   const traitLines = traits.map((t) => {
     const note = t.habitatNotes?.[habitat.id];
@@ -69,21 +69,21 @@ function paragraphs(animal, habitat, traits, score) {
 
   let synthesis;
   if (strong.length === 3) {
-    synthesis = `All three inherited traits are useful in the ${hab}, so together they give the organism a strong, well-rounded survival advantage.`;
+    synthesis = `All three abilities earn their keep in the ${hab}. Together they cover more than any one of them could alone.`;
   } else if (weak.length >= 2) {
-    synthesis = `Two or more of the chosen traits work against the ${hab} environment. Adaptations that are helpful elsewhere can become a burden here — this is why the survival estimate is limited.`;
+    synthesis = `At least two of these abilities fight the ${hab}. Something that is a gift elsewhere becomes dead weight here — that is what is holding the score down.`;
   } else if (weak.length === 1) {
-    synthesis = `Most of the combination suits the ${hab}, but ${weak[0].name} is a poor match and partly cancels the advantages of the other traits.`;
+    synthesis = `Most of the set suits the ${hab}, but ${weak[0].name} is the odd one out and drags on the other two.`;
   } else {
-    synthesis = `The combination is reasonable for the ${hab}: the traits do not conflict, though some add only a modest benefit.`;
+    synthesis = `A sensible set for the ${hab}. Nothing clashes, though not every ability adds much here.`;
   }
 
   const tradeoffs = traits.map((t) => t.tradeoff);
   const energy = score.energyCost >= 6
-    ? "Together these adaptations are energetically expensive — the organism would need to eat considerably more than its base animal."
+    ? "All this costs energy. This animal would have to eat a good deal more than an ordinary one just to keep going."
     : score.energyCost >= 4
-    ? "These adaptations add a moderate energy cost that the organism must cover with extra food."
-    : "These adaptations are relatively cheap to maintain, leaving more energy for growth and reproduction.";
+    ? "These abilities add a moderate energy bill, paid for with extra food."
+    : "These abilities are cheap to run, which leaves more energy for growing and raising young.";
 
   return { intro, traitLines, synthesis, tradeoffs, energy };
 }

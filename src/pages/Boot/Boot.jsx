@@ -10,11 +10,11 @@ import traits from "../../data/traits";
 import "./Boot.css";
 
 const STAGES = [
-  { label: "Biosystem initialization", detail: "Simulation core online" },
-  { label: "Calibrating habitat database", detail: `${habitats.length} environments mapped` },
-  { label: "Indexing species archive", detail: `${animals.length} base species` },
-  { label: "Loading adaptation library", detail: `${traits.length} inheritable traits` },
-  { label: "Preparing species simulation", detail: "Composition engine ready" },
+  { label: "Opening the field journal", detail: "Ready" },
+  { label: "Mapping the habitats", detail: `${habitats.length} places` },
+  { label: "Sorting the species archive", detail: `${animals.length} animals` },
+  { label: "Cataloguing adaptations", detail: `${traits.length} abilities` },
+  { label: "Setting up the lab", detail: "Ready" },
 ];
 const STAGE_MS = 520;
 
@@ -41,7 +41,7 @@ export default function Boot() {
           <FieldReel index={stage} size={380} />
         </div>
         <div className="boot__panel panel">
-          <div className="boot__brand"><Logo size={34} /><span>BioVision</span><span className="boot__ver">Biosystem initialization</span></div>
+          <div className="boot__brand"><Logo size={34} /><span>BioVision</span><span className="boot__ver">Getting things ready</span></div>
           <ul className="boot__stages">
             {STAGES.map((s, i) => {
               const state = i < stage ? "done" : i === stage ? "active" : "todo";

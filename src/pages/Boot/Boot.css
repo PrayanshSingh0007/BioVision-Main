@@ -8,7 +8,7 @@
 @keyframes bootPulse { 0%, 100% { transform: scale(0.9); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 1; } }
 @keyframes spin { to { transform: rotate(360deg); } }
 .boot__panel { padding: 30px 32px; }
-.boot__brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+.boot__brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-serif); font-weight: 500; font-size: 22px; }
 .boot__ver { margin-left: auto; font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--text-2); }
 .boot__stages { display: grid; gap: 8px; margin-top: 26px; }
 .boot__stage { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; color: var(--text-3); transition: all 0.3s; }
