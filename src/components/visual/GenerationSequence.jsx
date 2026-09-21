@@ -5,11 +5,11 @@ import "./GenerationSequence.css";
 /**
  * GenerationSequence — a short moment when the user creates a species: the three borrowed
  * abilities drift in and settle into the base animal as it comes up out of the dark, like a
- * photograph developing. ~2.4 s, then `onDone`.
+ * photograph developing. ~3.6 s, then `onDone`.
  */
 export default function GenerationSequence({ animal, habitat, traits, onDone }) {
   useEffect(() => {
-    const t = setTimeout(onDone, 2400);
+    const t = setTimeout(onDone, 3600);
     return () => clearTimeout(t);
   }, [onDone]);
 

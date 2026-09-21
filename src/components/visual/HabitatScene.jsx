@@ -20,6 +20,14 @@ import softDesert from "../../assets/environments/desert-soft.webp";
 import softArctic from "../../assets/environments/arctic-soft.webp";
 import softMountains from "../../assets/environments/mountains-soft.webp";
 import softWetlands from "../../assets/environments/wetlands-soft.webp";
+import softRainforest4k from "../../assets/environments/jungle-soft-4k.webp";
+import softForest4k from "../../assets/environments/forest-soft-4k.webp";
+import softGrasslands4k from "../../assets/environments/grasslands-soft-4k.webp";
+import softDesert4k from "../../assets/environments/desert-soft-4k.webp";
+import softArctic4k from "../../assets/environments/arctic-soft-4k.webp";
+import softMountains4k from "../../assets/environments/mountains-soft-4k.webp";
+import softWetlands4k from "../../assets/environments/wetlands-soft-4k.webp";
+const PLATES_SOFT_4K = { rainforest: softRainforest4k, forest: softForest4k, grasslands: softGrasslands4k, desert: softDesert4k, arctic: softArctic4k, mountains: softMountains4k, wetlands: softWetlands4k };
 /* Pre-blurred plates (see `depth`) — blurred offline so the shallow-focus look costs nothing at runtime. */
 const PLATES_SOFT = { rainforest: softRainforest, forest: softForest, grasslands: softGrasslands, desert: softDesert, arctic: softArctic, mountains: softMountains, wetlands: softWetlands };
 const PLATES_4K = { rainforest: plateRainforest4k, forest: plateForest4k, grasslands: plateGrasslands4k, desert: plateDesert4k, arctic: plateArctic4k, mountains: plateMountains4k, wetlands: plateWetlands4k };
@@ -69,7 +77,7 @@ export default function HabitatScene({ habitat, animated = true, className = "",
     <div className={`scene scene--${id} ${animated ? "scene--animated" : ""} ${usePlate ? "scene--plate" : ""} ${className}`} aria-hidden="true" style={usePlate ? { "--tint": plate.tint, "--light": plate.light, "--light-at": plate.lightAt, "--ground": plate.ground, "--ground-top": plate.groundTop } : undefined}>
       {usePlate ? (
         <>
-          <img src={depth ? PLATES_SOFT[id] : plate.src} srcSet={depth ? undefined : `${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes="100vw" alt="" className="scene__plate" style={{ objectPosition: plate.pos }} onError={() => setFailed(true)} decoding={depth ? "sync" : "async"} draggable="false" />
+          <img src={depth ? PLATES_SOFT[id] : plate.src} srcSet={depth ? `${PLATES_SOFT[id]} 2048w, ${PLATES_SOFT_4K[id]} 3840w` : `${plate.src} 2048w, ${PLATES_4K[id]} 3840w`} sizes="100vw" alt="" className="scene__plate" style={{ objectPosition: plate.pos }} onError={() => setFailed(true)} decoding={depth ? "sync" : "async"} draggable="false" />
           <div className="scene__grade" />
           <div className="scene__light" />
           <div className="scene__ground" />

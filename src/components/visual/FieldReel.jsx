@@ -11,16 +11,16 @@ import wetlands4k from "../../assets/environments/wetlands-4k.webp";
 import "./FieldReel.css";
 
 /**
- * Real field-photography plates (see CREDITS.md), cycled while the app boots. Each carries the
- * same colour grade as its habitat scene (HabitatScene.jsx) so it reads as graded footage rather
- * than a flat snapshot, plus a slightly different drift direction so the camera move never repeats.
+ * Real field-photography plates (see CREDITS.md), cycled while the app boots. The plates already
+ * carry their habitat colour grade (baked into the files), and each gets a slightly different
+ * drift direction so the camera move never repeats.
  */
 const FRAMES = [
-  { src: forest, src4k: forest4k, name: "Rainforest", grade: "saturate(1.06) contrast(1.06) brightness(0.82)", dx: "-0.8%", dy: "0.5%" },
-  { src: desert, src4k: desert4k, name: "Desert", grade: "saturate(1.02) contrast(1.08) brightness(0.87)", dx: "0.7%", dy: "-0.4%" },
-  { src: arctic, src4k: arctic4k, name: "Arctic tundra", grade: "saturate(0.86) contrast(1.05) brightness(0.9)", dx: "-0.5%", dy: "-0.6%" },
-  { src: mountains, src4k: mountains4k, name: "Mountains", grade: "saturate(0.82) contrast(1.07) brightness(0.84)", dx: "0.6%", dy: "0.5%" },
-  { src: wetlands, src4k: wetlands4k, name: "Wetlands", grade: "saturate(0.88) contrast(1.06) brightness(0.82)", dx: "-0.6%", dy: "0.4%" },
+  { src: forest, src4k: forest4k, name: "Rainforest", dx: "-0.8%", dy: "0.5%" },
+  { src: desert, src4k: desert4k, name: "Desert", dx: "0.7%", dy: "-0.4%" },
+  { src: arctic, src4k: arctic4k, name: "Arctic tundra", dx: "-0.5%", dy: "-0.6%" },
+  { src: mountains, src4k: mountains4k, name: "Mountains", dx: "0.6%", dy: "0.5%" },
+  { src: wetlands, src4k: wetlands4k, name: "Wetlands", dx: "-0.6%", dy: "0.4%" },
 ];
 
 /**
@@ -36,9 +36,9 @@ export default function FieldReel({ index = 0, size = 380 }) {
         <div
           key={f.src}
           className={`reel__frame ${i === active ? "reel__frame--active" : i < active ? "reel__frame--past" : ""}`}
-          style={{ "--dx": f.dx, "--dy": f.dy, "--grade": f.grade }}
+          style={{ "--dx": f.dx, "--dy": f.dy }}
         >
-          <img src={f.src} srcSet={`${f.src} 2048w, ${f.src4k} 3840w`} sizes={`${size}px`} alt="" draggable="false" decoding="async" />
+          <img src={f.src} srcSet={`${f.src} 2048w, ${f.src4k} 3840w`} sizes={`${size}px`} alt="" draggable="false" decoding="sync" loading="eager" fetchPriority="high" />
         </div>
       ))}
       <div className="reel__grain" />

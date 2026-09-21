@@ -16,7 +16,8 @@ const STAGES = [
   { label: "Cataloguing adaptations", detail: `${traits.length} abilities` },
   { label: "Setting up the lab", detail: "Ready" },
 ];
-const STAGE_MS = 520;
+// Slow enough that each field photograph in the reel is actually seen (≈7 s total).
+const STAGE_MS = 1200;
 
 export default function Boot() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function Boot() {
 
   useEffect(() => {
     const timers = STAGES.map((_, i) => setTimeout(() => setStage(i + 1), STAGE_MS * (i + 1)));
-    const end = setTimeout(finish, STAGE_MS * STAGES.length + 700);
+    const end = setTimeout(finish, STAGE_MS * STAGES.length + 900);
     return () => { timers.forEach(clearTimeout); clearTimeout(end); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -1,13 +1,13 @@
-.gen { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; overflow: hidden; background: radial-gradient(60% 60% at 50% 50%, rgba(12, 28, 18, 0.94), rgba(5, 11, 7, 0.98)); animation: genIn 0.35s var(--ease) both, genOut 0.4s var(--ease) 2.05s both forwards; }
-.gen__bloom { position: absolute; width: calc(var(--vh, 1vh) * 70); height: calc(var(--vh, 1vh) * 70); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 28%, transparent), transparent 62%); will-change: transform, opacity; animation: genBloom 2.2s var(--ease) both; }
-.gen__subject { position: relative; height: calc(var(--vh, 1vh) * 46); display: grid; place-items: center; animation: genSubject 2.2s var(--ease) both; }
+.gen { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; overflow: hidden; background: radial-gradient(60% 60% at 50% 50%, rgba(12, 28, 18, 0.94), rgba(5, 11, 7, 0.98)); animation: genIn 0.35s var(--ease) both, genOut 0.45s var(--ease) 3.2s both forwards; }
+.gen__bloom { position: absolute; width: calc(var(--vh, 1vh) * 70); height: calc(var(--vh, 1vh) * 70); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 28%, transparent), transparent 62%); will-change: transform, opacity; animation: genBloom 3.2s var(--ease) both; }
+.gen__subject { position: relative; height: calc(var(--vh, 1vh) * 46); display: grid; place-items: center; animation: genSubject 3.2s var(--ease) both; }
 .gen__subject img { height: calc(var(--vh, 1vh) * 46); width: auto; max-width: 70vw; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); }
-.gen__chip { position: absolute; left: var(--x); top: var(--y); display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 8px; border-radius: 999px; background: rgba(11, 22, 15, 0.92); border: 1px solid var(--line-strong); font-family: var(--font-serif); font-weight: 500; font-size: 16px; animation: genChip 1.5s var(--ease-io) var(--d) both; }
+.gen__chip { position: absolute; left: var(--x); top: var(--y); display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 8px; border-radius: 999px; background: rgba(11, 22, 15, 0.92); border: 1px solid var(--line-strong); font-family: var(--font-serif); font-weight: 500; font-size: 16px; animation: genChip 2.3s var(--ease-io) var(--d) both; }
 .gen__chip img { width: 30px; height: 30px; object-fit: contain; }
 .gen__label { position: absolute; bottom: calc(var(--vh, 1vh) * 9); text-align: center; animation: rise 0.6s var(--ease) 0.2s both; }
 .gen__steps { display: flex; gap: 26px; justify-content: center; margin-top: 10px; font-size: 13.5px; color: var(--text-2); }
 .gen__steps span { animation: genStep 0.6s var(--ease) both; }
-.gen__steps span:nth-child(1) { animation-delay: 0.3s; } .gen__steps span:nth-child(2) { animation-delay: 0.9s; } .gen__steps span:nth-child(3) { animation-delay: 1.5s; }
+.gen__steps span:nth-child(1) { animation-delay: 0.4s; } .gen__steps span:nth-child(2) { animation-delay: 1.4s; } .gen__steps span:nth-child(3) { animation-delay: 2.4s; }
 @keyframes genIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes genOut { to { opacity: 0; } }
 @keyframes genBloom { 0% { transform: scale(0.4); opacity: 0; } 50% { opacity: 0.8; } 100% { transform: scale(1.4); opacity: 1; } }
