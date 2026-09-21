@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Check, ChevronRight, Maximize2, Minimize2, RotateCcw, Sun } from "lucide-react";
+import { Check, ChevronRight, Maximize2, Minimize2, Sun } from "lucide-react";
 import { useMission } from "../../state/MissionContext";
 import Logo from "./Logo";
 import { canFullscreen } from "../../utils/useIsTouch";
@@ -46,7 +46,7 @@ export default function TopBar() {
   const [full, toggleFull] = useFullscreen();
   const [bright, toggleBright] = useBright();
   const navigate = useNavigate();
-  const { habitat, animal, traitIds, reset } = useMission();
+  const { habitat, animal, traitIds } = useMission();
   const current = STEPS.findIndex((s) => pathname.startsWith(s.path));
 
   // Which steps are reachable (data exists for the earlier steps)
@@ -91,9 +91,6 @@ export default function TopBar() {
             {full ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
           </button>
         )}
-        <button type="button" className="topbar__reset" onClick={() => { navigate("/mission"); reset(); }} title="Start a new mission">
-          <RotateCcw size={15} />
-        </button>
       </div>
     </header>
   );

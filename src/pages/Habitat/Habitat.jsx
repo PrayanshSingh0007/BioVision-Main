@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Check, Thermometer, AlertTriangle, Gauge } from "lucide-react";
+import { ArrowRight, Check, Thermometer, AlertTriangle, Gauge } from "lucide-react";
 import Button from "../../components/ui/Button";
 import PageTransition from "../../components/ui/PageTransition";
 import HabitatScene from "../../components/visual/HabitatScene";
@@ -82,10 +82,8 @@ export default function Habitat() {
           })}
         </div>
 
-        <footer className="page__footer">
-          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/mission")}>Back</Button>
-          <span className="page__hint">{habitat ? <>Selected habitat: <strong style={{ color: habitat.accent }}>{habitat.name}</strong></> : touch ? "Tap a habitat to open it, then Enter Habitat" : "Hover a habitat to look around, click to choose it"}</span>
-          <Button iconRight={ArrowRight} disabled={!habitat} onClick={() => navigate("/species")}>Choose an animal</Button>
+        <footer className="page__footer page__footer--center">
+          <span className="page__hint">{touch ? "Tap a habitat to open it, then tap Go here" : "Hover a habitat to look around, then Go here"}</span>
         </footer>
       </div>
     </PageTransition>

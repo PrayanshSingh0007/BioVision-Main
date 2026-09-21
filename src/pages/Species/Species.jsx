@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Check, MapPin } from "lucide-react";
+import { ArrowRight, Check, MapPin } from "lucide-react";
 import Button from "../../components/ui/Button";
 import Badge from "../../components/ui/Badge";
 import StatBar from "../../components/ui/StatBar";
@@ -126,7 +126,6 @@ export default function Species() {
         </div>
 
         <footer className="page__footer">
-          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/habitat")}>Back</Button>
           <span className="page__hint">{animal ? <>Base species: <strong>{animal.name}</strong></> : touch ? "Tap a species to preview and select it" : "Hover to preview, click to choose"}</span>
           <Button iconRight={ArrowRight} disabled={!animal} onClick={() => navigate("/lab")}>Into the lab</Button>
         </footer>

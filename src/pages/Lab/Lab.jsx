@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { ArrowLeft, BatteryCharging, Check, Dna, Eye, Feather, Flame, Hand, Info, Leaf, Plus, Search, Shield, Sparkles, Utensils, Wind, X, Zap } from "lucide-react";
+import { BatteryCharging, Check, Dna, Eye, Feather, Flame, Hand, Info, Leaf, Plus, Search, Shield, Sparkles, Utensils, Wind, X, Zap } from "lucide-react";
 import Button from "../../components/ui/Button";
 import Badge from "../../components/ui/Badge";
 import StatBar from "../../components/ui/StatBar";
@@ -163,7 +163,6 @@ export default function Lab() {
         </div>
 
         <footer className="lab__foot">
-          <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/species")}>Back</Button>
           <span className="page__hint">{full ? "Three chosen. See what you’ve made." : `Fill ${MAX_TRAITS - traitIds.length} more slot${MAX_TRAITS - traitIds.length === 1 ? "" : "s"} to continue.`}</span>
         </footer>
       </div>

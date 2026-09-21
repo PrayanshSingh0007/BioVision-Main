@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Check, ChevronRight } from "lucide-react";
+import { Check } from "lucide-react";
 import PageTransition from "../../components/ui/PageTransition";
 import FieldReel from "../../components/visual/FieldReel";
 import Logo from "../../components/layout/Logo";
@@ -59,7 +59,6 @@ export default function Boot() {
             <div className="boot__track"><div className="boot__fill" style={{ width: `${progress}%` }} /></div>
             <span>{progress}%</span>
           </div>
-          <button type="button" className="boot__skip" onClick={finish}>Continue <ChevronRight size={15} /></button>
         </div>
       </div>
     </PageTransition>

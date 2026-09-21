@@ -23,7 +23,5 @@
 .boot__progress { display: flex; align-items: center; gap: 14px; margin-top: 22px; font-size: 13px; color: var(--text-1); }
 .boot__track { flex: 1; height: 6px; border-radius: 99px; background: rgba(200, 220, 190, 0.1); overflow: hidden; }
 .boot__fill { height: 100%; background: linear-gradient(90deg, #2ec4b6, #4bd48a); transition: width 0.45s var(--ease); }
-.boot__skip { display: inline-flex; align-items: center; gap: 4px; margin-top: 18px; background: none; border: none; color: var(--text-2); font-family: var(--font-display); font-size: 14px; font-weight: 700; padding: 6px 0; }
-@media (hover: hover) { .boot__skip:hover { color: var(--text-0); } }
 @media (max-width: 1100px) and (min-width: 720px) { .boot__inner { grid-template-columns: 1fr; width: min(580px, 100% - 40px); gap: 20px; } .boot__visual { height: 300px; transform: scale(0.72); margin: -40px 0; } }
 @media (max-width: 719px) { .boot__inner { grid-template-columns: 1fr; width: min(460px, 100% - 32px); gap: 24px; } .boot__visual { display: grid; height: 220px; transform: scale(0.62); margin: -70px 0; } .boot__panel { padding: 22px 20px; } .boot__stage { padding: 8px 4px; } }

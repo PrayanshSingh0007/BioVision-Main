@@ -5,7 +5,6 @@
 .report__sci em { font-family: var(--font-serif); color: var(--accent); font-size: 19px; }
 .report__sci span { color: var(--text-2); font-size: 13px; }
 .report__headright { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
-.report__headactions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 
 .report__hero { display: grid; grid-template-columns: 1fr 400px; gap: 20px; }
 .report__visual { position: relative; height: min(calc(var(--vh, 1vh) * 72), 820px); min-height: 520px; border-radius: var(--r-xl); overflow: hidden; background: #0d1f16; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); box-shadow: var(--shadow-lg), 0 0 60px color-mix(in srgb, var(--accent) 12%, transparent), inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
@@ -74,8 +73,6 @@
 @media (max-width: 700px) {
   .report__inner { padding: 14px 0 28px; gap: 16px; }
   .report__title { font-size: clamp(30px, 8vw, 44px); }
-  .report__headactions { width: 100%; }
-  .report__headactions .btn { flex: 1; justify-content: center; }
   .report__visual { height: 60vh; min-height: 380px; }
   .report__side { padding: 18px; }
   .report__survivalval strong { font-size: 46px; }

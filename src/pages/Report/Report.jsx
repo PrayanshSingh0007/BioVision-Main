@@ -40,9 +40,6 @@ export default function Report() {
           </div>
           <div className="report__headright">
             <Badge tone="good" icon={BadgeCheck}>New entry</Badge>
-            <div className="report__headactions">
-              <Button variant="secondary" icon={RotateCcw} onClick={runAnother}>Make another</Button>
-            </div>
           </div>
         </header>
 
