@@ -41,10 +41,15 @@ const WING_SETS = {
 };
 
 export function wings(ctx, opts = {}) {
-  const { P, W, headW, facing, anchors } = ctx;
+  const { P, W, H, headW, facing, anchors } = ctx;
   const set = WING_SETS[opts.palette] || WING_SETS.eagle;
-  const root = P(anchors.back);
-  const L = cap(ctx, Math.max(W * 0.55, headW * 1.8), 0.7);
+  // Wings grow from the shoulder — a point inside the body between the spine and the chest — so
+  // their base is hidden behind the animal and they read as attached, not perched on the back.
+  // Sized against the whole figure (a tall camel or giraffe would otherwise get sparrow wings).
+  const bk = P(anchors.back), ch = P(anchors.chest);
+  const front = facing === "front";
+  const root = front ? bk : { x: bk.x + (ch.x - bk.x) * 0.3, y: bk.y + (ch.y - bk.y) * 0.35 };
+  const L = Math.min(Math.max(W * 0.6, H * 0.55, headW * 1.8), Math.max(W, H) * 0.8);
   const m = mir(facing);
   const fwd = facing === "right" ? 1 : -1;
   return {
@@ -54,8 +59,8 @@ export function wings(ctx, opts = {}) {
     // animal's own drop-shadow plus the ground shadow already ground the composition visually.
     behind: (
       <g className="ov ov--wings">
-        {photoPart(set.front, { at: { x: root.x + fwd * headW * 0.18, y: root.y + headW * 0.06 }, angle: ang(facing, -128), length: L * 0.9, mirror: m, opacity: 0.92, className: "ov__wing ov__wing--far" })}
-        {photoPart(set.back, { at: root, angle: ang(facing, -52), length: L, mirror: m, className: "ov__wing ov__wing--near" })}
+        {photoPart(set.front, { at: { x: root.x + fwd * headW * 0.18, y: root.y + headW * 0.06 }, angle: front ? -132 : ang(facing, -134), length: L * 0.9, mirror: m, opacity: 0.92, className: "ov__wing ov__wing--far" })}
+        {photoPart(set.back, { at: root, angle: front ? -48 : ang(facing, -46), length: L, mirror: m, className: "ov__wing ov__wing--near" })}
       </g>
     ),
   };

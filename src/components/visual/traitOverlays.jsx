@@ -14,10 +14,11 @@ import { TEXTURES } from "../../data/textures";
 const EYE_PALETTES = { night: ["#c8ff7a", "#7cf59a", "#38d39f", "#f6ffd6", "#b9ff6e", "#3ac77a"], aqua: ["#a8f0ff", "#5fd3e8", "#2aa8c4", "#eefeff", "#9be8ff", "#2fb5d6"] };
 
 function eyes(ctx, opts = {}) {
-  const { P, headW, uid, anchors } = ctx;
+  const { P, W, H, headW, uid, anchors } = ctx;
   const c = EYE_PALETTES[opts.palette] || EYE_PALETTES.night;
   // Real eyeshine (tapetum lucidum): a soft, eye-sized glow — no cartoon pupil or highlight dot.
-  const r = Math.max(6, headW * 0.055);
+  // Floored against the figure size so a small-headed animal (camel, giraffe) still reads.
+  const r = Math.max(6, headW * 0.06, Math.min(W, H) * 0.011);
   const g = `${uid}-eye-${opts.palette || "n"}`;
   const eye = (a, i) => {
     const p = P(a);
@@ -43,8 +44,8 @@ function eyes(ctx, opts = {}) {
 
 /* ------------ KEEN EYESIGHT ------------ */
 function keenEyes(ctx) {
-  const { P, headW, anchors } = ctx;
-  const r = Math.max(9, headW * 0.085);
+  const { P, W, H, headW, anchors } = ctx;
+  const r = Math.max(9, headW * 0.085, Math.min(W, H) * 0.014);
   const one = (a, i) => {
     const p = P(a);
     return (
