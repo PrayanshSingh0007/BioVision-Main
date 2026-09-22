@@ -121,7 +121,7 @@ const animals = [
     habitatFit: { rainforest: 2, forest: 1, grasslands: 0, desert: 0, arctic: -2, mountains: -1, wetlands: 1 },
     facing: "right", headWidth: 22,
     anchors: {
-      headTop: { x: 86, y: 16 }, eyeL: { x: 91, y: 52 }, eyeR: { x: 88, y: 49 }, nose: { x: 99, y: 62 }, mouth: { x: 96, y: 68 },
+      headTop: { x: 86, y: 16 }, eyeL: { x: 93, y: 52 }, eyeR: { x: 89, y: 50 }, nose: { x: 99, y: 62 }, mouth: { x: 96, y: 68 },
       back: { x: 55, y: 9 }, hips: { x: 30, y: 42 }, rear: { x: 12, y: 40 }, chest: { x: 72, y: 70 },
       frontFeet: [{ x: 72, y: 95 }, { x: 78, y: 92 }], hindFeet: [{ x: 50, y: 95 }],
     },
@@ -233,7 +233,7 @@ const animals = [
     habitatFit: { rainforest: 1, forest: 2, grasslands: 0, desert: -1, arctic: -1, mountains: 1, wetlands: 0 },
     facing: "left", headWidth: 26,
     anchors: {
-      headTop: { x: 22, y: 8 }, eyeL: { x: 22, y: 30 }, eyeR: { x: 28, y: 28 }, nose: { x: 8, y: 40 }, mouth: { x: 10, y: 44 },
+      headTop: { x: 22, y: 8 }, eyeL: { x: 17, y: 35 }, eyeR: { x: 22, y: 32 }, nose: { x: 8, y: 40 }, mouth: { x: 10, y: 44 },
       back: { x: 55, y: 45 }, hips: { x: 55, y: 60 }, rear: { x: 85, y: 40 }, chest: { x: 25, y: 55 },
       frontFeet: [{ x: 15, y: 50 }, { x: 30, y: 80 }], hindFeet: [{ x: 25, y: 85 }, { x: 35, y: 88 }],
     },
@@ -317,7 +317,7 @@ const animals = [
     habitatFit: { rainforest: 0, forest: 2, grasslands: 0, desert: -2, arctic: 0, mountains: 2, wetlands: 1 },
     facing: "left", headWidth: 24,
     anchors: {
-      headTop: { x: 20, y: 3 }, eyeL: { x: 18, y: 16 }, eyeR: { x: 13, y: 15 }, nose: { x: 1.5, y: 26 }, mouth: { x: 4, y: 30 },
+      headTop: { x: 20, y: 3 }, eyeL: { x: 18, y: 16 }, eyeR: { x: 17.5, y: 15.5 }, nose: { x: 1.5, y: 26 }, mouth: { x: 4, y: 30 },
       back: { x: 45, y: 12 }, hips: { x: 75, y: 35 }, rear: { x: 95, y: 50 }, chest: { x: 28, y: 60 },
       frontFeet: [{ x: 25, y: 95 }, { x: 45, y: 90 }], hindFeet: [{ x: 70, y: 88 }, { x: 85, y: 90 }],
     },
@@ -331,7 +331,7 @@ const animals = [
     habitatFit: { rainforest: 1, forest: 2, grasslands: 1, desert: 0, arctic: 0, mountains: 1, wetlands: 1 },
     facing: "front", headWidth: 42,
     anchors: {
-      headTop: { x: 55, y: 3 }, eyeL: { x: 45, y: 13 }, eyeR: { x: 68, y: 13 }, nose: { x: 56, y: 19 }, mouth: { x: 56, y: 24 },
+      headTop: { x: 55, y: 3 }, eyeL: { x: 46, y: 9 }, eyeR: { x: 68, y: 9 }, nose: { x: 56, y: 19 }, mouth: { x: 56, y: 24 },
       back: { x: 60, y: 35 }, hips: { x: 55, y: 65 }, rear: { x: 35, y: 92 }, chest: { x: 55, y: 45 },
       frontFeet: [{ x: 55, y: 72 }, { x: 72, y: 74 }], hindFeet: [{ x: 60, y: 75 }],
     },
@@ -359,7 +359,7 @@ const animals = [
     habitatFit: { rainforest: -1, forest: 0, grasslands: 2, desert: 1, arctic: -2, mountains: -1, wetlands: -1 },
     facing: "left", headWidth: 30,
     anchors: {
-      headTop: { x: 76, y: 2 }, eyeL: { x: 66, y: 17 }, eyeR: { x: 75, y: 15 }, nose: { x: 58, y: 29 }, mouth: { x: 60, y: 33 },
+      headTop: { x: 76, y: 2 }, eyeL: { x: 67, y: 14 }, eyeR: { x: 75, y: 13 }, nose: { x: 58, y: 29 }, mouth: { x: 60, y: 33 },
       back: { x: 85, y: 45 }, hips: { x: 35, y: 60 }, rear: { x: 5, y: 58 }, chest: { x: 68, y: 55 },
       frontFeet: [{ x: 15, y: 68 }, { x: 30, y: 65 }], hindFeet: [{ x: 60, y: 90 }, { x: 80, y: 95 }],
     },
@@ -387,7 +387,7 @@ const animals = [
     habitatFit: { rainforest: -1, forest: 0, grasslands: 2, desert: 0, arctic: -2, mountains: -2, wetlands: -1 },
     facing: "left", headWidth: 10,
     anchors: {
-      headTop: { x: 14, y: 1 }, eyeL: { x: 8, y: 6 }, eyeR: { x: 13, y: 5 }, nose: { x: 3, y: 10 }, mouth: { x: 4, y: 12 },
+      headTop: { x: 14, y: 1 }, eyeL: { x: 8, y: 6 }, eyeR: { x: 8.5, y: 5.8 }, nose: { x: 3, y: 10 }, mouth: { x: 4, y: 12 },
       back: { x: 55, y: 42 }, hips: { x: 75, y: 52 }, rear: { x: 92, y: 58 }, chest: { x: 45, y: 55 },
       frontFeet: [{ x: 50, y: 97 }, { x: 58, y: 97 }], hindFeet: [{ x: 80, y: 95 }, { x: 92, y: 97 }],
     },
@@ -413,9 +413,9 @@ const animals = [
     traits: ["Fat-storing hump", "Water tolerance", "Sand-proof nostrils", "Wide feet"],
     stats: { strength: 80, speed: 60, intelligence: 50, stamina: 98, camouflage: 45 },
     habitatFit: { rainforest: -2, forest: -1, grasslands: 1, desert: 2, arctic: -1, mountains: 0, wetlands: -2 },
-    facing: "left", headWidth: 10,
+    facing: "left", headWidth: 17,
     anchors: {
-      headTop: { x: 12, y: 2 }, eyeL: { x: 7, y: 6 }, eyeR: { x: 11, y: 5 }, nose: { x: 3, y: 10 }, mouth: { x: 4, y: 12 },
+      headTop: { x: 12, y: 2 }, eyeL: { x: 3, y: 5.6 }, eyeR: { x: 18.3, y: 6 }, nose: { x: 10, y: 8.5 }, mouth: { x: 10, y: 11.5 },
       back: { x: 50, y: 8 }, hips: { x: 72, y: 30 }, rear: { x: 95, y: 50 }, chest: { x: 30, y: 45 },
       frontFeet: [{ x: 32, y: 96 }, { x: 42, y: 96 }], hindFeet: [{ x: 72, y: 92 }, { x: 80, y: 95 }],
     },
@@ -429,7 +429,7 @@ const animals = [
     habitatFit: { rainforest: -1, forest: 0, grasslands: 1, desert: 2, arctic: -2, mountains: -1, wetlands: -1 },
     facing: "right", headWidth: 24,
     anchors: {
-      headTop: { x: 86, y: 38 }, eyeL: { x: 92, y: 52 }, eyeR: { x: 86, y: 50 }, nose: { x: 99, y: 60 }, mouth: { x: 97, y: 66 },
+      headTop: { x: 86, y: 38 }, eyeL: { x: 92, y: 52 }, eyeR: { x: 91, y: 51 }, nose: { x: 99, y: 60 }, mouth: { x: 97, y: 66 },
       back: { x: 45, y: 3 }, hips: { x: 25, y: 40 }, rear: { x: 6, y: 48 }, chest: { x: 80, y: 68 },
       frontFeet: [{ x: 82, y: 95 }], hindFeet: [{ x: 6, y: 88 }, { x: 35, y: 80 }],
     },
@@ -457,7 +457,7 @@ const animals = [
     habitatFit: { rainforest: -2, forest: -2, grasslands: -2, desert: -2, arctic: 2, mountains: -1, wetlands: 1 },
     facing: "left", headWidth: 18,
     anchors: {
-      headTop: { x: 22, y: 18 }, eyeL: { x: 16, y: 26 }, eyeR: { x: 22, y: 25 }, nose: { x: 3, y: 42 }, mouth: { x: 5, y: 40 },
+      headTop: { x: 22, y: 18 }, eyeL: { x: 18.5, y: 25 }, eyeR: { x: 21, y: 24.5 }, nose: { x: 3, y: 42 }, mouth: { x: 5, y: 40 },
       back: { x: 70, y: 15 }, hips: { x: 70, y: 60 }, rear: { x: 95, y: 92 }, chest: { x: 45, y: 60 },
       frontFeet: [{ x: 45, y: 96 }, { x: 60, y: 95 }], hindFeet: [{ x: 40, y: 96 }],
     },
@@ -471,7 +471,7 @@ const animals = [
     habitatFit: { rainforest: -2, forest: 1, grasslands: 1, desert: -1, arctic: 2, mountains: 2, wetlands: 0 },
     facing: "left", headWidth: 22,
     anchors: {
-      headTop: { x: 35, y: 36 }, eyeL: { x: 43, y: 42 }, eyeR: { x: 36, y: 40 }, nose: { x: 27, y: 52 }, mouth: { x: 29, y: 55 },
+      headTop: { x: 35, y: 36 }, eyeL: { x: 43, y: 42 }, eyeR: { x: 42, y: 41.5 }, nose: { x: 27, y: 52 }, mouth: { x: 29, y: 55 },
       back: { x: 50, y: 45 }, hips: { x: 75, y: 45 }, rear: { x: 94, y: 48 }, chest: { x: 35, y: 65 },
       frontFeet: [{ x: 28, y: 98 }, { x: 40, y: 97 }], hindFeet: [{ x: 78, y: 98 }, { x: 90, y: 97 }],
     },
@@ -499,7 +499,7 @@ const animals = [
     habitatFit: { rainforest: -2, forest: 0, grasslands: -1, desert: -1, arctic: 2, mountains: 2, wetlands: -2 },
     facing: "left", headWidth: 16,
     anchors: {
-      headTop: { x: 14, y: 8 }, eyeL: { x: 10, y: 21 }, eyeR: { x: 14, y: 20 }, nose: { x: 2, y: 32 }, mouth: { x: 3, y: 35 },
+      headTop: { x: 14, y: 8 }, eyeL: { x: 10, y: 21 }, eyeR: { x: 11, y: 20.5 }, nose: { x: 2, y: 32 }, mouth: { x: 3, y: 35 },
       back: { x: 55, y: 12 }, hips: { x: 80, y: 30 }, rear: { x: 95, y: 42 }, chest: { x: 20, y: 60 },
       frontFeet: [{ x: 22, y: 92 }, { x: 15, y: 96 }], hindFeet: [{ x: 75, y: 90 }, { x: 70, y: 96 }],
     },
@@ -513,7 +513,7 @@ const animals = [
     habitatFit: { rainforest: -2, forest: 0, grasslands: 0, desert: -2, arctic: 1, mountains: 2, wetlands: -1 },
     facing: "left", headWidth: 18,
     anchors: {
-      headTop: { x: 12, y: 12 }, eyeL: { x: 8, y: 30 }, eyeR: { x: 14, y: 28 }, nose: { x: 3, y: 45 }, mouth: { x: 5, y: 50 },
+      headTop: { x: 12, y: 12 }, eyeL: { x: 8, y: 39 }, eyeR: { x: 15, y: 37 }, nose: { x: 3, y: 45 }, mouth: { x: 5, y: 50 },
       back: { x: 50, y: 8 }, hips: { x: 78, y: 30 }, rear: { x: 95, y: 45 }, chest: { x: 22, y: 65 },
       frontFeet: [{ x: 20, y: 92 }, { x: 30, y: 95 }], hindFeet: [{ x: 72, y: 92 }, { x: 85, y: 95 }],
     },
@@ -527,7 +527,7 @@ const animals = [
     habitatFit: { rainforest: -2, forest: 0, grasslands: 0, desert: -1, arctic: 0, mountains: 2, wetlands: -2 },
     facing: "left", headWidth: 16,
     anchors: {
-      headTop: { x: 12, y: 10 }, eyeL: { x: 8, y: 30 }, eyeR: { x: 13, y: 28 }, nose: { x: 5, y: 42 }, mouth: { x: 7, y: 45 },
+      headTop: { x: 12, y: 10 }, eyeL: { x: 11.5, y: 37.5 }, eyeR: { x: 14, y: 36 }, nose: { x: 5, y: 51 }, mouth: { x: 7, y: 53 },
       back: { x: 55, y: 22 }, hips: { x: 82, y: 35 }, rear: { x: 95, y: 50 }, chest: { x: 25, y: 60 },
       frontFeet: [{ x: 22, y: 96 }, { x: 30, y: 96 }], hindFeet: [{ x: 70, y: 90 }, { x: 85, y: 92 }],
     },
@@ -555,7 +555,7 @@ const animals = [
     habitatFit: { rainforest: 0, forest: -1, grasslands: 0, desert: -1, arctic: -2, mountains: -2, wetlands: 2 },
     facing: "left", headWidth: 14,
     anchors: {
-      headTop: { x: 10, y: 2 }, eyeL: { x: 12, y: 8 }, eyeR: { x: 9, y: 7 }, nose: { x: 3, y: 30 }, mouth: { x: 5, y: 24 },
+      headTop: { x: 10, y: 2 }, eyeL: { x: 14, y: 11 }, eyeR: { x: 13, y: 10.5 }, nose: { x: 3, y: 30 }, mouth: { x: 5, y: 24 },
       back: { x: 55, y: 45 }, hips: { x: 70, y: 65 }, rear: { x: 95, y: 80 }, chest: { x: 35, y: 60 },
       frontFeet: [{ x: 45, y: 96 }, { x: 58, y: 96 }], hindFeet: [{ x: 50, y: 96 }],
     },
@@ -583,7 +583,7 @@ const animals = [
     habitatFit: { rainforest: 1, forest: 0, grasslands: 0, desert: -1, arctic: -1, mountains: -1, wetlands: 2 },
     facing: "left", headWidth: 8,
     anchors: {
-      headTop: { x: 28, y: 1 }, eyeL: { x: 25, y: 4 }, eyeR: { x: 30, y: 4 }, nose: { x: 5, y: 5 }, mouth: { x: 8, y: 5 },
+      headTop: { x: 28, y: 1 }, eyeL: { x: 23.5, y: 3.6 }, eyeR: { x: 24.5, y: 3.5 }, nose: { x: 5, y: 5 }, mouth: { x: 8, y: 5 },
       back: { x: 65, y: 42 }, hips: { x: 75, y: 52 }, rear: { x: 92, y: 68 }, chest: { x: 55, y: 50 },
       frontFeet: [{ x: 55, y: 83 }, { x: 65, y: 78 }], hindFeet: [{ x: 60, y: 83 }],
     },
@@ -597,7 +597,7 @@ const animals = [
     habitatFit: { rainforest: 1, forest: 0, grasslands: 1, desert: -2, arctic: -2, mountains: -1, wetlands: 2 },
     facing: "left", headWidth: 22,
     anchors: {
-      headTop: { x: 8, y: 8 }, eyeL: { x: 7, y: 20 }, eyeR: { x: 14, y: 18 }, nose: { x: 3, y: 35 }, mouth: { x: 5, y: 40 },
+      headTop: { x: 10, y: 1 }, eyeL: { x: 15, y: 7 }, eyeR: { x: 16, y: 6.5 }, nose: { x: 1, y: 15 }, mouth: { x: 3, y: 23 },
       back: { x: 50, y: 10 }, hips: { x: 80, y: 35 }, rear: { x: 95, y: 60 }, chest: { x: 25, y: 60 },
       frontFeet: [{ x: 28, y: 92 }, { x: 35, y: 96 }], hindFeet: [{ x: 72, y: 88 }, { x: 85, y: 95 }],
     },
