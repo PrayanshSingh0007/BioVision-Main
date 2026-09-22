@@ -18,14 +18,14 @@ function eyes(ctx, opts = {}) {
   const c = EYE_PALETTES[opts.palette] || EYE_PALETTES.night;
   // Real eyeshine (tapetum lucidum): a soft, eye-sized glow — no cartoon pupil or highlight dot.
   // Floored against the figure size so a small-headed animal (camel, giraffe) still reads.
-  const r = Math.max(6, headW * 0.06, Math.min(W, H) * 0.011);
+  const r = Math.max(8, headW * 0.08, Math.min(W, H) * 0.015);
   const g = `${uid}-eye-${opts.palette || "n"}`;
   const eye = (a, i) => {
     const p = P(a);
     return (
       <g key={i} className="ov__eye">
-        <ellipse cx={p.x} cy={p.y} rx={r * 3} ry={r * 2.4} fill={`url(#${g}-glow)`} className="ov__pulse" />
-        <ellipse cx={p.x} cy={p.y} rx={r * 1.15} ry={r * 0.95} fill={`url(#${g}-core)`} />
+        <ellipse cx={p.x} cy={p.y} rx={r * 3.4} ry={r * 2.7} fill={`url(#${g}-glow)`} className="ov__pulse" />
+        <ellipse cx={p.x} cy={p.y} rx={r * 1.35} ry={r * 1.1} fill={`url(#${g}-core)`} />
       </g>
     );
   };
@@ -33,8 +33,8 @@ function eyes(ctx, opts = {}) {
     front: (
       <g className="ov ov--eyes" style={{ mixBlendMode: "screen" }}>
         <defs>
-          <radialGradient id={`${g}-glow`}><stop offset="0" stopColor={c[0]} stopOpacity="0.6" /><stop offset="0.45" stopColor={c[1]} stopOpacity="0.2" /><stop offset="1" stopColor={c[2]} stopOpacity="0" /></radialGradient>
-          <radialGradient id={`${g}-core`}><stop offset="0" stopColor={c[3]} /><stop offset="0.55" stopColor={c[4]} stopOpacity="0.9" /><stop offset="1" stopColor={c[5]} stopOpacity="0" /></radialGradient>
+          <radialGradient id={`${g}-glow`}><stop offset="0" stopColor={c[0]} stopOpacity="0.8" /><stop offset="0.45" stopColor={c[1]} stopOpacity="0.3" /><stop offset="1" stopColor={c[2]} stopOpacity="0" /></radialGradient>
+          <radialGradient id={`${g}-core`}><stop offset="0" stopColor={c[3]} /><stop offset="0.6" stopColor={c[4]} stopOpacity="0.95" /><stop offset="1" stopColor={c[5]} stopOpacity="0" /></radialGradient>
         </defs>
         {eye(anchors.eyeL, 0)}{eye(anchors.eyeR, 1)}
       </g>
@@ -45,7 +45,7 @@ function eyes(ctx, opts = {}) {
 /* ------------ KEEN EYESIGHT ------------ */
 function keenEyes(ctx) {
   const { P, W, H, headW, anchors } = ctx;
-  const r = Math.max(9, headW * 0.085, Math.min(W, H) * 0.014);
+  const r = Math.max(10, headW * 0.1, Math.min(W, H) * 0.017);
   const one = (a, i) => {
     const p = P(a);
     return (
@@ -305,12 +305,14 @@ function camouflage(ctx, opts = {}) {
       { blend: "screen", opacity: 0.3, content: tex("winter", 50) },
     ] };
   }
-  // chameleon camouflage: a subtle colour-adaptive cast, not a full repaint — the base animal's
-  // own coat and pattern should still read clearly underneath it.
+  // chameleon camouflage: the coat clearly takes on the habitat's colours and a mottled pattern,
+  // while the animal's own markings still show through (multiply keeps the stripes/spots; the
+  // colour layer shifts the hue; soft-light lifts the pattern so it reads from across a room).
   const pal = CAMO_PALETTES[habitat?.id] || CAMO_PALETTES.forest;
   return { skinLayers: [
-    { blend: "multiply", opacity: 0.32, content: tex("camo", 38) },
-    { blend: "color", opacity: 0.2, content: <div className="comp__tint" style={{ background: `linear-gradient(160deg, ${pal[1]}, ${pal[0]})` }} /> },
+    { blend: "multiply", opacity: 0.55, content: tex("camo", 34) },
+    { blend: "soft-light", opacity: 0.55, content: tex("camo", 34) },
+    { blend: "color", opacity: 0.42, content: <div className="comp__tint" style={{ background: `linear-gradient(160deg, ${pal[1]}, ${pal[0]})` }} /> },
   ] };
 }
 
