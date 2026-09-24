@@ -91,34 +91,33 @@ function jaws(ctx) {
 /* ------------ POWERFUL HIND LEGS ------------ */
 function hindLegs(ctx, opts = {}) {
   const { P, headW, uid, anchors } = ctx;
-  const col = opts.color || "#ffc46b";
   const glow = opts.glow || ["#ffb347", "#ff8a3d"];
   const hip = P(anchors.hips);
   const foot = P(anchors.hindFeet[0]);
-  const cx = (hip.x * 0.6 + foot.x * 0.4), cy = (hip.y * 0.6 + foot.y * 0.4);
-  const rx = Math.max(headW * 0.5, Math.abs(hip.x - foot.x) * 0.5 + headW * 0.15);
-  const ry = Math.max(headW * 0.45, Math.abs(hip.y - foot.y) * 0.45);
-  const g = `${uid}-legs`;
-  const r0 = Math.max(headW * 0.22, 14);
+  const cx = hip.x * 0.55 + foot.x * 0.45, cy = hip.y * 0.55 + foot.y * 0.45;
+  const rx = Math.max(headW * 0.55, Math.abs(hip.x - foot.x) * 0.5 + headW * 0.2);
+  const ry = Math.max(headW * 0.5, Math.abs(hip.y - foot.y) * 0.45);
+  const g = `${uid}-legs`, gd = `${uid}-dust`;
+  const s = Math.max(headW * 0.5, 22);
   return {
+    // Warm light gathering in the haunch — the muscle reading as power, painted onto the animal
+    // itself rather than drawn over it.
     skinLayers: [{ blend: "screen", opacity: 1, content: (
       <svg viewBox={`0 0 ${ctx.W} ${ctx.H}`} preserveAspectRatio="none" className="comp__skinsvg"><g className="ov ov--legs">
         <defs>
-          <radialGradient id={g}><stop offset="0" stopColor={glow[0]} stopOpacity="0.6" /><stop offset="0.6" stopColor={glow[1]} stopOpacity="0.22" /><stop offset="1" stopColor={glow[1]} stopOpacity="0" /></radialGradient>
+          <radialGradient id={g}><stop offset="0" stopColor={glow[0]} stopOpacity="0.62" /><stop offset="0.6" stopColor={glow[1]} stopOpacity="0.24" /><stop offset="1" stopColor={glow[1]} stopOpacity="0" /></radialGradient>
         </defs>
         <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill={`url(#${g})`} className="ov__pulse" />
       </g></svg>
     ) }],
-    front: (
-      <g className="ov ov--legs-front">
-        {/* muscle "flex" arcs at the hip */}
-        {[1, 1.45, 1.9].map((k, i) => (
-          <path key={i} d={`M ${hip.x - r0 * k} ${hip.y + r0 * k * 0.35} A ${r0 * k} ${r0 * k} 0 0 1 ${hip.x + r0 * k * 0.35} ${hip.y - r0 * k}`} fill="none" stroke={col} strokeWidth={Math.max(2.5, headW * 0.028)} strokeLinecap="round" opacity={0.85 - i * 0.25} />
-        ))}
-        {/* spring / motion marks behind the foot */}
-        {[0, 1, 2].map((i) => (
-          <path key={`s${i}`} d={`M ${foot.x + headW * 0.3 + i * headW * 0.16} ${foot.y + headW * 0.08 + i * headW * 0.03} q ${headW * 0.12} ${-headW * 0.16} ${headW * 0.24} 0`} fill="none" stroke={col} strokeWidth={Math.max(3, headW * 0.03)} strokeLinecap="round" opacity={0.8 - i * 0.22} />
-        ))}
+    // Ground the power with dust kicked up under the hind foot — photographic, not a drawn arc.
+    behind: (
+      <g className="ov ov--legs-dust">
+        <defs>
+          <radialGradient id={gd}><stop offset="0" stopColor="#efe6d5" stopOpacity="0.42" /><stop offset="0.6" stopColor="#d9cdb7" stopOpacity="0.16" /><stop offset="1" stopColor="#d9cdb7" stopOpacity="0" /></radialGradient>
+        </defs>
+        <ellipse cx={foot.x} cy={foot.y + s * 0.1} rx={s * 1.5} ry={s * 0.5} fill={`url(#${gd})`} className="ov__pulse" />
+        <ellipse cx={foot.x + s * 0.9} cy={foot.y - s * 0.12} rx={s * 0.8} ry={s * 0.34} fill={`url(#${gd})`} opacity="0.75" />
       </g>
     ),
   };
@@ -140,14 +139,14 @@ function tongue(ctx) {
     front: (
       <g className="ov ov--tongue" filter={`url(#${uid}-shadow)`}>
         <defs>
-          <linearGradient id={g} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#c8305e" /><stop offset="1" stopColor="#ff7fa6" /></linearGradient>
+          <linearGradient id={g} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#8f2740" /><stop offset="1" stopColor="#c9596f" /></linearGradient>
         </defs>
-        <path d={d} fill="none" stroke="#7a1637" strokeWidth={w * 1.35} strokeLinecap="round" opacity="0.5" />
+        <path d={d} fill="none" stroke="#5d1128" strokeWidth={w * 1.35} strokeLinecap="round" opacity="0.5" />
         <path d={d} fill="none" stroke={`url(#${g})`} strokeWidth={w} strokeLinecap="round" />
-        <path d={d} fill="none" stroke="#ffd3e0" strokeWidth={w * 0.25} strokeLinecap="round" opacity="0.7" transform={`translate(0 ${-w * 0.25})`} />
-        <circle cx={ex} cy={ey} r={w * 0.85} fill="#ff8fb3" stroke="#a11f4a" strokeWidth={w * 0.12} />
+        <path d={d} fill="none" stroke="#e8b4bf" strokeWidth={w * 0.2} strokeLinecap="round" opacity="0.45" transform={`translate(0 ${-w * 0.25})`} />
+        <circle cx={ex} cy={ey} r={w * 0.7} fill="#c4677c" stroke="#6d1a31" strokeWidth={w * 0.12} />
         {/* tiny insect at the tip */}
-        <g transform={`translate(${ex + dir * w * 1.3} ${ey - w * 0.6})`} opacity="0.9">
+        <g transform={`translate(${ex + dir * w * 1.1} ${ey - w * 0.5}) scale(0.8)`} opacity="0.8">
           <ellipse rx={w * 0.36} ry={w * 0.22} fill="#1f2937" />
           <ellipse cx={-w * 0.12} cy={-w * 0.22} rx={w * 0.3} ry={w * 0.14} fill="#cbd5e1" opacity="0.7" />
           <ellipse cx={w * 0.14} cy={-w * 0.22} rx={w * 0.3} ry={w * 0.14} fill="#cbd5e1" opacity="0.7" />
@@ -246,12 +245,12 @@ function grip(ctx) {
     front: (
       <g className="ov ov--grip">
         <defs>
-          <radialGradient id={g}><stop offset="0" stopColor="#7dd3fc" stopOpacity="0.55" /><stop offset="1" stopColor="#7dd3fc" stopOpacity="0" /></radialGradient>
+          <radialGradient id={g}><stop offset="0" stopColor="#ffe9c7" stopOpacity="0.4" /><stop offset="1" stopColor="#ffe9c7" stopOpacity="0" /></radialGradient>
         </defs>
-        <circle cx={p.x} cy={p.y} r={s * 1.6} fill={`url(#${g})`} className="ov__pulse" />
-        {/* thumb-like bone highlight */}
-        <path d={`M ${p.x - s * 0.55} ${p.y + s * 0.1} Q ${p.x - s * 0.75} ${p.y - s * 0.4} ${p.x - s * 0.3} ${p.y - s * 0.55}`} fill="none" stroke="#e0f2fe" strokeWidth={s * 0.16} strokeLinecap="round" />
-        <path d={`M ${p.x - s * 0.15} ${p.y - s * 0.45} Q ${p.x + s * 0.4} ${p.y - s * 0.7} ${p.x + s * 0.55} ${p.y - s * 0.1}`} fill="none" stroke="#e0f2fe" strokeWidth={s * 0.12} strokeLinecap="round" opacity="0.7" />
+        <ellipse cx={p.x} cy={p.y} rx={s * 1.25} ry={s} fill={`url(#${g})`} className="ov__pulse" />
+        {/* the extra thumb itself: a short pad curling in against the paw */}
+        <path d={`M ${p.x - s * 0.52} ${p.y + s * 0.16} Q ${p.x - s * 0.78} ${p.y - s * 0.34} ${p.x - s * 0.26} ${p.y - s * 0.5}`} fill="none" stroke="#f2e6d4" strokeWidth={s * 0.22} strokeLinecap="round" opacity="0.9" />
+        <path d={`M ${p.x - s * 0.52} ${p.y + s * 0.16} Q ${p.x - s * 0.78} ${p.y - s * 0.34} ${p.x - s * 0.26} ${p.y - s * 0.5}`} fill="none" stroke="#7a6a56" strokeWidth={s * 0.06} strokeLinecap="round" opacity="0.5" />
       </g>
     ),
   };
@@ -329,17 +328,20 @@ function blubber(ctx, opts = {}) {
 
 /* ------------ REACH (long neck) ------------ */
 function reach(ctx) {
-  const { P, headW, uid, anchors } = ctx;
+  const { P, H, headW, uid, anchors } = ctx;
   const top = P(anchors.headTop);
-  const h = Math.max(headW * 2.2, 120);
+  // The browse line the animal can reach. Kept inside the figure box so the sprig never floats
+  // off on its own: a fine measure line from just above the head up to a leaf it could take.
+  const y = Math.max(H * 0.04, top.y - Math.max(headW * 1.6, H * 0.14));
+  const k = Math.max(headW * 0.22, 14);
   return {
     front: (
       <g className="ov ov--reach">
-        <path d={`M ${top.x} ${top.y - 6} L ${top.x} ${top.y - h}`} stroke="#a6ea8a" strokeWidth={3} strokeDasharray="6 8" strokeLinecap="round" opacity="0.8" />
-        <path d={`M ${top.x - 12} ${top.y - h + 14} L ${top.x} ${top.y - h} L ${top.x + 12} ${top.y - h + 14}`} fill="none" stroke="#a6ea8a" strokeWidth={3} strokeLinecap="round" />
-        <g transform={`translate(${top.x + 10} ${top.y - h - 10})`} filter={`url(#${uid}-shadow)`}>
-          <path d="M 0 0 C 10 -14 30 -20 44 -14 C 36 2 18 10 0 0 Z" fill="#5fb26a" /><path d="M 2 -1 C 14 -8 26 -12 40 -13" stroke="#1f6a3d" strokeWidth="1.5" fill="none" />
-          <path d="M 0 0 C -10 14 -30 20 -44 14 C -36 -2 -18 -10 0 0 Z" fill="#7fd06e" transform="translate(0 6)" />
+        <path d={`M ${top.x} ${top.y - k * 0.4} L ${top.x} ${y + k * 0.5}`} stroke="#cfe6bb" strokeWidth={Math.max(1.4, k * 0.07)} strokeDasharray={`${k * 0.16} ${k * 0.34}`} strokeLinecap="round" opacity="0.5" />
+        <g transform={`translate(${top.x} ${y}) scale(${k / 26})`} filter={`url(#${uid}-shadow)`} opacity="0.95">
+          <path d="M 0 6 C 0 -4 6 -12 16 -16 C 16 -4 10 4 0 6 Z" fill="#6ab06b" />
+          <path d="M 0 6 C 0 -4 -6 -12 -16 -16 C -16 -4 -10 4 0 6 Z" fill="#83c473" />
+          <path d="M 0 14 L 0 4" stroke="#4a7c46" strokeWidth="2.4" strokeLinecap="round" />
         </g>
       </g>
     ),
@@ -382,20 +384,27 @@ function wideFeet(ctx, opts = {}) {
 
 /* ------------ BREATH (high-altitude lungs) ------------ */
 function breath(ctx) {
-  const { P, headW, uid, anchors } = ctx;
+  const { P, headW, uid, facing, anchors } = ctx;
   const c = P(anchors.chest), n = P(anchors.nose);
+  const fwd = facing === "right" ? 1 : facing === "front" ? 0 : -1;
   const r = Math.max(headW * 0.5, 30);
   const g = `${uid}-breath`;
   return {
     skinLayers: [{ blend: "screen", opacity: 1, content: (
       <svg viewBox={`0 0 ${ctx.W} ${ctx.H}`} preserveAspectRatio="none" className="comp__skinsvg">
-        <defs><radialGradient id={g}><stop offset="0" stopColor="#bfe9ff" stopOpacity="0.6" /><stop offset="1" stopColor="#7fd3ff" stopOpacity="0" /></radialGradient></defs>
+        <defs><radialGradient id={g}><stop offset="0" stopColor="#bfe9ff" stopOpacity="0.4" /><stop offset="1" stopColor="#7fd3ff" stopOpacity="0" /></radialGradient></defs>
         <ellipse cx={c.x} cy={c.y} rx={r * 1.3} ry={r} fill={`url(#${g})`} className="ov__pulse" />
       </svg>
     ) }],
+    // Warm breath condensing in thin air: a soft plume drifting away from the muzzle, in the
+    // direction the animal actually faces.
     front: (
-      <g className="ov ov--breath" opacity="0.85">
-        {[0, 1, 2].map((i) => <ellipse key={i} cx={n.x - headW * 0.25 - i * headW * 0.22} cy={n.y - i * headW * 0.16} rx={headW * (0.08 + i * 0.05)} ry={headW * (0.05 + i * 0.03)} fill="#e8f7ff" opacity={0.7 - i * 0.2} className="ov__pulse" />)}
+      <g className="ov ov--breath">
+        <defs><radialGradient id={`${g}-p`}><stop offset="0" stopColor="#eaf6ff" stopOpacity="0.55" /><stop offset="1" stopColor="#eaf6ff" stopOpacity="0" /></radialGradient></defs>
+        {[0, 1, 2].map((i) => (
+          <ellipse key={i} cx={n.x + fwd * headW * (0.22 + i * 0.26)} cy={n.y - headW * (0.04 + i * 0.13)} rx={headW * (0.13 + i * 0.09)} ry={headW * (0.09 + i * 0.06)}
+            fill={`url(#${g}-p)`} opacity={0.85 - i * 0.24} className="ov__pulse" style={{ animationDelay: `${i * 0.5}s` }} />
+        ))}
       </g>
     ),
   };
@@ -403,17 +412,20 @@ function breath(ctx) {
 
 /* ------------ GENERIC MARKER (traits with no visible body part) ------------ */
 function marker(ctx, opts = {}) {
-  const { P, headW, anchors } = ctx;
+  const { P, headW, uid, anchors } = ctx;
   let a = anchors[opts.anchor || "chest"]; if (Array.isArray(a)) a = a[0];
   const p = P(a);
-  const r = Math.max(headW * 0.28, 16);
+  const r = Math.max(headW * 0.5, 26);
+  const g = `${uid}-mark-${opts.anchor || "chest"}`;
+  // Traits with no visible body part get the quietest possible mark: a slow warm glow where the
+  // change happens. The labelled callout already names it — this only says "here".
   return {
     front: (
       <g className="ov ov--marker">
-        <circle cx={p.x} cy={p.y} r={r * 1.6} fill="#a6ea8a" opacity="0.18" className="ov__pulse" />
-        <circle cx={p.x} cy={p.y} r={r} fill="none" stroke="#a6ea8a" strokeWidth={r * 0.1} opacity="0.9" />
-        <circle cx={p.x} cy={p.y} r={r * 1.3} fill="none" stroke="#a6ea8a" strokeWidth={r * 0.05} strokeDasharray={`${r * 0.4} ${r * 0.3}`} className="ov__ring-spin" style={{ transformOrigin: `${p.x}px ${p.y}px` }} />
-        <circle cx={p.x} cy={p.y} r={r * 0.3} fill="#e6ffd8" />
+        <defs>
+          <radialGradient id={g}><stop offset="0" stopColor="#dff5c8" stopOpacity="0.45" /><stop offset="0.55" stopColor="#a6ea8a" stopOpacity="0.16" /><stop offset="1" stopColor="#a6ea8a" stopOpacity="0" /></radialGradient>
+        </defs>
+        <ellipse cx={p.x} cy={p.y} rx={r * 1.5} ry={r * 1.2} fill={`url(#${g})`} className="ov__pulse" />
       </g>
     ),
   };
@@ -425,7 +437,7 @@ export const OVERLAY_RENDERERS = {
   scales: (c) => camouflage(c, { variant: "scales" }),
   winter_coat: (c) => camouflage(c, { variant: "winter" }),
   aqua_eyes: (c) => eyes(c, { palette: "aqua" }),
-  sprint: (c) => hindLegs(c, { color: "#ffe066", glow: ["#fff1a8", "#ffb703"] }),
+  sprint: (c) => hindLegs(c, { glow: ["#fff1a8", "#ffb703"] }),
   beak, big_ears: bigEars, blubber, mane, trunk, reach, hump, shell, wide_feet: wideFeet, breath, horns, tusks, marker,
 };
 

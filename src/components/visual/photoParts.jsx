@@ -102,11 +102,15 @@ export function horns(ctx) {
 
 /* ------------ TAILS (bushy / scarf) ------------ */
 export function tail(ctx, opts = {}) {
-  const { P, W, headW, facing, uid, anchors } = ctx;
+  const { P, W, H, headW, facing, uid, anchors } = ctx;
   const front = facing === "front";
-  // Side view: the tail leaves the rump and curls up behind the animal. Front view: it rises above the hips so it stays visible.
-  const rear = front ? P(anchors.hips) : P(anchors.rear);
-  const L = cap(ctx, Math.max(W * 0.4, headW * 1.5), 0.5);
+  // The tail root is pulled a little in from the rump toward the hips, so the base of the photo
+  // overlaps the body instead of starting at the very edge of the silhouette and reading as a
+  // detached object. Length is tied to the animal, and capped against the figure's short side so a
+  // long, low animal (a lying cheetah, a crocodile) doesn't sprout a tail half the frame tall.
+  const hips = P(anchors.hips), rr = P(anchors.rear);
+  const rear = front ? hips : { x: rr.x + (hips.x - rr.x) * 0.35, y: rr.y + (hips.y - rr.y) * 0.35 };
+  const L = Math.min(Math.max(headW * 1.25, W * 0.16), Math.min(W, H) * 0.4);
   const snow = opts.palette === "snow";
   return {
     behind: (
@@ -164,12 +168,17 @@ export function mane(ctx) {
   const { P, headW, facing, anchors } = ctx;
   const top = P(anchors.headTop), mouth = P(anchors.mouth);
   const c = { x: (top.x + mouth.x) / 2, y: (top.y + mouth.y) / 2 + headW * 0.02 };
+  const m = PARTS["mane-lion"];
+  const visibleToLength = Math.hypot(m.tip[0] - m.root[0], m.tip[1] - m.root[1]) / m.w;
+  const L = cap(ctx, headW * 1.35 * visibleToLength, 0.1);
   return {
     behind: (
       <g className="ov ov--mane">
-        {/* The photographed mane sweeps back from the face, so a head-on animal gets it twice, mirrored, for a full ruff. */}
-        {facing === "front" && photoPart("mane-lion", { at: c, angle: -90, length: cap(ctx, headW * 0.6, 0.22), mirror: true })}
-        {photoPart("mane-lion", { at: c, angle: -90, length: cap(ctx, headW * 0.6, 0.22), mirror: facing === "front" ? false : mir(facing) })}
+        {/* The photographed mane sweeps back from the face, so a head-on animal gets it twice,
+            mirrored, for a full ruff. Its root→tip axis is only a quarter of the cut-out's width,
+            so `length` is derived from the width we actually want on screen (~1.3 heads). */}
+        {facing === "front" && photoPart("mane-lion", { at: c, angle: -90, length: L, mirror: true })}
+        {photoPart("mane-lion", { at: c, angle: -90, length: L, mirror: facing === "front" ? false : mir(facing) })}
       </g>
     ),
   };

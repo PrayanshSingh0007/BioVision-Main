@@ -183,16 +183,25 @@ function buildCallouts(layers, animal, fig, stage, labels) {
   });
   const bySide = { left: [], right: [] };
   items.forEach((it) => bySide[it.side].push(it));
+  // Labels are centred on their y (translateY(-50%)), so the column has to live between these
+  // bounds. Pushing each label down past its neighbour used to be able to walk the last one off
+  // the bottom of the frame, so the whole column is fitted: the gap shrinks if it must, and the
+  // stack slides back up if it still overruns.
+  const top = pad + 40, bottom = Math.max(pad + 40, stage.sh - pad - 40);
   Object.values(bySide).forEach((arr) => {
+    if (arr.length === 0) return;
     arr.sort((p, q) => p.ay - q.ay);
+    const g = arr.length > 1 ? Math.min(gap, (bottom - top) / (arr.length - 1)) : gap;
     let lastY = -1e9;
     arr.forEach((it) => {
-      let ly = Math.max(pad + 40, Math.min(stage.sh - pad - 40, it.ay));
-      if (ly - lastY < gap) ly = lastY + gap;
+      let ly = Math.max(top, Math.min(bottom, it.ay));
+      if (ly - lastY < g) ly = lastY + g;
       it.ly = ly;
       it.lx = it.side === "left" ? pad : stage.sw - pad;
       lastY = ly;
     });
+    const over = lastY - bottom;
+    if (over > 0) arr.forEach((it) => { it.ly = Math.max(top, it.ly - over); });
   });
   return items;
 }
